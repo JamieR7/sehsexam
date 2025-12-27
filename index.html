@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IB SEHS Question Bank - AI Marking</title>
+    <title>IB SEHS Exam Practice</title>
     <style>
         * {
             margin: 0;
@@ -13,7 +13,7 @@
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
             min-height: 100vh;
             padding: 20px;
         }
@@ -71,12 +71,12 @@
         }
 
         select:hover {
-            border-color: #667eea;
+            border-color: #3b82f6;
         }
 
         select:focus {
             outline: none;
-            border-color: #667eea;
+            border-color: #3b82f6;
         }
 
         .question-nav {
@@ -88,7 +88,7 @@
 
         .nav-btn {
             padding: 10px 20px;
-            background: #667eea;
+            background: #3b82f6;
             color: white;
             border: none;
             border-radius: 8px;
@@ -99,7 +99,7 @@
         }
 
         .nav-btn:hover:not(:disabled) {
-            background: #5568d3;
+            background: #2563eb;
         }
 
         .nav-btn:disabled {
@@ -177,13 +177,13 @@
 
         textarea:focus {
             outline: none;
-            border-color: #667eea;
+            border-color: #3b82f6;
         }
 
         .submit-btn {
             width: 100%;
             padding: 15px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
             color: white;
             border: none;
             border-radius: 8px;
@@ -196,7 +196,7 @@
 
         .submit-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
         }
 
         .submit-btn:active {
@@ -205,7 +205,7 @@
 
         .loading {
             text-align: center;
-            color: #667eea;
+            color: #3b82f6;
             font-weight: 600;
             margin-top: 15px;
             display: none;
@@ -216,7 +216,7 @@
             width: 20px;
             height: 20px;
             border: 3px solid #f3f3f3;
-            border-top: 3px solid #667eea;
+            border-top: 3px solid #3b82f6;
             border-radius: 50%;
             animation: spin 1s linear infinite;
             margin-right: 10px;
@@ -298,7 +298,7 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>🎯 IB SEHS Question Bank</h1>
+            <h1>🎯 IB SEHS Exam Practice</h1>
             <p>Practice with instant AI marking & feedback</p>
         </div>
 
@@ -338,17 +338,225 @@
     </div>
 
     <script>
-        // Questions database - ONLY Section A for now, will add all questions
+        // Questions database - 27 questions across all 3 sections
         let allQuestions = [
-            {
-                id: "25M.1B.SL.TZ3.5a",
-                section: "A",
-                topic: "Anatomy • Synovial Joints",
-                question: "Outline four features of a synovial joint.",
-                maxMarks: 4,
-                markScheme: "Articular cartilage: Smooth connective tissue at the end of articulating bones ✔ Protects the bones from friction/shock absorption ✔ Synovial membrane: Surrounds the joint and provides stability ✔ Secretes synovial fluid ✔ Synovial fluid: Provides lubrication for the joint ✔ Enables the joint to move freely ✔ Bursae: Fluid filled sac between a tendon and bone ✔ Reduces friction between tendon & bone/shock absorption ✔ Ligament: Tough/elastic tissue connects bone to bone ✔ Provides stability at the joint ✔ Meniscus: Thick pad of fibro cartilage which acts as a shock absorber/load distributer/lubricates the joint ✔ Increases stability at the knee joint ✔ Articular capsule: Thick fibrous structure surrounding the entire joint ✔ Holds the articulating bones/synovial membrane in place ✔"
-            }
-        ];
+        {
+                "id": "25M.1B.SL.TZ3.5a",
+                "section": "A",
+                "topic": "3.1 Anatomy • Synovial Joints",
+                "question": "Outline four features of a synovial joint.",
+                "maxMarks": 4,
+                "markScheme": "Articular cartilage: Smooth connective tissue at the end of articulating bones ✔ Protects the bones from friction/shock absorption ✔ Synovial membrane: Surrounds the joint and provides stability ✔ Secretes synovial fluid ✔ Synovial fluid: Provides lubrication for the joint ✔ Enables the joint to move freely ✔ Bursae: Fluid filled sac between a tendon and bone ✔ Reduces friction between tendon & bone/shock absorption ✔ Ligament: Tough/elastic tissue connects bone to bone ✔ Provides stability at the joint ✔ Meniscus: Thick pad of fibro cartilage which acts as a shock absorber/load distributer/lubricates the joint ✔ Increases stability at the knee joint ✔ Articular capsule: Thick fibrous structure surrounding the entire joint ✔ Holds the articulating bones/synovial membrane in place ✔"
+        },
+        {
+                "id": "25M.1B.SL.TZ3.5b",
+                "section": "A",
+                "topic": "3.2 Exercise Physiology • Respiration",
+                "question": "Explain the mechanism of expiration (exhalation) when exercising.",
+                "maxMarks": 5,
+                "markScheme": "Diaphragm and external intercostal muscles relax ✔ Causing the ribcage to move down and in ✔ This causes the thoracic volume to decrease ✔ Pressure inside the thoracic cavity increases / Pressure is above atmospheric pressure, so air is forced out ✔ During exercise expiration becomes active ✔ Internal intercostal muscles contract to pull the rib cage in and down more rapidly ✔ During strenuous/maximal exercise accessory muscles help to pull the rib cage down more forcefully ✔"
+        },
+        {
+                "id": "25M.2.SL.TZ1.4c",
+                "section": "A",
+                "topic": "3.2 Exercise Physiology • ATP-CP System",
+                "question": "Describe the re-synthesis of ATP by the ATP-CP system.",
+                "maxMarks": 4,
+                "markScheme": "Creatine phosphate/CP/PCr is a high-energy molecule/fuel ✔ The system uses the enzyme creatine kinase ✔ CP releases energy (exothermic reaction) and phosphate molecule/Pi ✔ Energy released is used to add Pi to ADP/re-synthesise ATP (endothermic reaction) ✔ Reaction is a coupled reaction (where one reaction is linked to another reaction) ✔ The reactions take place in the sarcoplasm/cytoplasm of muscle cell ✔ 1 PC = 1 ATP ✔ Does not require oxygen/anaerobic ✔ Is the first system to provide ATP/occurs up to first 20 seconds of exercise ✔"
+        },
+        {
+                "id": "25M.2.SL.TZ1.5a",
+                "section": "A",
+                "topic": "3.3 Biomechanics • Newton's Laws",
+                "question": "Using examples, outline Newton's three laws of motion during a soccer (football) match.",
+                "maxMarks": 6,
+                "markScheme": "First law: A body will continue in a state of rest/uniform motion unless acted upon by an external/internal force ✔ E.g. the ball will remain on the penalty spot until a player kicks the ball ✔ E.g. once kicked a ball remains in uniform motion until acted on by air resistance/gravity/friction/impact ✔ Second law: F=ma/Acceleration is proportional to the net force, and is inversely proportional to the mass ✔ E.g. when the ball is struck by the players' foot (in a free kick) the player applies a force to ball which causes the ball to accelerate (in direction of the force) / E.g. the greater the force applied by a football player to a ball (during a free kick) the faster the ball will accelerate (towards goal) ✔ Third law: For every action (force) there is an equal and opposite reaction (force) ✔ E.g. the player applies an action force to the ball where an equal and opposite force is applied to the player ✔ E.g. The differences in the apparent acceleration of the ball compared to the player is due to the differences in mass between the ball and player ✔"
+        },
+        {
+                "id": "25M.2.SL.TZ1.5d",
+                "section": "A",
+                "topic": "3.2 Exercise Physiology • Blood Redistribution",
+                "question": "Describe blood redistribution as a soccer (football) player begins running during a game.",
+                "maxMarks": 5,
+                "markScheme": "Increases blood acidity/temperature/CO2 causing a redistribution of blood OR Sympathetic stimulation/nervous system controls the vascular shunt/redistribution of blood ✔ Q/blood is redistribution to working/active muscles/tissues ✔ Through vasodilation of arterioles to working muscle ✔ Vasodilation of arterioles to working/active muscles/tissues ✔ Some blood is directed to the skin (vasodilation) for cooling purposes ✔ Through vasoconstriction of arterioles to non-active tissues ✔ Q/blood is directed away from non-active tissues (e.g. kidneys) ✔ However, blood flow to the brain remains constant ✔"
+        },
+        {
+                "id": "25M.2.SL.TZ1.103a",
+                "section": "A",
+                "topic": "3.4 Nutrition • Glycemic Index",
+                "question": "Explain the importance of selecting low glycemic index (GI) carbohydrates for a pre-competition meal.",
+                "maxMarks": 2,
+                "markScheme": "GI is a measure of the rate at which carbohydrates raise blood glucose levels after being consumed ✔ Low-GI foods are absorbed slowly, causing a gradual increase in blood sugar ✔ This provides consistent energy, beneficial for maintaining endurance during the event/prevent premature fatigue for endurance athletes ✔"
+        },
+        {
+                "id": "25M.2.SL.TZ2.5a",
+                "section": "A",
+                "topic": "3.2 Exercise Physiology • Insulin",
+                "question": "Insulin is inhibited by muscle contraction. Explain the role of insulin on glucose uptake at rest.",
+                "maxMarks": 3,
+                "markScheme": "Insulin is released from pancreas (beta cells) in response to elevated levels of blood glucose/to maintain blood glucose homeostasis ✔ Insulin promotes glucose uptake by muscles/liver for storage/glycogenesis ✔ Insulin allows glucose to enter cells by stimulating glucose transporters closer to the surface of the cell ✔ If glycogen storage sites are full, insulin stores glucose as adipose tissue/lipids/triglycerides (through lipogenesis) ✔ The pathway for glucose into the cell is different to that stimulated by muscle contraction ✔"
+        },
+        {
+                "id": "25M.2.SL.TZ1.104",
+                "section": "A",
+                "topic": "3.2 Exercise Physiology • Muscle Fibres",
+                "question": "Identify the type of muscle fibre associated with each level of glycogen content: Low, Medium, High.",
+                "maxMarks": 3,
+                "markScheme": "Low: slow twitch (type I) ✔ Medium: fast twitch (type IIa) ✔ High: fast twitch (type IIb) ✔"
+        },
+        {
+                "id": "25M.2.SL.TZ1.3d",
+                "section": "A",
+                "topic": "3.2 Exercise Physiology • Insulin & Glycogen",
+                "question": "Explain the role of insulin in the formation of glycogen.",
+                "maxMarks": 3,
+                "markScheme": "Insulin is released from pancreas (beta cells) in response to elevated blood glucose levels ✔ Insulin increases muscle/fat/liver cell permeability (through translocation of GLUT 4 or GLUT 1 for the liver) ✔ This stimulates glucose uptake/glycogen formation/glycogenesis in (skeletal) muscle/fat/liver (cells) ✔ Glycogen is formed linking large numbers of glucose molecules together OR Formation of glycogen is through a condensation reaction ✔"
+        },
+        {
+                "id": "25M.2.SL.TZ1.3c",
+                "section": "A",
+                "topic": "3.2 Exercise Physiology • Muscle Fibres",
+                "question": "Discuss characteristics of a type IIb fast glycolytic muscle fibre.",
+                "maxMarks": 4,
+                "markScheme": "FG/IIb are: Effective for powerful/explosive/high-intensity movements/e.g. long jump ✔ Because they have a high speed of contraction/force production ✔ (Due to) high glycogen/ATP/PC stores/energy mostly produced anaerobically ✔ However, they are ineffective for endurance activities/e.g. marathon ✔ Because they have a low resistance to fatigue/fatigue quickly ✔ Due to low myoglobin/mitochondria/capillary density/limited ability to produce energy aerobically ✔"
+        },
+        {
+                "id": "25M.2.SL.TZ1.3a",
+                "section": "B",
+                "topic": "3.1 Anatomy • Muscles",
+                "question": "The diagram shows the skeletal muscles in the anterior upper leg. Identify the parts labelled X and Y.",
+                "maxMarks": 2,
+                "markScheme": "X: vastus lateralis ✔ Y: rectus femoris ✔"
+        },
+        {
+                "id": "25M.2.SL.TZ1.3b",
+                "section": "B",
+                "topic": "3.1 Anatomy • Skeletal Muscle",
+                "question": "The diagram shows skeletal muscle. Identify the parts labelled X and Y.",
+                "maxMarks": 2,
+                "markScheme": "X: perimysium/fascicle ✔ Y: myofibril/sarcomere(s) ✔"
+        },
+        {
+                "id": "25M.2.HL.TZ1.4a",
+                "section": "B",
+                "topic": "3.3 Biomechanics • Friction",
+                "question": "Describe how friction influences a 100 m sprinter's performance.",
+                "maxMarks": 3,
+                "markScheme": "Friction (between track/block and footwear) prevents a sprinter from slipping ✔ Friction maximizes acceleration/motion forward OR Friction allows sprinter to complete race in a faster time ✔ Tartan/specialised tracks have greater friction than grass/gravel/sand ✔ Sprinters increase their friction by wearing spikes/using blocks ✔ Spikes/blocks increase the surface area in contact with the ground ✔"
+        },
+        {
+                "id": "25M.2.HL.TZ2.4b",
+                "section": "B",
+                "topic": "3.1 Anatomy • Anatomical Terminology",
+                "question": "State the location of the humerus in relation to the radius using anatomical terminology.",
+                "maxMarks": 1,
+                "markScheme": "Superior OR Proximal ✔"
+        },
+        {
+                "id": "25M.2.HL.TZ2.4c",
+                "section": "B",
+                "topic": "3.3 Biomechanics • Levers",
+                "question": "Distinguish between first class levers and third class levers.",
+                "maxMarks": 2,
+                "markScheme": "Third-class lever has effort in the middle, first-class lever has the fulcrum in the middle ✔ Third-class lever always has longer load arm, in the first-class lever, the load arm and effort arm depend on where the fulcrum is placed in relation to load and effort ✔ Third-class lever is a speed multiplier, the first-class lever can be a speed or strength multiplier ✔"
+        },
+        {
+                "id": "25M.2.SL.TZ2.4c",
+                "section": "B",
+                "topic": "3.1 Anatomy • Muscle Action",
+                "question": "Analyse how the muscles work in pairs to extend the elbow during a backhand in badminton.",
+                "maxMarks": 4,
+                "markScheme": "Is a neuromuscular reflex that inhibits opposing muscles (to enable voluntary movements) OR Is due to reciprocal inhibition (to enable voluntary movements) ✔ The antagonist is inhibited to allow the agonist to contract and control the movement ✔ Triceps (brachii) act as agonist/contracts ✔ Concentric contraction ✔ Biceps (brachii) act as antagonist/relax/inhibited ✔"
+        },
+        {
+                "id": "25M.2.SL.TZ1.4b",
+                "section": "B",
+                "topic": "3.3 Biomechanics • Angular Momentum",
+                "question": "The diagram shows a person performing a pirouette in ballet. Explain the concept of angular momentum when the ballet dancer performs the pirouette.",
+                "maxMarks": 6,
+                "markScheme": "Angular momentum is created by applying torque/an eccentric force to a body ✔ Angular momentum is defined as moment of inertia × angular velocity OR Angular velocity and moment of inertia are inversely proportional ✔ Angular momentum is how much rotation/spin the ballet dancer has about (the longitudinal/an) axis ✔ A moment of inertia is determined by the distance of the load from the rotational axis ✔ Angular momentum remains constant unless the ballet dancer is acted upon by an unbalanced force ✔ Ballet dancer can increase their moment of inertia by moving their limbs away from the centre of their body/axis ✔ Ballet dancer can increase their angular velocity by moving their limbs close to the centre of the body/axis ✔ Picture A/C/Open limbs: the (ballet) dancer has a large moment of inertia therefore their rate of spin/angular velocity is low ✔ Picture B/Close limbs: the (ballet) dancer has a small moment of inertia therefore their rate of spin/angular velocity is high ✔"
+        },
+        {
+                "id": "25M.2.HL.TZ2.4e",
+                "section": "B",
+                "topic": "3.1 Anatomy • Synovial Joints",
+                "question": "Outline two features of synovial joints.",
+                "maxMarks": 2,
+                "markScheme": "Articular cartilage, a (glassy) smooth layer surrounding the ends of the bones to reduce friction between bones ✔ Synovial membrane, (lining of articular capsule that) produces the synovial fluid, which aids lubrication ✔ Synovial fluid, acts as a lubricant, allows bones to smoothly move past each other ✔ Bursae, synovial fluid-filled sac, sits between the tendon and bone to reduce friction ✔ Meniscus, semi-lunar disc of fibrous cartilage, provides cushioning and stability to joint ✔ Ligament, strong, flexible tissue that connects bone to bone ✔ Articular capsule, sleeve-like structure surrounding joint, protects against dislocation ✔"
+        },
+        {
+                "id": "25M.2.SL.TZ2.5b",
+                "section": "B",
+                "topic": "3.3 Biomechanics • Projectile Motion",
+                "question": "Predict how changing the speed and height of release affects the motion of a projectile released at a 45° angle.",
+                "maxMarks": 2,
+                "markScheme": "Increasing the height of release increases the distance of the projectile ✔ Increasing the speed of release increases the distance of the projectile ✔"
+        },
+        {
+                "id": "25M.2.SL.TZ1.102a",
+                "section": "C",
+                "topic": "4.1 Psychology • Anxiety",
+                "question": "Distinguish between cognitive and somatic anxiety.",
+                "maxMarks": 2,
+                "markScheme": "Cognitive anxiety: Mental/psychological worry/negative thoughts about performance ✔ Somatic anxiety: Physiological symptoms like increased heart rate/sweating/butterflies in stomach ✔"
+        },
+        {
+                "id": "25M.2.SL.TZ3.3a",
+                "section": "C",
+                "topic": "4.2 Motor Learning • Transfer",
+                "question": "Define the concept of transfer.",
+                "maxMarks": 1,
+                "markScheme": "Where a person's learning in one situation/skill has an impact on their performance in another situation/skill ✔"
+        },
+        {
+                "id": "25M.2.SL.TZ3.3b",
+                "section": "C",
+                "topic": "4.2 Motor Learning • Transfer",
+                "question": "Outline abilities to skills as a type of transfer when learning to return the ball in tennis.",
+                "maxMarks": 1,
+                "markScheme": "E.g. Abilities such as coordination/balance/reaction time would allow the performer to execute the skill ✔"
+        },
+        {
+                "id": "25M.2.HL.TZ1.4d",
+                "section": "C",
+                "topic": "4.2 Motor Learning • Constraints",
+                "question": "Using examples, explain three ways a coach may use a constraints-led approach to improve player motivation.",
+                "maxMarks": 3,
+                "markScheme": "Weather: e.g. a coach may take the session inside to avoid harsh weather and increase enjoyment in the session ✔ Peers: e.g. a coach may group players based on their friendship groups to enhance motivation during training ✔ Coaching: e.g. provide a supportive/encouraging environment through praising effort over outcome ✔ Individual differences: e.g. group players based on their previous experience/physical fitness/attributes to provide appropriate challenge ✔ Goals: e.g. set individualized performance goals for athletes to achieve success ✔ Cognition: e.g. provide opportunity for problem solving/decision making to feel autonomy ✔ Equipment: e.g. use a low bounce tennis ball for younger/novice performers to allow more time and success to connect with the ball ✔ Rules: e.g. play small side games such as 3v3 to increase touches/participation/interaction ✔ Scoring: e.g. adapt scoring system to motivate performers to practise positive behaviours ✔ Playing area: e.g. make the playing area smaller such as a smaller tackle box to increase the chance of success when defending in 1v1 situation ✔"
+        },
+        {
+                "id": "25M.2.HL.TZ1.103a",
+                "section": "C",
+                "topic": "4.1 Psychology • Social Learning",
+                "question": "Using examples, analyse two ways social learning theory can help a soccer (football) coach improve team performance.",
+                "maxMarks": 2,
+                "markScheme": "Players learn from observing teammates, with peer behaviour influencing team cohesion/individual skill development e.g. adopting successful defence strategies seen in fellow defenders ✔ The training environment/team culture contributes to learning/performance e.g. practicing in a high-energy environment simulates real game intensity ✔ Behaviours/skills learned through observation are applied in games e.g. a player implementing a new dribbling technique observed from a teammate ✔ Coaches acting as role models demonstrate desired behaviours/skills e.g. a coach showing respect and fairness ✔ Positive reinforcement/feedback from the coach is essential for encouraging effective team behaviours/performance e.g. praising a player for excellent teamwork ✔"
+        },
+        {
+                "id": "25M.2.HL.TZ1.103b",
+                "section": "C",
+                "topic": "4.1 Psychology • Achievement Motivation",
+                "question": "The coach introduces new coaching methods. Describe how Atkinson's model of achievement motivation may influence the soccer (football) team's response to coaching.",
+                "maxMarks": 3,
+                "markScheme": "Individuals are motivated by the desire to succeed (NACH) and the fear of failure (NAF) ✔ When new coaching methods are introduced, players with high NACH may see this as an opportunity to improve ✔ Players with higher NAF might resist/feel anxious about new methods (fearing negative outcomes) ✔ Players are encouraged to adopt growth/learning development over immediate success or failure ✔"
+        },
+        {
+                "id": "25M.2.SL.TZ2.5f",
+                "section": "C",
+                "topic": "4.2 Motor Learning • Positive & Negative Transfer",
+                "question": "Using examples, outline positive and negative transfer.",
+                "maxMarks": 2,
+                "markScheme": "Positive transfer is when the effect benefits/enhances the learning/performance of the second skill e.g. take-off in long jump supports take-off in triple jump ✔ Negative transfer is when the effect hinders the learning/performance of the second skill e.g. squash forehand to tennis forehand/surfing to snowboarding ✔"
+        },
+        {
+                "id": "25M.2.HL.TZ1.4b",
+                "section": "C",
+                "topic": "4.2 Motor Learning • Environmental Constraints",
+                "question": "Outline two environmental constraints that can enhance a sprinter's learning of a new skill.",
+                "maxMarks": 2,
+                "markScheme": "Physical: Ambient/weather conditions enable focus/practice/replicate competition (e.g. indoor training during non-optimal conditions) ✔ Suitable flat non-slip surface (e.g. tartan track) ✔ Sufficient/appropriate light to provide visibility/alertness (e.g. use of flood lights/indoor facility/away from glare of sun) OR Optimal ambient sound for focus/motivation (e.g. for instructions to be heard/music to support training) ✔ Sufficient space to execute the whole skill (e.g.100 m for a sprint) ✔ Social: Positive/supportive peer/teammate relationships (e.g. learn from shared experience/feedback) ✔ Encouraging/supportive/motivating coaching style (e.g. valuing effort/providing choice/autonomy) ✔ Positive societal/cultural perception around participation (e.g. inclusive/collaborative/value of perseverance) ✔ Supportive family network allowing commitment/dedication to training/practice ✔"
+        }
+];
 
         let filteredQuestions = [];
         let currentIndex = 0;
