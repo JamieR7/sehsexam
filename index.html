@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IB SEHS Question Bank</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #7f8c8d;
+            font-size: 14px;
+        }
+
+        .question-card {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .question-header {
+            margin-bottom: 20px;
+        }
+
+        .question-meta {
+            color: #7f8c8d;
+            font-size: 13px;
+            margin-bottom: 10px;
+        }
+
+        .question-text {
+            font-size: 18px;
+            color: #2c3e50;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .marks-badge {
+            display: inline-block;
+            background: #3498db;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 150px;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 6px;
+            font-family: inherit;
+            font-size: 15px;
+            resize: vertical;
+            margin: 20px 0;
+            transition: border-color 0.3s;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: #3498db;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            background: #3498db;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #2980b9;
+        }
+
+        .btn-primary:disabled {
+            background: #bdc3c7;
+            cursor: not-allowed;
+        }
+
+        .btn-secondary {
+            background: #95a5a6;
+            color: white;
+            margin-left: 10px;
+        }
+
+        .btn-secondary:hover {
+            background: #7f8c8d;
+        }
+
+        .feedback-section {
+            margin-top: 30px;
+            padding: 20px;
+            background: #ecf0f1;
+            border-radius: 6px;
+            display: none;
+        }
+
+        .feedback-section.show {
+            display: block;
+        }
+
+        .score-display {
+            font-size: 24px;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 8px;
+        }
+
+        .disclaimer {
+            font-size: 13px;
+            color: #7f8c8d;
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+
+        .key-points {
+            margin: 20px 0;
+        }
+
+        .key-point {
+            padding: 8px 12px;
+            margin: 6px 0;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .key-point.hit {
+            background: #d5f4e6;
+            color: #27ae60;
+        }
+
+        .key-point.miss {
+            background: #fadbd8;
+            color: #e74c3c;
+        }
+
+        .examiner-comment {
+            background: white;
+            padding: 15px;
+            border-left: 4px solid #3498db;
+            border-radius: 4px;
+            margin: 20px 0;
+        }
+
+        .examiner-comment strong {
+            display: block;
+            margin-bottom: 8px;
+            color: #2c3e50;
+        }
+
+        .hint-section, .markscheme-section {
+            background: white;
+            padding: 20px;
+            border-radius: 6px;
+            margin-top: 15px;
+            display: none;
+        }
+
+        .hint-section.show, .markscheme-section.show {
+            display: block;
+        }
+
+        .hint-section {
+            border-left: 4px solid #f39c12;
+        }
+
+        .markscheme-section {
+            border-left: 4px solid #9b59b6;
+        }
+
+        .closing-message {
+            margin-top: 20px;
+            padding: 15px;
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            border-radius: 4px;
+            font-size: 14px;
+            color: #856404;
+        }
+
+        .loading {
+            display: none;
+            color: #3498db;
+            margin-left: 10px;
+        }
+
+        .loading.show {
+            display: inline;
+        }
+
+        .examiner-report {
+            margin-top: 15px;
+            padding: 12px;
+            background: #e8f4f8;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .examiner-report strong {
+            display: block;
+            margin-bottom: 5px;
+            color: #2c3e50;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>IB SEHS Question Bank</h1>
+            <p class="subtitle">Practice questions with AI-powered feedback</p>
+        </header>
+
+        <!-- Questions will be inserted here -->
+        <div id="questions-container"></div>
+    </div>
+
+    <script>
+        // Question data embedded in the page
+        const QUESTIONS = [
+        {
+                "id": "A-SAQ-001",
+                "document": "A-SAQ",
+                "topic": "Topic 3.1 - Anatomy",
+                "question": "Outline four features of a synovial joint.",
+                "max_marks": 4,
+                "mark_scheme": "- Articular cartilage: Smooth connective tissue at the end of articulating bones / Protects the bones from friction/shock absorption\n- Synovial membrane: Surrounds the joint and provides stability / Secretes synovial fluid\n- Synovial fluid: Provides lubrication for the joint / Enables the joint to move freely\n- Bursae: Fluid filled sac between a tendon and bone / Reduces friction between tendon bones/shock absorption\n- Ligament: Tough/elastic tissue connects bone to bone / Provides stability at the joint\n- Meniscus: Thick pad of fibro cartilage which acts as a shock absorber/load distributer/lubricates the joint / Increases stability at the knee joint\n- Articular capsule: Thick fibrous structure surrounding the entire joint / Holds the articulating bones/synovial membrane in place\n\nAward max 1 per feature.\nAward max 1 for a list of three or more features of synovial joints.",
+                "examiner_report": "Many students confused the feature of a synovial joint as outlined in the guide with general statements regarding synovial joints i.e. freely movable."
+        },
+        {
+                "id": "A-SAQ-002",
+                "document": "A-SAQ",
+                "topic": "Topic 3.2 - Exercise Physiology",
+                "question": "Describe two types of drag and explain how each affects a cyclist's performance.",
+                "max_marks": 4,
+                "mark_scheme": "Surface drag:\n- As a body moves through a fluid, its outer surface catches a layer of the fluid nearby, slowing it down\n- The smoother the surface of the cyclist, the lower the drag\n\nForm drag:\n- As a body pushes against a fluid, the fluid pushes back (action and reaction) creating drag, slowing it down\n- The more aerodynamic/smaller the form of the cyclist, the lower the drag\n\nAward max 2 per type of drag.",
+                "examiner_report": "In general, a poorly answered question. Further review of how form drag and surface drag affect athletes in a variety of sporting contexts is needed."
+        }
+];
+
+        // Rotating closing messages
+        const CLOSING_MESSAGES = [
+            "If you disagree with this feedback, brilliant! That means you're thinking critically. Bring your reasoning to your teacher or discuss with classmates.",
+            "Think I've been unfair? Excellent. Challenge this score with your teacher. Defending your answer is great exam practice.",
+            "Got a different interpretation? Perfect. Real examiners sometimes disagree too. Let's discuss in class.",
+            "This is a starting point, not the final word. Discussing your answer with your teacher and classmates is always valuable, regardless of the score.",
+            "Disagree? Good! That critical thinking is exactly what examiners want to see. Bring your case to class.",
+            "AI isn't infallible (shocking, I know). If this feels wrong, talk it through with your teacher. That conversation is the real learning."
+        ];
+
+        // Configuration - UPDATE THIS URL to your Cloudflare Worker URL
+        const API_URL = 'https://YOUR-WORKER-SUBDOMAIN.workers.dev/mark';
+
+        // Render all questions
+        function renderQuestions() {
+            const container = document.getElementById('questions-container');
+
+            QUESTIONS.forEach(q => {
+                const questionHTML = `
+                    <div class="question-card" data-question-id="${q.id}">
+                        <div class="question-header">
+                            <div class="question-meta">${q.document} • ${q.topic}</div>
+                            <div class="question-text">${q.question}</div>
+                            <span class="marks-badge">[${q.max_marks} marks]</span>
+                        </div>
+
+                        <textarea 
+                            id="answer-${q.id}" 
+                            placeholder="Type your answer here..."
+                            aria-label="Your answer"
+                        ></textarea>
+
+                        <div class="button-group">
+                            <button class="btn btn-primary" onclick="submitAnswer('${q.id}')">
+                                Submit Answer
+                            </button>
+                            <span class="loading" id="loading-${q.id}">Marking...</span>
+                        </div>
+
+                        <div class="feedback-section" id="feedback-${q.id}">
+                            <div class="score-display" id="score-${q.id}"></div>
+                            <div class="disclaimer">This is an AI estimate and may not reflect an actual examiner's score</div>
+
+                            <div class="key-points" id="key-points-${q.id}"></div>
+
+                            <div class="examiner-comment" id="comment-${q.id}"></div>
+
+                            <div class="closing-message" id="closing-${q.id}"></div>
+
+                            <div style="margin-top: 20px;">
+                                <button class="btn btn-secondary" onclick="showHint('${q.id}')">
+                                    Show Hint
+                                </button>
+                                <button class="btn btn-secondary" onclick="showMarkScheme('${q.id}')">
+                                    Show Mark Scheme
+                                </button>
+                            </div>
+
+                            <div class="hint-section" id="hint-${q.id}">
+                                <strong>💡 Hint</strong>
+                                <p id="hint-text-${q.id}"></p>
+                            </div>
+
+                            <div class="markscheme-section" id="markscheme-${q.id}">
+                                <strong>📋 Mark Scheme</strong>
+                                <pre style="white-space: pre-wrap; font-family: inherit; margin: 10px 0;">${q.mark_scheme}</pre>
+                                ${q.examiner_report ? `
+                                    <div class="examiner-report">
+                                        <strong>Examiner's Report:</strong>
+                                        ${q.examiner_report}
+                                    </div>
+                                ` : ''}
+                            </div>
+                        </div>
+                    </div>
+                `;
+                container.innerHTML += questionHTML;
+            });
+        }
+
+        // Submit answer to API
+        async function submitAnswer(questionId) {
+            const question = QUESTIONS.find(q => q.id === questionId);
+            const answer = document.getElementById(`answer-${questionId}`).value.trim();
+
+            if (!answer) {
+                alert('Please write an answer before submitting.');
+                return;
+            }
+
+            // Show loading state
+            document.getElementById(`loading-${questionId}`).classList.add('show');
+            document.querySelector(`[onclick="submitAnswer('${questionId}')"]`).disabled = true;
+
+            try {
+                const response = await fetch(API_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        questionId: questionId,
+                        question: question.question,
+                        markScheme: question.mark_scheme,
+                        maxMarks: question.max_marks,
+                        answer: answer
+                    })
+                });
+
+                if (!response.ok) {
+                    throw new Error('Failed to get feedback');
+                }
+
+                const data = await response.json();
+                displayFeedback(questionId, data);
+
+            } catch (error) {
+                alert('Error getting feedback. Please try again.');
+                console.error(error);
+            } finally {
+                document.getElementById(`loading-${questionId}`).classList.remove('show');
+                document.querySelector(`[onclick="submitAnswer('${questionId}')"]`).disabled = false;
+            }
+        }
+
+        // Display AI feedback
+        function displayFeedback(questionId, data) {
+            document.getElementById(`feedback-${questionId}`).classList.add('show');
+
+            document.getElementById(`score-${questionId}`).textContent = 
+                `I think you would score ${data.score}/${data.maxMarks} marks`;
+
+            // Display key points
+            const keyPointsHTML = data.keyPoints.map(point => 
+                `<div class="key-point ${point.hit ? 'hit' : 'miss'}">
+                    ${point.hit ? '✓' : '✗'} ${point.text}
+                </div>`
+            ).join('');
+            document.getElementById(`key-points-${questionId}`).innerHTML = keyPointsHTML;
+
+            // Display examiner comment
+            document.getElementById(`comment-${questionId}`).innerHTML = 
+                `<strong>Examiner-style comment:</strong>${data.comment}`;
+
+            // Display random closing message
+            const randomMessage = CLOSING_MESSAGES[Math.floor(Math.random() * CLOSING_MESSAGES.length)];
+            document.getElementById(`closing-${questionId}`).textContent = randomMessage;
+
+            // Store hint for later
+            document.getElementById(`hint-text-${questionId}`).textContent = data.hint;
+        }
+
+        // Show hint
+        function showHint(questionId) {
+            const hintSection = document.getElementById(`hint-${questionId}`);
+            hintSection.classList.toggle('show');
+        }
+
+        // Show mark scheme
+        function showMarkScheme(questionId) {
+            const schemeSection = document.getElementById(`markscheme-${questionId}`);
+            schemeSection.classList.toggle('show');
+        }
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', renderQuestions);
+    </script>
+</body>
+</html>
