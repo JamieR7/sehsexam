@@ -304,9 +304,8 @@
 
         <div class="controls">
             <div class="filter-section">
-                <label for="sectionFilter">Filter by Section:</label>
+                <label for="sectionFilter">Select Section:</label>
                 <select id="sectionFilter">
-                    <option value="all">All Sections</option>
                     <option value="A">A. Exercise Physiology & Nutrition</option>
                     <option value="B">B. Biomechanics</option>
                     <option value="C">C. Sports Psychology & Motor Learning</option>
@@ -339,7 +338,7 @@
     </div>
 
     <script>
-        // Questions database - will be populated from your documents
+        // Questions database - ONLY Section A for now, will add all questions
         let allQuestions = [
             {
                 id: "25M.1B.SL.TZ3.5a",
@@ -347,7 +346,7 @@
                 topic: "Anatomy • Synovial Joints",
                 question: "Outline four features of a synovial joint.",
                 maxMarks: 4,
-                markScheme: "Articular cartilage: Smooth connective tissue at the end of articulating bones ✔ Protects the bones from friction/shock absorption ✔ Synovial membrane: Surrounds the joint and provides stability ✔ Secretes synovial fluid ✔ Synovial fluid: Provides lubrication for the joint ✔ Enables the joint to move freely ✔ Bursae: Fluid filled sac between a tendon and bone ✔ Reduces friction between tendon & bone/shock absorption ✔ Ligament: Tough/elastic tissue connects bone to bone ✔ Provides stability at the joint ✔ Meniscus: Thick pad of «fibro» cartilage which acts as a shock absorber/load distributer/lubricates the joint ✔ Increases stability at the knee joint ✔ Articular capsule: Thick fibrous structure surrounding the entire joint ✔ Holds the articulating bones/synovial membrane in place ✔"
+                markScheme: "Articular cartilage: Smooth connective tissue at the end of articulating bones ✔ Protects the bones from friction/shock absorption ✔ Synovial membrane: Surrounds the joint and provides stability ✔ Secretes synovial fluid ✔ Synovial fluid: Provides lubrication for the joint ✔ Enables the joint to move freely ✔ Bursae: Fluid filled sac between a tendon and bone ✔ Reduces friction between tendon & bone/shock absorption ✔ Ligament: Tough/elastic tissue connects bone to bone ✔ Provides stability at the joint ✔ Meniscus: Thick pad of fibro cartilage which acts as a shock absorber/load distributer/lubricates the joint ✔ Increases stability at the knee joint ✔ Articular capsule: Thick fibrous structure surrounding the entire joint ✔ Holds the articulating bones/synovial membrane in place ✔"
             }
         ];
 
@@ -356,27 +355,31 @@
 
         // Initialize
         function init() {
-            filteredQuestions = [...allQuestions];
+            filterQuestions();
             displayQuestion();
             updateNavigation();
         }
 
-        // Filter questions
-        document.getElementById('sectionFilter').addEventListener('change', function() {
-            const section = this.value;
-            if (section === 'all') {
-                filteredQuestions = [...allQuestions];
-            } else {
-                filteredQuestions = allQuestions.filter(q => q.section === section);
-            }
+        // Filter questions by selected section
+        function filterQuestions() {
+            const section = document.getElementById('sectionFilter').value;
+            filteredQuestions = allQuestions.filter(q => q.section === section);
             currentIndex = 0;
+        }
+
+        // Listen for section changes
+        document.getElementById('sectionFilter').addEventListener('change', function() {
+            filterQuestions();
             displayQuestion();
             updateNavigation();
         });
 
         // Display current question
         function displayQuestion() {
-            if (filteredQuestions.length === 0) return;
+            if (filteredQuestions.length === 0) {
+                document.getElementById('questionDisplay').innerHTML = '<p style="color: #666;">No questions available for this section yet.</p>';
+                return;
+            }
 
             const q = filteredQuestions[currentIndex];
             const sectionNames = {
