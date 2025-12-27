@@ -252,12 +252,11 @@
             <p class="subtitle">Practice questions with AI-powered feedback</p>
         </header>
 
-        <!-- Questions will be inserted here -->
         <div id="questions-container"></div>
     </div>
 
     <script>
-        // Question data embedded in the page
+        // Question data
         const QUESTIONS = [
         {
                 "id": "A-SAQ-001",
@@ -289,8 +288,8 @@
             "AI isn't infallible (shocking, I know). If this feels wrong, talk it through with your teacher. That conversation is the real learning."
         ];
 
-        // Configuration - UPDATE THIS URL to your Cloudflare Worker URL
-        const API_URL = 'https://YOUR-WORKER-SUBDOMAIN.workers.dev/mark';
+        // API endpoint - UPDATED WITH YOUR ACTUAL WORKER URL
+        const API_URL = 'https://sehsexam.thatjamiebloke.workers.dev/mark';
 
         // Render all questions
         function renderQuestions() {
@@ -446,3 +445,4 @@
     </script>
 </body>
 </html>
+
