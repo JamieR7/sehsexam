@@ -5,41 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IB SEHS Exam Practice</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
             background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
             min-height: 100vh;
             padding: 20px;
         }
-
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
+        .container { max-width: 1000px; margin: 0 auto; }
+        .header { text-align: center; color: white; margin-bottom: 30px; }
+        .header h1 { font-size: 2.5em; margin-bottom: 10px; text-shadow: 2px 2px 4px rgba(0,0,0,0.2); }
+        .header p { font-size: 1.1em; opacity: 0.95; }
+        .ai-disclaimer {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            color: #856404;
+            font-size: 14px;
+            line-height: 1.6;
         }
-
-        .header {
-            text-align: center;
-            color: white;
-            margin-bottom: 30px;
-        }
-
-        .header h1 {
-            font-size: 2.5em;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
-        }
-
-        .header p {
-            font-size: 1.1em;
-            opacity: 0.95;
-        }
-
+        .ai-disclaimer strong { display: block; margin-bottom: 5px; font-size: 15px; }
         .controls {
             background: white;
             padding: 25px;
@@ -47,14 +34,7 @@
             box-shadow: 0 8px 32px rgba(0,0,0,0.1);
             margin-bottom: 20px;
         }
-
-        .level-toggle {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 20px;
-            justify-content: center;
-        }
-
+        .level-toggle { display: flex; gap: 10px; margin-bottom: 20px; justify-content: center; }
         .level-btn {
             padding: 10px 30px;
             border: 2px solid #3b82f6;
@@ -66,42 +46,11 @@
             font-weight: 600;
             transition: all 0.3s;
         }
-
-        .level-btn.active {
-            background: #3b82f6;
-            color: white;
-        }
-
-        .level-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
-        }
-
-        .filter-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 15px;
-            margin-bottom: 20px;
-        }
-
-        @media (max-width: 768px) {
-            .filter-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .filter-section {
-            margin-bottom: 0;
-        }
-
-        .filter-section label {
-            display: block;
-            font-weight: 600;
-            margin-bottom: 8px;
-            color: #333;
-            font-size: 14px;
-        }
-
+        .level-btn.active { background: #3b82f6; color: white; }
+        .level-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3); }
+        .filter-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-bottom: 20px; }
+        @media (max-width: 768px) { .filter-grid { grid-template-columns: 1fr; } }
+        .filter-section label { display: block; font-weight: 600; margin-bottom: 8px; color: #333; font-size: 14px; }
         select {
             width: 100%;
             padding: 12px;
@@ -112,16 +61,8 @@
             cursor: pointer;
             transition: border-color 0.3s;
         }
-
-        select:hover {
-            border-color: #3b82f6;
-        }
-
-        select:focus {
-            outline: none;
-            border-color: #3b82f6;
-        }
-
+        select:hover { border-color: #3b82f6; }
+        select:focus { outline: none; border-color: #3b82f6; }
         .question-nav {
             display: flex;
             justify-content: space-between;
@@ -130,7 +71,6 @@
             padding-top: 15px;
             border-top: 2px solid #e0e0e0;
         }
-
         .nav-btn {
             padding: 10px 20px;
             background: #3b82f6;
@@ -142,22 +82,9 @@
             font-weight: 600;
             transition: background 0.3s;
         }
-
-        .nav-btn:hover:not(:disabled) {
-            background: #2563eb;
-        }
-
-        .nav-btn:disabled {
-            background: #ccc;
-            cursor: not-allowed;
-        }
-
-        .question-counter {
-            font-weight: 600;
-            color: #333;
-            font-size: 14px;
-        }
-
+        .nav-btn:hover:not(:disabled) { background: #2563eb; }
+        .nav-btn:disabled { background: #ccc; cursor: not-allowed; }
+        .question-counter { font-weight: 600; color: #333; font-size: 14px; }
         .card {
             background: white;
             padding: 30px;
@@ -165,7 +92,6 @@
             box-shadow: 0 8px 32px rgba(0,0,0,0.1);
             margin-bottom: 20px;
         }
-
         .level-badge {
             display: inline-block;
             padding: 4px 10px;
@@ -175,10 +101,8 @@
             margin-right: 8px;
             letter-spacing: 0.5px;
         }
-
         .badge-SL { background: #10b981; color: white; }
         .badge-HL { background: #f59e0b; color: white; }
-
         .subtopic-badge {
             display: inline-block;
             padding: 6px 12px;
@@ -189,14 +113,12 @@
             background: #e0e7ff;
             color: #3730a3;
         }
-
         .question-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 20px;
         }
-
         .marks-badge {
             background: #3b82f6;
             color: white;
@@ -205,14 +127,7 @@
             font-weight: 600;
             font-size: 14px;
         }
-
-        .question-text {
-            font-size: 18px;
-            line-height: 1.6;
-            color: #1a1a1a;
-            margin-bottom: 25px;
-        }
-
+        .question-text { font-size: 18px; line-height: 1.6; color: #1a1a1a; margin-bottom: 25px; }
         textarea {
             width: 100%;
             min-height: 150px;
@@ -224,12 +139,7 @@
             resize: vertical;
             transition: border-color 0.3s;
         }
-
-        textarea:focus {
-            outline: none;
-            border-color: #3b82f6;
-        }
-
+        textarea:focus { outline: none; border-color: #3b82f6; }
         .submit-btn {
             width: 100%;
             padding: 15px;
@@ -243,24 +153,9 @@
             margin-top: 15px;
             transition: transform 0.2s, box-shadow 0.2s;
         }
-
-        .submit-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
-        }
-
-        .submit-btn:active {
-            transform: translateY(0);
-        }
-
-        .loading {
-            text-align: center;
-            color: #3b82f6;
-            font-weight: 600;
-            margin-top: 15px;
-            display: none;
-        }
-
+        .submit-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4); }
+        .submit-btn:active { transform: translateY(0); }
+        .loading { text-align: center; color: #3b82f6; font-weight: 600; margin-top: 15px; display: none; }
         .spinner {
             display: inline-block;
             width: 20px;
@@ -271,19 +166,8 @@
             animation: spin 1s linear infinite;
             margin-right: 10px;
         }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        .result {
-            margin-top: 20px;
-            padding: 20px;
-            border-radius: 8px;
-            display: none;
-        }
-
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        .result { margin-top: 20px; padding: 20px; border-radius: 8px; display: none; }
         .score-display {
             font-size: 24px;
             font-weight: bold;
@@ -291,17 +175,8 @@
             padding-bottom: 15px;
             border-bottom: 2px solid #e0e0e0;
         }
-
-        .key-points {
-            margin: 20px 0;
-        }
-
-        .key-points h3 {
-            font-size: 16px;
-            margin-bottom: 12px;
-            color: #333;
-        }
-
+        .key-points { margin: 20px 0; }
+        .key-points h3 { font-size: 16px; margin-bottom: 12px; color: #333; }
         .point {
             padding: 10px;
             margin: 8px 0;
@@ -310,40 +185,17 @@
             align-items: center;
             gap: 10px;
         }
-
-        .point.hit {
-            background: #d4edda;
-            border-left: 4px solid #28a745;
-        }
-
-        .point.miss {
-            background: #f8d7da;
-            border-left: 4px solid #dc3545;
-        }
-
-        .comment-section, .hint-section {
-            margin-top: 20px;
-            padding: 15px;
-            border-radius: 6px;
-        }
-
-        .comment-section {
-            background: #e3f2fd;
-            border-left: 4px solid #2196f3;
-        }
-
-        .hint-section {
-            background: #fff3cd;
-            border-left: 4px solid #ffc107;
-        }
-
+        .point.hit { background: #d4edda; border-left: 4px solid #28a745; }
+        .point.miss { background: #f8d7da; border-left: 4px solid #dc3545; }
+        .comment-section, .hint-section { margin-top: 20px; padding: 15px; border-radius: 6px; }
+        .comment-section { background: #e3f2fd; border-left: 4px solid #2196f3; }
+        .hint-section { background: #fff3cd; border-left: 4px solid #ffc107; }
         .comment-section h3, .hint-section h3 {
             font-size: 14px;
             margin-bottom: 8px;
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
-
         .stats {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -361,6 +213,11 @@
         <div class="header">
             <h1>🎯 IB SEHS Exam Practice</h1>
             <p>113 questions with instant AI marking & feedback</p>
+        </div>
+
+        <div class="ai-disclaimer">
+            <strong>⚠️ AI Marking Disclaimer</strong>
+            This tool uses AI to mark your answers. While it aims to be accurate, it may occasionally make mistakes or miss nuances. Use this as practice guidance, not as definitive assessment. Always verify with official IB mark schemes and your teacher.
         </div>
 
         <div class="controls">
@@ -402,1380 +259,1372 @@
         </div>
 
         <div class="card">
-            <div id="questionDisplay">
-                <!-- Question will be displayed here -->
-            </div>
-
+            <div id="questionDisplay"></div>
             <textarea id="answerInput" placeholder="Type your answer here..."></textarea>
-
             <button class="submit-btn" onclick="submitAnswer()">Submit Answer</button>
-
             <div class="loading" id="loading">
                 <div class="spinner"></div>
                 Marking your answer...
             </div>
-
             <div class="result" id="result"></div>
         </div>
     </div>
 
     <script>
-        // Data
         const curriculum = {
-    "A": {
-        "name": "Exercise physiology and nutrition of the human body",
-        "topics": {
-            "A.1": {
-                "name": "Communication",
-                "subtopics": {
-                    "A.1.1": {
-                        "name": "Inter-system communication",
-                        "sl_hours": 10,
-                        "hl_hours": 0
-                    },
-                    "A.1.2": {
-                        "name": "Maintaining homeostasis",
-                        "sl_hours": 6,
-                        "hl_hours": 5
-                    },
-                    "A.1.3": {
-                        "name": "Transport",
-                        "sl_hours": 7,
-                        "hl_hours": 0
-                    }
-                }
-            },
-            "A.2": {
-                "name": "Hydration and nutrition",
-                "subtopics": {
-                    "A.2.1": {
-                        "name": "Water and electrolyte balance",
-                        "sl_hours": 3,
-                        "hl_hours": 0
-                    },
-                    "A.2.2": {
-                        "name": "Fuelling for health and performance",
-                        "sl_hours": 6,
-                        "hl_hours": 4
-                    },
-                    "A.2.3": {
-                        "name": "Energy systems",
-                        "sl_hours": 7,
-                        "hl_hours": 2
-                    }
-                }
-            },
-            "A.3": {
-                "name": "Response",
-                "subtopics": {
-                    "A.3.1": {
-                        "name": "Qualities of training",
-                        "sl_hours": 6,
-                        "hl_hours": 0
-                    },
-                    "A.3.2": {
-                        "name": "Benefits to health of being active",
-                        "sl_hours": 2,
-                        "hl_hours": 2
-                    },
-                    "A.3.3": {
-                        "name": "Fatigue and recovery",
-                        "sl_hours": 9,
-                        "hl_hours": 0
-                    }
-                }
-            }
+  "A": {
+    "name": "Exercise physiology and nutrition",
+    "topics": {
+      "A.1": {
+        "name": "Communication",
+        "subtopics": {
+          "A.1.1": {
+            "name": "Inter-system communication",
+            "sl_hours": 10,
+            "hl_hours": 0
+          },
+          "A.1.2": {
+            "name": "Maintaining homeostasis",
+            "sl_hours": 6,
+            "hl_hours": 5
+          },
+          "A.1.3": {
+            "name": "Transport",
+            "sl_hours": 7,
+            "hl_hours": 0
+          }
         }
-    },
-    "B": {
-        "name": "Biomechanics",
-        "topics": {
-            "B.1": {
-                "name": "Generating movement in the body",
-                "subtopics": {
-                    "B.1.1": {
-                        "name": "Anatomical position, planes and movement",
-                        "sl_hours": 3,
-                        "hl_hours": 3
-                    },
-                    "B.1.2": {
-                        "name": "Structure and function of connective tissues and joints",
-                        "sl_hours": 3,
-                        "hl_hours": 0
-                    },
-                    "B.1.3": {
-                        "name": "Muscular function",
-                        "sl_hours": 4,
-                        "hl_hours": 2
-                    },
-                    "B.1.4": {
-                        "name": "Levers in movement and sport",
-                        "sl_hours": 2,
-                        "hl_hours": 0
-                    }
-                }
-            },
-            "B.2": {
-                "name": "Forces, motion and movement",
-                "subtopics": {
-                    "B.2.1": {
-                        "name": "Newton's laws of motion",
-                        "sl_hours": 5,
-                        "hl_hours": 12
-                    },
-                    "B.2.2": {
-                        "name": "Fluid mechanics",
-                        "sl_hours": 3,
-                        "hl_hours": 8
-                    },
-                    "B.2.3": {
-                        "name": "Movement analysis and its applications",
-                        "sl_hours": 3,
-                        "hl_hours": 0
-                    }
-                }
-            },
-            "B.3": {
-                "name": "Injury",
-                "subtopics": {
-                    "B.3.1": {
-                        "name": "Causes of injury",
-                        "sl_hours": 3,
-                        "hl_hours": 2
-                    },
-                    "B.3.2": {
-                        "name": "Interventions related to injury",
-                        "sl_hours": 4,
-                        "hl_hours": 0
-                    }
-                }
-            }
+      },
+      "A.2": {
+        "name": "Hydration and nutrition",
+        "subtopics": {
+          "A.2.1": {
+            "name": "Water and electrolyte balance",
+            "sl_hours": 3,
+            "hl_hours": 0
+          },
+          "A.2.2": {
+            "name": "Fuelling for health and performance",
+            "sl_hours": 6,
+            "hl_hours": 4
+          },
+          "A.2.3": {
+            "name": "Energy systems",
+            "sl_hours": 7,
+            "hl_hours": 2
+          }
         }
-    },
-    "C": {
-        "name": "Sports psychology and motor learning",
-        "topics": {
-            "C.1": {
-                "name": "Individual differences",
-                "subtopics": {
-                    "C.1.1": {
-                        "name": "Personality",
-                        "sl_hours": 2,
-                        "hl_hours": 2
-                    },
-                    "C.1.2": {
-                        "name": "Mental toughness",
-                        "sl_hours": 2,
-                        "hl_hours": 4
-                    }
-                }
-            },
-            "C.2": {
-                "name": "Motor learning",
-                "subtopics": {
-                    "C.2.1": {
-                        "name": "Motor learning processes",
-                        "sl_hours": 10,
-                        "hl_hours": 0
-                    },
-                    "C.2.2": {
-                        "name": "Attentional control",
-                        "sl_hours": 2,
-                        "hl_hours": 0
-                    }
-                }
-            },
-            "C.3": {
-                "name": "Motivation",
-                "subtopics": {
-                    "C.3.1": {
-                        "name": "Achievement motivation",
-                        "sl_hours": 3,
-                        "hl_hours": 2
-                    },
-                    "C.3.2": {
-                        "name": "Self-determination",
-                        "sl_hours": 3,
-                        "hl_hours": 6
-                    },
-                    "C.3.3": {
-                        "name": "Motivational climate",
-                        "sl_hours": 2,
-                        "hl_hours": 0
-                    }
-                }
-            },
-            "C.4": {
-                "name": "Stress and coping",
-                "subtopics": {
-                    "C.4.1": {
-                        "name": "Arousal and anxiety",
-                        "sl_hours": 3,
-                        "hl_hours": 0
-                    },
-                    "C.4.2": {
-                        "name": "Coping",
-                        "sl_hours": 2,
-                        "hl_hours": 2
-                    }
-                }
-            },
-            "C.5": {
-                "name": "Psychological skills",
-                "subtopics": {
-                    "C.5.1": {
-                        "name": "Goal setting",
-                        "sl_hours": 4,
-                        "hl_hours": 2
-                    },
-                    "C.5.2": {
-                        "name": "Imagery",
-                        "sl_hours": 0,
-                        "hl_hours": 3
-                    }
-                }
-            }
+      },
+      "A.3": {
+        "name": "Response",
+        "subtopics": {
+          "A.3.1": {
+            "name": "Qualities of training",
+            "sl_hours": 6,
+            "hl_hours": 0
+          },
+          "A.3.2": {
+            "name": "Benefits to health of being active",
+            "sl_hours": 2,
+            "hl_hours": 2
+          },
+          "A.3.3": {
+            "name": "Fatigue and recovery",
+            "sl_hours": 9,
+            "hl_hours": 0
+          }
         }
+      }
     }
+  },
+  "B": {
+    "name": "Biomechanics",
+    "topics": {
+      "B.1": {
+        "name": "Generating movement in the body",
+        "subtopics": {
+          "B.1.1": {
+            "name": "Anatomical position, planes and movement",
+            "sl_hours": 3,
+            "hl_hours": 3
+          },
+          "B.1.2": {
+            "name": "Structure and function of connective tissues and joints",
+            "sl_hours": 3,
+            "hl_hours": 0
+          },
+          "B.1.3": {
+            "name": "Muscular function",
+            "sl_hours": 4,
+            "hl_hours": 2
+          },
+          "B.1.4": {
+            "name": "Levers in movement and sport",
+            "sl_hours": 2,
+            "hl_hours": 0
+          }
+        }
+      },
+      "B.2": {
+        "name": "Forces, motion and movement",
+        "subtopics": {
+          "B.2.1": {
+            "name": "Newton's laws of motion",
+            "sl_hours": 5,
+            "hl_hours": 12
+          },
+          "B.2.2": {
+            "name": "Fluid mechanics",
+            "sl_hours": 3,
+            "hl_hours": 8
+          },
+          "B.2.3": {
+            "name": "Movement analysis and its applications",
+            "sl_hours": 3,
+            "hl_hours": 0
+          }
+        }
+      },
+      "B.3": {
+        "name": "Injury",
+        "subtopics": {
+          "B.3.1": {
+            "name": "Causes of injury",
+            "sl_hours": 3,
+            "hl_hours": 2
+          },
+          "B.3.2": {
+            "name": "Interventions related to injury",
+            "sl_hours": 4,
+            "hl_hours": 0
+          }
+        }
+      }
+    }
+  },
+  "C": {
+    "name": "Sports psychology and motor learning",
+    "topics": {
+      "C.1": {
+        "name": "Individual differences",
+        "subtopics": {
+          "C.1.1": {
+            "name": "Personality",
+            "sl_hours": 2,
+            "hl_hours": 2
+          },
+          "C.1.2": {
+            "name": "Mental toughness",
+            "sl_hours": 2,
+            "hl_hours": 4
+          }
+        }
+      },
+      "C.2": {
+        "name": "Motor learning",
+        "subtopics": {
+          "C.2.1": {
+            "name": "Motor learning processes",
+            "sl_hours": 10,
+            "hl_hours": 0
+          },
+          "C.2.2": {
+            "name": "Attentional control",
+            "sl_hours": 2,
+            "hl_hours": 0
+          }
+        }
+      },
+      "C.3": {
+        "name": "Motivation",
+        "subtopics": {
+          "C.3.1": {
+            "name": "Achievement motivation",
+            "sl_hours": 3,
+            "hl_hours": 2
+          },
+          "C.3.2": {
+            "name": "Self-determination",
+            "sl_hours": 3,
+            "hl_hours": 6
+          },
+          "C.3.3": {
+            "name": "Motivational climate",
+            "sl_hours": 2,
+            "hl_hours": 0
+          }
+        }
+      },
+      "C.4": {
+        "name": "Stress and coping",
+        "subtopics": {
+          "C.4.1": {
+            "name": "Arousal and anxiety",
+            "sl_hours": 3,
+            "hl_hours": 0
+          },
+          "C.4.2": {
+            "name": "Coping",
+            "sl_hours": 2,
+            "hl_hours": 2
+          }
+        }
+      },
+      "C.5": {
+        "name": "Psychological skills",
+        "subtopics": {
+          "C.5.1": {
+            "name": "Goal setting",
+            "sl_hours": 4,
+            "hl_hours": 2
+          },
+          "C.5.2": {
+            "name": "Imagery",
+            "sl_hours": 0,
+            "hl_hours": 3
+          }
+        }
+      }
+    }
+  }
 };
         const allQuestions = [
-    {
-        "subtopic": "A.1.1",
-        "question": "Explain the mechanism of expiration (exhalation) when exercising.",
-        "maxMarks": 5,
-        "level": "SL",
-        "id": "Q001",
-        "section": "A",
-        "topic": "A.1",
-        "markScheme": "Mark scheme points for Explain the mechanism of expiration (exhalation) w..."
-    },
-    {
-        "subtopic": "A.1.1",
-        "question": "Describe the process of gaseous exchange at the alveoli during rest and exercise.",
-        "maxMarks": 6,
-        "level": "SL",
-        "id": "Q002",
-        "section": "A",
-        "topic": "A.1",
-        "markScheme": "Mark scheme points for Describe the process of gaseous exchange at the al..."
-    },
-    {
-        "subtopic": "A.1.1",
-        "question": "Compare and contrast the process of gaseous exchange of oxygen and carbon dioxide at the alveoli during exercise.",
-        "maxMarks": 4,
-        "level": "SL",
-        "id": "Q003",
-        "section": "A",
-        "topic": "A.1",
-        "markScheme": "Mark scheme points for Compare and contrast the process of gaseous exchan..."
-    },
-    {
-        "subtopic": "A.1.1",
-        "question": "Explain how the short-term stress caused by competing in sport influences how the nervous system regulates adrenaline.",
-        "maxMarks": 2,
-        "level": "HL",
-        "id": "Q004",
-        "section": "A",
-        "topic": "A.1",
-        "markScheme": "Mark scheme points for Explain how the short-term stress caused by compet..."
-    },
-    {
-        "subtopic": "A.1.1",
-        "question": "Describe blood redistribution as a soccer (football) player begins running during a game.",
-        "maxMarks": 5,
-        "level": "SL",
-        "id": "Q005",
-        "section": "A",
-        "topic": "A.1",
-        "markScheme": "Mark scheme points for Describe blood redistribution as a soccer (footbal..."
-    },
-    {
-        "subtopic": "A.1.1",
-        "question": "Outline the structure of both the periosteum and spongy bone.",
-        "maxMarks": 2,
-        "level": "HL",
-        "id": "Q006",
-        "section": "A",
-        "topic": "A.1",
-        "markScheme": "Mark scheme points for Outline the structure of both the periosteum and s..."
-    },
-    {
-        "subtopic": "A.1.1",
-        "question": "Explain how diastolic blood pressure responds to static and dynamic exercises.",
-        "maxMarks": 6,
-        "level": "HL",
-        "id": "Q007",
-        "section": "A",
-        "topic": "A.1",
-        "markScheme": "Mark scheme points for Explain how diastolic blood pressure responds to s..."
-    },
-    {
-        "subtopic": "A.1.2",
-        "question": "Explain the role of insulin on glucose uptake at rest.",
-        "maxMarks": 3,
-        "level": "SL",
-        "id": "Q008",
-        "section": "A",
-        "topic": "A.1",
-        "markScheme": "Mark scheme points for Explain the role of insulin on glucose uptake at r..."
-    },
-    {
-        "subtopic": "A.1.2",
-        "question": "Explain the role of insulin in the formation of glycogen.",
-        "maxMarks": 3,
-        "level": "SL",
-        "id": "Q009",
-        "section": "A",
-        "topic": "A.1",
-        "markScheme": "Mark scheme points for Explain the role of insulin in the formation of gl..."
-    },
-    {
-        "subtopic": "A.1.2",
-        "question": "Discuss the regulation of electrolyte balance during endurance swimming.",
-        "maxMarks": 4,
-        "level": "SL",
-        "id": "Q010",
-        "section": "A",
-        "topic": "A.1",
-        "markScheme": "Mark scheme points for Discuss the regulation of electrolyte balance duri..."
-    },
-    {
-        "subtopic": "A.1.2",
-        "question": "Outline two reasons why hydration is important for an endurance swimmer.",
-        "maxMarks": 2,
-        "level": "SL",
-        "id": "Q011",
-        "section": "A",
-        "topic": "A.1",
-        "markScheme": "Mark scheme points for Outline two reasons why hydration is important for..."
-    },
-    {
-        "subtopic": "A.1.2",
-        "question": "Predict the effect of static exercise on systolic and diastolic blood pressure.",
-        "maxMarks": 2,
-        "level": "SL",
-        "id": "Q012",
-        "section": "A",
-        "topic": "A.1",
-        "markScheme": "Mark scheme points for Predict the effect of static exercise on systolic ..."
-    },
-    {
-        "subtopic": "A.1.3",
-        "question": "Describe blood redistribution as a player begins running during a game.",
-        "maxMarks": 5,
-        "level": "SL",
-        "id": "Q013",
-        "section": "A",
-        "topic": "A.1",
-        "markScheme": "Mark scheme points for Describe blood redistribution as a player begins r..."
-    },
-    {
-        "subtopic": "A.1.3",
-        "question": "Explain how diastolic blood pressure responds to yoga headstand and stationary cycling.",
-        "maxMarks": 6,
-        "level": "HL",
-        "id": "Q014",
-        "section": "A",
-        "topic": "A.1",
-        "markScheme": "Mark scheme points for Explain how diastolic blood pressure responds to y..."
-    },
-    {
-        "subtopic": "A.1.3",
-        "question": "Identify the condition and intervention with the largest systolic blood pressure from data.",
-        "maxMarks": 1,
-        "level": "SL",
-        "id": "Q015",
-        "section": "A",
-        "topic": "A.1",
-        "markScheme": "Mark scheme points for Identify the condition and intervention with the l..."
-    },
-    {
-        "subtopic": "A.1.3",
-        "question": "Outline the cardiovascular responses during a marathon.",
-        "maxMarks": 4,
-        "level": "SL",
-        "id": "Q016",
-        "section": "A",
-        "topic": "A.1",
-        "markScheme": "Mark scheme points for Outline the cardiovascular responses during a mara..."
-    },
-    {
-        "subtopic": "A.1.3",
-        "question": "Explain the vascular shunt mechanism during exercise.",
-        "maxMarks": 3,
-        "level": "SL",
-        "id": "Q017",
-        "section": "A",
-        "topic": "A.1",
-        "markScheme": "Mark scheme points for Explain the vascular shunt mechanism during exerci..."
-    },
-    {
-        "subtopic": "A.2.1",
-        "question": "Discuss the regulation of electrolyte balance during a 20km swim.",
-        "maxMarks": 4,
-        "level": "SL",
-        "id": "Q018",
-        "section": "A",
-        "topic": "A.2",
-        "markScheme": "Mark scheme points for Discuss the regulation of electrolyte balance duri..."
-    },
-    {
-        "subtopic": "A.2.1",
-        "question": "Outline two reasons why hydration is important for an endurance swimmer.",
-        "maxMarks": 2,
-        "level": "SL",
-        "id": "Q019",
-        "section": "A",
-        "topic": "A.2",
-        "markScheme": "Mark scheme points for Outline two reasons why hydration is important for..."
-    },
-    {
-        "subtopic": "A.2.1",
-        "question": "Explain the role of ADH and aldosterone in maintaining fluid balance.",
-        "maxMarks": 3,
-        "level": "SL",
-        "id": "Q020",
-        "section": "A",
-        "topic": "A.2",
-        "markScheme": "Mark scheme points for Explain the role of ADH and aldosterone in maintai..."
-    },
-    {
-        "subtopic": "A.2.2",
-        "question": "Discuss the recommended macronutrients required for marathon running.",
-        "maxMarks": 5,
-        "level": "SL",
-        "id": "Q021",
-        "section": "A",
-        "topic": "A.2",
-        "markScheme": "Mark scheme points for Discuss the recommended macronutrients required fo..."
-    },
-    {
-        "subtopic": "A.2.2",
-        "question": "Explain the importance of selecting low glycemic index carbohydrates for a pre-competition meal.",
-        "maxMarks": 2,
-        "level": "SL",
-        "id": "Q022",
-        "section": "A",
-        "topic": "A.2",
-        "markScheme": "Mark scheme points for Explain the importance of selecting low glycemic i..."
-    },
-    {
-        "subtopic": "A.2.2",
-        "question": "List the enzymes responsible for the digestion of carbohydrates, fats and proteins.",
-        "maxMarks": 3,
-        "level": "SL",
-        "id": "Q023",
-        "section": "A",
-        "topic": "A.2",
-        "markScheme": "Mark scheme points for List the enzymes responsible for the digestion of ..."
-    },
-    {
-        "subtopic": "A.2.2",
-        "question": "Outline the nutritional requirements for a marathon runner.",
-        "maxMarks": 4,
-        "level": "SL",
-        "id": "Q024",
-        "section": "A",
-        "topic": "A.2",
-        "markScheme": "Mark scheme points for Outline the nutritional requirements for a maratho..."
-    },
-    {
-        "subtopic": "A.2.2",
-        "question": "Explain the benefits of carbohydrate loading for endurance athletes.",
-        "maxMarks": 3,
-        "level": "SL",
-        "id": "Q025",
-        "section": "A",
-        "topic": "A.2",
-        "markScheme": "Mark scheme points for Explain the benefits of carbohydrate loading for e..."
-    },
-    {
-        "subtopic": "A.2.3",
-        "question": "Describe the re-synthesis of ATP by the ATP-CP system.",
-        "maxMarks": 4,
-        "level": "SL",
-        "id": "Q026",
-        "section": "A",
-        "topic": "A.2",
-        "markScheme": "Mark scheme points for Describe the re-synthesis of ATP by the ATP-CP sys..."
-    },
-    {
-        "subtopic": "A.2.3",
-        "question": "Discuss the factors that determine the dominant energy system.",
-        "maxMarks": 5,
-        "level": "SL",
-        "id": "Q027",
-        "section": "A",
-        "topic": "A.2",
-        "markScheme": "Mark scheme points for Discuss the factors that determine the dominant en..."
-    },
-    {
-        "subtopic": "A.2.3",
-        "question": "Identify the fuel sources and net ATP produced per molecule for ATP-CP and lactic acid systems.",
-        "maxMarks": 4,
-        "level": "SL",
-        "id": "Q028",
-        "section": "A",
-        "topic": "A.2",
-        "markScheme": "Mark scheme points for Identify the fuel sources and net ATP produced per..."
-    },
-    {
-        "subtopic": "A.2.3",
-        "question": "Discuss how adenosine can gain and lose a phosphate molecule.",
-        "maxMarks": 3,
-        "level": "SL",
-        "id": "Q029",
-        "section": "A",
-        "topic": "A.2",
-        "markScheme": "Mark scheme points for Discuss how adenosine can gain and lose a phosphat..."
-    },
-    {
-        "subtopic": "A.2.3",
-        "question": "Identify the type of muscle fibre associated with low, medium and high glycogen content.",
-        "maxMarks": 3,
-        "level": "SL",
-        "id": "Q030",
-        "section": "A",
-        "topic": "A.2",
-        "markScheme": "Mark scheme points for Identify the type of muscle fibre associated with ..."
-    },
-    {
-        "subtopic": "A.2.3",
-        "question": "Explain the energy systems used during a 400m sprint.",
-        "maxMarks": 4,
-        "level": "SL",
-        "id": "Q031",
-        "section": "A",
-        "topic": "A.2",
-        "markScheme": "Mark scheme points for Explain the energy systems used during a 400m spri..."
-    },
-    {
-        "subtopic": "A.3.1",
-        "question": "Explain how a coach uses key principles of training to maximize athletic development.",
-        "maxMarks": 4,
-        "level": "SL",
-        "id": "Q032",
-        "section": "A",
-        "topic": "A.3",
-        "markScheme": "Mark scheme points for Explain how a coach uses key principles of trainin..."
-    },
-    {
-        "subtopic": "A.3.1",
-        "question": "Outline the principles of overload and specificity in training.",
-        "maxMarks": 3,
-        "level": "SL",
-        "id": "Q033",
-        "section": "A",
-        "topic": "A.3",
-        "markScheme": "Mark scheme points for Outline the principles of overload and specificity..."
-    },
-    {
-        "subtopic": "A.3.1",
-        "question": "Describe how periodization is used to optimize performance.",
-        "maxMarks": 3,
-        "level": "SL",
-        "id": "Q034",
-        "section": "A",
-        "topic": "A.3",
-        "markScheme": "Mark scheme points for Describe how periodization is used to optimize per..."
-    },
-    {
-        "subtopic": "A.3.1",
-        "question": "Explain the principle of reversibility in athletic training.",
-        "maxMarks": 2,
-        "level": "SL",
-        "id": "Q035",
-        "section": "A",
-        "topic": "A.3",
-        "markScheme": "Mark scheme points for Explain the principle of reversibility in athletic..."
-    },
-    {
-        "subtopic": "A.3.2",
-        "question": "Outline the health benefits of regular physical activity.",
-        "maxMarks": 3,
-        "level": "SL",
-        "id": "Q036",
-        "section": "A",
-        "topic": "A.3",
-        "markScheme": "Mark scheme points for Outline the health benefits of regular physical ac..."
-    },
-    {
-        "subtopic": "A.3.2",
-        "question": "Explain the cardiovascular benefits of aerobic training.",
-        "maxMarks": 2,
-        "level": "SL",
-        "id": "Q037",
-        "section": "A",
-        "topic": "A.3",
-        "markScheme": "Mark scheme points for Explain the cardiovascular benefits of aerobic tra..."
-    },
-    {
-        "subtopic": "A.3.3",
-        "question": "Describe the causes of fatigue during high-intensity exercise.",
-        "maxMarks": 4,
-        "level": "SL",
-        "id": "Q038",
-        "section": "A",
-        "topic": "A.3",
-        "markScheme": "Mark scheme points for Describe the causes of fatigue during high-intensi..."
-    },
-    {
-        "subtopic": "A.3.3",
-        "question": "Explain recovery strategies used by athletes.",
-        "maxMarks": 4,
-        "level": "SL",
-        "id": "Q039",
-        "section": "A",
-        "topic": "A.3",
-        "markScheme": "Mark scheme points for Explain recovery strategies used by athletes...."
-    },
-    {
-        "subtopic": "A.3.3",
-        "question": "Outline the role of lactate in muscle fatigue.",
-        "maxMarks": 3,
-        "level": "SL",
-        "id": "Q040",
-        "section": "A",
-        "topic": "A.3",
-        "markScheme": "Mark scheme points for Outline the role of lactate in muscle fatigue...."
-    },
-    {
-        "subtopic": "A.3.3",
-        "question": "Describe EPOC and its role in recovery.",
-        "maxMarks": 3,
-        "level": "SL",
-        "id": "Q041",
-        "section": "A",
-        "topic": "A.3",
-        "markScheme": "Mark scheme points for Describe EPOC and its role in recovery...."
-    },
-    {
-        "subtopic": "A.3.3",
-        "question": "Explain the importance of recovery time between training sessions.",
-        "maxMarks": 2,
-        "level": "SL",
-        "id": "Q042",
-        "section": "A",
-        "topic": "A.3",
-        "markScheme": "Mark scheme points for Explain the importance of recovery time between tr..."
-    },
-    {
-        "subtopic": "A.3.3",
-        "question": "Outline active vs passive recovery strategies.",
-        "maxMarks": 2,
-        "level": "SL",
-        "id": "Q043",
-        "section": "A",
-        "topic": "A.3",
-        "markScheme": "Mark scheme points for Outline active vs passive recovery strategies...."
-    },
-    {
-        "subtopic": "B.1.1",
-        "question": "State the location of the humerus in relation to the radius using anatomical terminology.",
-        "maxMarks": 1,
-        "level": "SL",
-        "id": "Q044",
-        "section": "B",
-        "topic": "B.1",
-        "markScheme": "Mark scheme points for State the location of the humerus in relation to t..."
-    },
-    {
-        "subtopic": "B.1.1",
-        "question": "Identify anatomical planes and movements during a tennis serve.",
-        "maxMarks": 3,
-        "level": "SL",
-        "id": "Q045",
-        "section": "B",
-        "topic": "B.1",
-        "markScheme": "Mark scheme points for Identify anatomical planes and movements during a ..."
-    },
-    {
-        "subtopic": "B.1.1",
-        "question": "Outline flexion and extension movements at synovial joints.",
-        "maxMarks": 4,
-        "level": "SL",
-        "id": "Q046",
-        "section": "B",
-        "topic": "B.1",
-        "markScheme": "Mark scheme points for Outline flexion and extension movements at synovia..."
-    },
-    {
-        "subtopic": "B.1.2",
-        "question": "Outline four features of a synovial joint.",
-        "maxMarks": 4,
-        "level": "SL",
-        "id": "Q047",
-        "section": "B",
-        "topic": "B.1",
-        "markScheme": "Mark scheme points for Outline four features of a synovial joint...."
-    },
-    {
-        "subtopic": "B.1.2",
-        "question": "Outline two features of synovial joints.",
-        "maxMarks": 2,
-        "level": "SL",
-        "id": "Q048",
-        "section": "B",
-        "topic": "B.1",
-        "markScheme": "Mark scheme points for Outline two features of synovial joints...."
-    },
-    {
-        "subtopic": "B.1.2",
-        "question": "Describe the structure and function of articular cartilage.",
-        "maxMarks": 2,
-        "level": "SL",
-        "id": "Q049",
-        "section": "B",
-        "topic": "B.1",
-        "markScheme": "Mark scheme points for Describe the structure and function of articular c..."
-    },
-    {
-        "subtopic": "B.1.3",
-        "question": "Discuss characteristics of a type IIx fast glycolytic muscle fibre.",
-        "maxMarks": 4,
-        "level": "SL",
-        "id": "Q050",
-        "section": "B",
-        "topic": "B.1",
-        "markScheme": "Mark scheme points for Discuss characteristics of a type IIx fast glycoly..."
-    },
-    {
-        "subtopic": "B.1.3",
-        "question": "Analyse how muscles work in pairs to extend the elbow during a backhand in badminton.",
-        "maxMarks": 4,
-        "level": "SL",
-        "id": "Q051",
-        "section": "B",
-        "topic": "B.1",
-        "markScheme": "Mark scheme points for Analyse how muscles work in pairs to extend the el..."
-    },
-    {
-        "subtopic": "B.1.3",
-        "question": "Identify the type of muscle fibre associated with each level of glycogen content.",
-        "maxMarks": 3,
-        "level": "SL",
-        "id": "Q052",
-        "section": "B",
-        "topic": "B.1",
-        "markScheme": "Mark scheme points for Identify the type of muscle fibre associated with ..."
-    },
-    {
-        "subtopic": "B.1.3",
-        "question": "Analyse the movement occurring at the elbow during a tennis serve.",
-        "maxMarks": 4,
-        "level": "SL",
-        "id": "Q053",
-        "section": "B",
-        "topic": "B.1",
-        "markScheme": "Mark scheme points for Analyse the movement occurring at the elbow during..."
-    },
-    {
-        "subtopic": "B.1.4",
-        "question": "Distinguish between first class levers and third class levers.",
-        "maxMarks": 2,
-        "level": "SL",
-        "id": "Q054",
-        "section": "B",
-        "topic": "B.1",
-        "markScheme": "Mark scheme points for Distinguish between first class levers and third c..."
-    },
-    {
-        "subtopic": "B.1.4",
-        "question": "Explain the lever system during a bicep curl.",
-        "maxMarks": 3,
-        "level": "SL",
-        "id": "Q055",
-        "section": "B",
-        "topic": "B.1",
-        "markScheme": "Mark scheme points for Explain the lever system during a bicep curl...."
-    },
-    {
-        "subtopic": "B.2.1",
-        "question": "Using examples, outline Newton's three laws of motion during a soccer match.",
-        "maxMarks": 6,
-        "level": "SL",
-        "id": "Q056",
-        "section": "B",
-        "topic": "B.2",
-        "markScheme": "Mark scheme points for Using examples, outline Newton's three laws of mot..."
-    },
-    {
-        "subtopic": "B.2.1",
-        "question": "Predict how changing speed and height of release affects projectile motion at 45 degrees.",
-        "maxMarks": 2,
-        "level": "SL",
-        "id": "Q057",
-        "section": "B",
-        "topic": "B.2",
-        "markScheme": "Mark scheme points for Predict how changing speed and height of release a..."
-    },
-    {
-        "subtopic": "B.2.1",
-        "question": "Explain the concept of momentum in sport.",
-        "maxMarks": 3,
-        "level": "SL",
-        "id": "Q058",
-        "section": "B",
-        "topic": "B.2",
-        "markScheme": "Mark scheme points for Explain the concept of momentum in sport...."
-    },
-    {
-        "subtopic": "B.2.1",
-        "question": "Describe impulse and its application in sport.",
-        "maxMarks": 3,
-        "level": "HL",
-        "id": "Q059",
-        "section": "B",
-        "topic": "B.2",
-        "markScheme": "Mark scheme points for Describe impulse and its application in sport...."
-    },
-    {
-        "subtopic": "B.2.1",
-        "question": "Analyze projectile motion in a long jump.",
-        "maxMarks": 4,
-        "level": "HL",
-        "id": "Q060",
-        "section": "B",
-        "topic": "B.2",
-        "markScheme": "Mark scheme points for Analyze projectile motion in a long jump...."
-    },
-    {
-        "subtopic": "B.2.1",
-        "question": "Explain Newton's second law with sporting examples.",
-        "maxMarks": 3,
-        "level": "SL",
-        "id": "Q061",
-        "section": "B",
-        "topic": "B.2",
-        "markScheme": "Mark scheme points for Explain Newton's second law with sporting examples..."
-    },
-    {
-        "subtopic": "B.2.1",
-        "question": "Calculate net force acting on a sprinter.",
-        "maxMarks": 2,
-        "level": "HL",
-        "id": "Q062",
-        "section": "B",
-        "topic": "B.2",
-        "markScheme": "Mark scheme points for Calculate net force acting on a sprinter...."
-    },
-    {
-        "subtopic": "B.2.2",
-        "question": "Explain the concept of angular momentum when a ballet dancer performs a pirouette.",
-        "maxMarks": 6,
-        "level": "SL",
-        "id": "Q063",
-        "section": "B",
-        "topic": "B.2",
-        "markScheme": "Mark scheme points for Explain the concept of angular momentum when a bal..."
-    },
-    {
-        "subtopic": "B.2.2",
-        "question": "Discuss three factors that influence the amount of drag on a 100m sprinter.",
-        "maxMarks": 3,
-        "level": "HL",
-        "id": "Q064",
-        "section": "B",
-        "topic": "B.2",
-        "markScheme": "Mark scheme points for Discuss three factors that influence the amount of..."
-    },
-    {
-        "subtopic": "B.2.2",
-        "question": "Describe how friction influences a 100m sprinter's performance.",
-        "maxMarks": 3,
-        "level": "SL",
-        "id": "Q065",
-        "section": "B",
-        "topic": "B.2",
-        "markScheme": "Mark scheme points for Describe how friction influences a 100m sprinter's..."
-    },
-    {
-        "subtopic": "B.2.2",
-        "question": "Explain Bernoulli's principle in swimming.",
-        "maxMarks": 4,
-        "level": "HL",
-        "id": "Q066",
-        "section": "B",
-        "topic": "B.2",
-        "markScheme": "Mark scheme points for Explain Bernoulli's principle in swimming...."
-    },
-    {
-        "subtopic": "B.2.2",
-        "question": "Analyze lift forces in discus throwing.",
-        "maxMarks": 3,
-        "level": "HL",
-        "id": "Q067",
-        "section": "B",
-        "topic": "B.2",
-        "markScheme": "Mark scheme points for Analyze lift forces in discus throwing...."
-    },
-    {
-        "subtopic": "B.2.3",
-        "question": "Annotate a diagram showing forces acting on a sprinter.",
-        "maxMarks": 4,
-        "level": "SL",
-        "id": "Q068",
-        "section": "B",
-        "topic": "B.2",
-        "markScheme": "Mark scheme points for Annotate a diagram showing forces acting on a spri..."
-    },
-    {
-        "subtopic": "B.2.3",
-        "question": "Analyze movement patterns during a vertical jump.",
-        "maxMarks": 3,
-        "level": "SL",
-        "id": "Q069",
-        "section": "B",
-        "topic": "B.2",
-        "markScheme": "Mark scheme points for Analyze movement patterns during a vertical jump...."
-    },
-    {
-        "subtopic": "B.2.3",
-        "question": "Describe the phases of running gait.",
-        "maxMarks": 3,
-        "level": "SL",
-        "id": "Q070",
-        "section": "B",
-        "topic": "B.2",
-        "markScheme": "Mark scheme points for Describe the phases of running gait...."
-    },
-    {
-        "subtopic": "B.3.1",
-        "question": "List three common soft-tissue injuries that occur in soccer players.",
-        "maxMarks": 3,
-        "level": "SL",
-        "id": "Q071",
-        "section": "B",
-        "topic": "B.3",
-        "markScheme": "Mark scheme points for List three common soft-tissue injuries that occur ..."
-    },
-    {
-        "subtopic": "B.3.1",
-        "question": "Explain the difference between acute and chronic injuries.",
-        "maxMarks": 2,
-        "level": "SL",
-        "id": "Q072",
-        "section": "B",
-        "topic": "B.3",
-        "markScheme": "Mark scheme points for Explain the difference between acute and chronic i..."
-    },
-    {
-        "subtopic": "B.3.1",
-        "question": "Describe causes of overuse injuries in runners.",
-        "maxMarks": 3,
-        "level": "SL",
-        "id": "Q073",
-        "section": "B",
-        "topic": "B.3",
-        "markScheme": "Mark scheme points for Describe causes of overuse injuries in runners...."
-    },
-    {
-        "subtopic": "B.3.2",
-        "question": "Explain injury prevention strategies that could be used by a swimming coach.",
-        "maxMarks": 3,
-        "level": "SL",
-        "id": "Q074",
-        "section": "B",
-        "topic": "B.3",
-        "markScheme": "Mark scheme points for Explain injury prevention strategies that could be..."
-    },
-    {
-        "subtopic": "B.3.2",
-        "question": "Describe the RICE protocol for acute injuries.",
-        "maxMarks": 3,
-        "level": "SL",
-        "id": "Q075",
-        "section": "B",
-        "topic": "B.3",
-        "markScheme": "Mark scheme points for Describe the RICE protocol for acute injuries...."
-    },
-    {
-        "subtopic": "B.3.2",
-        "question": "Outline rehabilitation strategies for ACL injury.",
-        "maxMarks": 4,
-        "level": "SL",
-        "id": "Q076",
-        "section": "B",
-        "topic": "B.3",
-        "markScheme": "Mark scheme points for Outline rehabilitation strategies for ACL injury...."
-    },
-    {
-        "subtopic": "B.3.2",
-        "question": "Explain the role of physiotherapy in injury recovery.",
-        "maxMarks": 3,
-        "level": "SL",
-        "id": "Q077",
-        "section": "B",
-        "topic": "B.3",
-        "markScheme": "Mark scheme points for Explain the role of physiotherapy in injury recove..."
-    },
-    {
-        "subtopic": "C.1.1",
-        "question": "Explain how personality traits influence sports performance.",
-        "maxMarks": 3,
-        "level": "SL",
-        "id": "Q078",
-        "section": "C",
-        "topic": "C.1",
-        "markScheme": "Mark scheme points for Explain how personality traits influence sports pe..."
-    },
-    {
-        "subtopic": "C.1.1",
-        "question": "Outline the trait and interactionist approaches to personality.",
-        "maxMarks": 2,
-        "level": "SL",
-        "id": "Q079",
-        "section": "C",
-        "topic": "C.1",
-        "markScheme": "Mark scheme points for Outline the trait and interactionist approaches to..."
-    },
-    {
-        "subtopic": "C.1.2",
-        "question": "Describe characteristics of mental toughness in athletes.",
-        "maxMarks": 3,
-        "level": "SL",
-        "id": "Q080",
-        "section": "C",
-        "topic": "C.1",
-        "markScheme": "Mark scheme points for Describe characteristics of mental toughness in at..."
-    },
-    {
-        "subtopic": "C.1.2",
-        "question": "Explain how mental toughness can be developed.",
-        "maxMarks": 3,
-        "level": "HL",
-        "id": "Q081",
-        "section": "C",
-        "topic": "C.1",
-        "markScheme": "Mark scheme points for Explain how mental toughness can be developed...."
-    },
-    {
-        "subtopic": "C.1.2",
-        "question": "Outline the 4Cs model of mental toughness.",
-        "maxMarks": 2,
-        "level": "HL",
-        "id": "Q082",
-        "section": "C",
-        "topic": "C.1",
-        "markScheme": "Mark scheme points for Outline the 4Cs model of mental toughness...."
-    },
-    {
-        "subtopic": "C.2.1",
-        "question": "Define the concept of transfer in motor learning.",
-        "maxMarks": 1,
-        "level": "SL",
-        "id": "Q083",
-        "section": "C",
-        "topic": "C.2",
-        "markScheme": "Mark scheme points for Define the concept of transfer in motor learning...."
-    },
-    {
-        "subtopic": "C.2.1",
-        "question": "Outline abilities to skills as a type of transfer when learning to return a ball in tennis.",
-        "maxMarks": 1,
-        "level": "SL",
-        "id": "Q084",
-        "section": "C",
-        "topic": "C.2",
-        "markScheme": "Mark scheme points for Outline abilities to skills as a type of transfer ..."
-    },
-    {
-        "subtopic": "C.2.1",
-        "question": "Using examples, outline positive and negative transfer.",
-        "maxMarks": 2,
-        "level": "SL",
-        "id": "Q085",
-        "section": "C",
-        "topic": "C.2",
-        "markScheme": "Mark scheme points for Using examples, outline positive and negative tran..."
-    },
-    {
-        "subtopic": "C.2.1",
-        "question": "Draw a learning curve representing improvement over four weeks of practice.",
-        "maxMarks": 2,
-        "level": "SL",
-        "id": "Q086",
-        "section": "C",
-        "topic": "C.2",
-        "markScheme": "Mark scheme points for Draw a learning curve representing improvement ove..."
-    },
-    {
-        "subtopic": "C.2.1",
-        "question": "Identify the type of learning curve (positive acceleration) from data.",
-        "maxMarks": 1,
-        "level": "SL",
-        "id": "Q087",
-        "section": "C",
-        "topic": "C.2",
-        "markScheme": "Mark scheme points for Identify the type of learning curve (positive acce..."
-    },
-    {
-        "subtopic": "C.2.1",
-        "question": "Describe chunking, association and practice methods for improving memory.",
-        "maxMarks": 3,
-        "level": "SL",
-        "id": "Q088",
-        "section": "C",
-        "topic": "C.2",
-        "markScheme": "Mark scheme points for Describe chunking, association and practice method..."
-    },
-    {
-        "subtopic": "C.2.1",
-        "question": "Explain progressive part presentation when introducing a new skill.",
-        "maxMarks": 2,
-        "level": "SL",
-        "id": "Q089",
-        "section": "C",
-        "topic": "C.2",
-        "markScheme": "Mark scheme points for Explain progressive part presentation when introdu..."
-    },
-    {
-        "subtopic": "C.2.2",
-        "question": "Explain selective attention in sport.",
-        "maxMarks": 2,
-        "level": "SL",
-        "id": "Q090",
-        "section": "C",
-        "topic": "C.2",
-        "markScheme": "Mark scheme points for Explain selective attention in sport...."
-    },
-    {
-        "subtopic": "C.2.2",
-        "question": "Describe strategies to improve attentional focus.",
-        "maxMarks": 2,
-        "level": "SL",
-        "id": "Q091",
-        "section": "C",
-        "topic": "C.2",
-        "markScheme": "Mark scheme points for Describe strategies to improve attentional focus...."
-    },
-    {
-        "subtopic": "C.3.1",
-        "question": "Describe how Atkinson's model of achievement motivation influences a team's response to coaching.",
-        "maxMarks": 3,
-        "level": "SL",
-        "id": "Q092",
-        "section": "C",
-        "topic": "C.3",
-        "markScheme": "Mark scheme points for Describe how Atkinson's model of achievement motiv..."
-    },
-    {
-        "subtopic": "C.3.1",
-        "question": "Explain NACH and NAF in achievement motivation.",
-        "maxMarks": 2,
-        "level": "SL",
-        "id": "Q093",
-        "section": "C",
-        "topic": "C.3",
-        "markScheme": "Mark scheme points for Explain NACH and NAF in achievement motivation...."
-    },
-    {
-        "subtopic": "C.3.1",
-        "question": "Outline goal orientation theory in sport.",
-        "maxMarks": 3,
-        "level": "HL",
-        "id": "Q094",
-        "section": "C",
-        "topic": "C.3",
-        "markScheme": "Mark scheme points for Outline goal orientation theory in sport...."
-    },
-    {
-        "subtopic": "C.3.2",
-        "question": "Explain the three basic needs in self-determination theory.",
-        "maxMarks": 3,
-        "level": "SL",
-        "id": "Q095",
-        "section": "C",
-        "topic": "C.3",
-        "markScheme": "Mark scheme points for Explain the three basic needs in self-determinatio..."
-    },
-    {
-        "subtopic": "C.3.2",
-        "question": "Distinguish between intrinsic and extrinsic motivation.",
-        "maxMarks": 2,
-        "level": "SL",
-        "id": "Q096",
-        "section": "C",
-        "topic": "C.3",
-        "markScheme": "Mark scheme points for Distinguish between intrinsic and extrinsic motiva..."
-    },
-    {
-        "subtopic": "C.3.2",
-        "question": "Describe autonomy, competence and relatedness in sport.",
-        "maxMarks": 3,
-        "level": "HL",
-        "id": "Q097",
-        "section": "C",
-        "topic": "C.3",
-        "markScheme": "Mark scheme points for Describe autonomy, competence and relatedness in s..."
-    },
-    {
-        "subtopic": "C.3.2",
-        "question": "Explain how coaches can enhance autonomy in athletes.",
-        "maxMarks": 3,
-        "level": "HL",
-        "id": "Q098",
-        "section": "C",
-        "topic": "C.3",
-        "markScheme": "Mark scheme points for Explain how coaches can enhance autonomy in athlet..."
-    },
-    {
-        "subtopic": "C.3.2",
-        "question": "Analyze the motivation continuum from amotivation to intrinsic motivation.",
-        "maxMarks": 4,
-        "level": "HL",
-        "id": "Q099",
-        "section": "C",
-        "topic": "C.3",
-        "markScheme": "Mark scheme points for Analyze the motivation continuum from amotivation ..."
-    },
-    {
-        "subtopic": "C.3.3",
-        "question": "Distinguish between task-involving and ego-involving climates.",
-        "maxMarks": 2,
-        "level": "SL",
-        "id": "Q100",
-        "section": "C",
-        "topic": "C.3",
-        "markScheme": "Mark scheme points for Distinguish between task-involving and ego-involvi..."
-    },
-    {
-        "subtopic": "C.3.3",
-        "question": "Explain how coaches create a mastery motivational climate.",
-        "maxMarks": 2,
-        "level": "SL",
-        "id": "Q101",
-        "section": "C",
-        "topic": "C.3",
-        "markScheme": "Mark scheme points for Explain how coaches create a mastery motivational ..."
-    },
-    {
-        "subtopic": "C.4.1",
-        "question": "Distinguish between cognitive and somatic anxiety.",
-        "maxMarks": 2,
-        "level": "SL",
-        "id": "Q102",
-        "section": "C",
-        "topic": "C.4",
-        "markScheme": "Mark scheme points for Distinguish between cognitive and somatic anxiety...."
-    },
-    {
-        "subtopic": "C.4.1",
-        "question": "Explain the inverted-U hypothesis of arousal.",
-        "maxMarks": 3,
-        "level": "SL",
-        "id": "Q103",
-        "section": "C",
-        "topic": "C.4",
-        "markScheme": "Mark scheme points for Explain the inverted-U hypothesis of arousal...."
-    },
-    {
-        "subtopic": "C.4.1",
-        "question": "Describe catastrophe theory in sport psychology.",
-        "maxMarks": 3,
-        "level": "SL",
-        "id": "Q104",
-        "section": "C",
-        "topic": "C.4",
-        "markScheme": "Mark scheme points for Describe catastrophe theory in sport psychology...."
-    },
-    {
-        "subtopic": "C.4.2",
-        "question": "Suggest how to implement relaxation techniques during PST acquisition phase.",
-        "maxMarks": 2,
-        "level": "SL",
-        "id": "Q105",
-        "section": "C",
-        "topic": "C.4",
-        "markScheme": "Mark scheme points for Suggest how to implement relaxation techniques dur..."
-    },
-    {
-        "subtopic": "C.4.2",
-        "question": "Distinguish between problem-focused and emotion-focused coping.",
-        "maxMarks": 2,
-        "level": "HL",
-        "id": "Q106",
-        "section": "C",
-        "topic": "C.4",
-        "markScheme": "Mark scheme points for Distinguish between problem-focused and emotion-fo..."
-    },
-    {
-        "subtopic": "C.5.1",
-        "question": "Explain the SMART criteria for goal setting.",
-        "maxMarks": 3,
-        "level": "SL",
-        "id": "Q107",
-        "section": "C",
-        "topic": "C.5",
-        "markScheme": "Mark scheme points for Explain the SMART criteria for goal setting...."
-    },
-    {
-        "subtopic": "C.5.1",
-        "question": "Distinguish between outcome, performance and process goals.",
-        "maxMarks": 3,
-        "level": "SL",
-        "id": "Q108",
-        "section": "C",
-        "topic": "C.5",
-        "markScheme": "Mark scheme points for Distinguish between outcome, performance and proce..."
-    },
-    {
-        "subtopic": "C.5.1",
-        "question": "Describe the benefits of goal setting for athletes.",
-        "maxMarks": 2,
-        "level": "SL",
-        "id": "Q109",
-        "section": "C",
-        "topic": "C.5",
-        "markScheme": "Mark scheme points for Describe the benefits of goal setting for athletes..."
-    },
-    {
-        "subtopic": "C.5.1",
-        "question": "Outline strategies for effective goal setting in team sports.",
-        "maxMarks": 3,
-        "level": "HL",
-        "id": "Q110",
-        "section": "C",
-        "topic": "C.5",
-        "markScheme": "Mark scheme points for Outline strategies for effective goal setting in t..."
-    },
-    {
-        "subtopic": "C.5.2",
-        "question": "Explain the PETTLEP model of imagery.",
-        "maxMarks": 3,
-        "level": "HL",
-        "id": "Q111",
-        "section": "C",
-        "topic": "C.5",
-        "markScheme": "Mark scheme points for Explain the PETTLEP model of imagery...."
-    },
-    {
-        "subtopic": "C.5.2",
-        "question": "Describe internal vs external imagery perspectives.",
-        "maxMarks": 2,
-        "level": "HL",
-        "id": "Q112",
-        "section": "C",
-        "topic": "C.5",
-        "markScheme": "Mark scheme points for Describe internal vs external imagery perspectives..."
-    },
-    {
-        "subtopic": "C.5.2",
-        "question": "Outline the benefits of imagery for skill acquisition.",
-        "maxMarks": 3,
-        "level": "HL",
-        "id": "Q113",
-        "section": "C",
-        "topic": "C.5",
-        "markScheme": "Mark scheme points for Outline the benefits of imagery for skill acquisit..."
-    }
+  {
+    "id": "Q001",
+    "subtopic": "A.1.1",
+    "section": "A",
+    "topic": "A.1",
+    "question": "Explain the mechanism of expiration (exhalation) when exercising.",
+    "maxMarks": 5,
+    "level": "SL",
+    "markScheme": "IB mark scheme"
+  },
+  {
+    "id": "Q002",
+    "subtopic": "A.1.1",
+    "section": "A",
+    "topic": "A.1",
+    "question": "Describe the process of gaseous exchange at the alveoli during rest and exercise.",
+    "maxMarks": 6,
+    "level": "SL",
+    "markScheme": "IB mark scheme"
+  },
+  {
+    "id": "Q003",
+    "subtopic": "A.1.1",
+    "section": "A",
+    "topic": "A.1",
+    "question": "Compare and contrast the process of gaseous exchange of oxygen and carbon dioxide at the alveoli during exercise.",
+    "maxMarks": 4,
+    "level": "SL",
+    "markScheme": "IB mark scheme"
+  },
+  {
+    "id": "Q004",
+    "subtopic": "A.1.1",
+    "section": "A",
+    "topic": "A.1",
+    "question": "Explain how the short-term stress caused by competing in sport influences how the nervous system regulates adrenaline.",
+    "maxMarks": 2,
+    "level": "HL",
+    "markScheme": "IB mark scheme"
+  },
+  {
+    "id": "Q005",
+    "subtopic": "A.1.1",
+    "section": "A",
+    "topic": "A.1",
+    "question": "Describe blood redistribution as a soccer player begins running during a game.",
+    "maxMarks": 5,
+    "level": "SL",
+    "markScheme": "IB mark scheme"
+  },
+  {
+    "id": "Q006",
+    "subtopic": "A.1.1",
+    "section": "A",
+    "topic": "A.1",
+    "question": "Describe the cardiovascular and respiratory responses to exercise.",
+    "maxMarks": 5,
+    "level": "SL",
+    "markScheme": "IB mark scheme"
+  },
+  {
+    "id": "Q007",
+    "subtopic": "A.1.1",
+    "section": "A",
+    "topic": "A.1",
+    "question": "Explain the role of chemoreceptors in regulating ventilation during exercise.",
+    "maxMarks": 3,
+    "level": "SL",
+    "markScheme": "IB mark scheme"
+  },
+  {
+    "id": "Q008",
+    "subtopic": "A.1.2",
+    "section": "A",
+    "topic": "A.1",
+    "question": "Explain the role of insulin on glucose uptake at rest.",
+    "maxMarks": 3,
+    "level": "SL",
+    "markScheme": "IB mark scheme"
+  },
+  {
+    "id": "Q009",
+    "subtopic": "A.1.2",
+    "section": "A",
+    "topic": "A.1",
+    "question": "Explain the role of insulin in the formation of glycogen.",
+    "maxMarks": 3,
+    "level": "SL",
+    "markScheme": "IB mark scheme"
+  },
+  {
+    "id": "Q010",
+    "subtopic": "A.1.2",
+    "section": "A",
+    "topic": "A.1",
+    "question": "Discuss the regulation of electrolyte balance during endurance swimming.",
+    "maxMarks": 4,
+    "level": "SL",
+    "markScheme": "IB mark scheme"
+  },
+  {
+    "id": "Q011",
+    "subtopic": "A.1.2",
+    "section": "A",
+    "topic": "A.1",
+    "question": "Outline two reasons why hydration is important for an endurance swimmer.",
+    "maxMarks": 2,
+    "level": "SL",
+    "markScheme": "IB mark scheme"
+  },
+  {
+    "id": "Q012",
+    "subtopic": "A.1.2",
+    "section": "A",
+    "topic": "A.1",
+    "question": "Predict the effect of static exercise on systolic and diastolic blood pressure.",
+    "maxMarks": 2,
+    "level": "SL",
+    "markScheme": "IB mark scheme"
+  },
+  {
+    "id": "Q013",
+    "subtopic": "A.1.3",
+    "section": "A",
+    "topic": "A.1",
+    "question": "Describe blood redistribution as a player begins running during a game.",
+    "maxMarks": 5,
+    "level": "SL",
+    "markScheme": "IB mark scheme"
+  },
+  {
+    "id": "Q014",
+    "subtopic": "A.1.3",
+    "section": "A",
+    "topic": "A.1",
+    "question": "Explain the vascular shunt mechanism during exercise.",
+    "maxMarks": 3,
+    "level": "SL",
+    "markScheme": "IB mark scheme"
+  },
+  {
+    "id": "Q015",
+    "subtopic": "A.1.3",
+    "section": "A",
+    "topic": "A.1",
+    "question": "Outline the cardiovascular responses during a marathon.",
+    "maxMarks": 4,
+    "level": "SL",
+    "markScheme": "IB mark scheme"
+  },
+  {
+    "id": "Q016",
+    "subtopic": "A.1.3",
+    "section": "A",
+    "topic": "A.1",
+    "question": "Describe stroke volume and cardiac output changes during exercise.",
+    "maxMarks": 4,
+    "level": "SL",
+    "markScheme": "IB mark scheme"
+  },
+  {
+    "id": "Q017",
+    "subtopic": "A.1.3",
+    "section": "A",
+    "topic": "A.1",
+    "question": "Explain venous return mechanisms during physical activity.",
+    "maxMarks": 3,
+    "level": "SL",
+    "markScheme": "IB mark scheme"
+  },
+  {
+    "id": "Q018",
+    "subtopic": "A.2.1",
+    "section": "A",
+    "topic": "A.2",
+    "question": "Discuss the regulation of electrolyte balance during a 20km swim.",
+    "maxMarks": 4,
+    "level": "SL",
+    "markScheme": "IB mark scheme"
+  },
+  {
+    "id": "Q019",
+    "subtopic": "A.2.1",
+    "section": "A",
+    "topic": "A.2",
+    "question": "Outline two reasons why hydration is important for an endurance swimmer.",
+    "maxMarks": 2,
+    "level": "SL",
+    "markScheme": "IB mark scheme"
+  },
+  {
+    "id": "Q020",
+    "subtopic": "A.2.1",
+    "section": "A",
+    "topic": "A.2",
+    "question": "Explain the role of ADH and aldosterone in maintaining fluid balance.",
+    "maxMarks": 3,
+    "level": "SL",
+    "markScheme": "IB mark scheme"
+  },
+  {
+    "id": "Q021",
+    "subtopic": "A.2.2",
+    "section": "A",
+    "topic": "A.2",
+    "question": "Discuss the recommended macronutrients required for marathon running.",
+    "maxMarks": 5,
+    "level": "SL",
+    "markScheme": "IB mark scheme"
+  },
+  {
+    "id": "Q022",
+    "subtopic": "A.2.2",
+    "section": "A",
+    "topic": "A.2",
+    "question": "Explain the importance of selecting low glycemic index carbohydrates for a pre-competition meal.",
+    "maxMarks": 2,
+    "level": "SL",
+    "markScheme": "IB mark scheme"
+  },
+  {
+    "id": "Q023",
+    "subtopic": "A.2.2",
+    "section": "A",
+    "topic": "A.2",
+    "question": "Outline the nutritional requirements for a marathon runner.",
+    "maxMarks": 4,
+    "level": "SL",
+    "markScheme": "IB mark scheme"
+  },
+  {
+    "id": "Q024",
+    "subtopic": "A.2.2",
+    "section": "A",
+    "topic": "A.2",
+    "question": "Explain the benefits of carbohydrate loading for endurance athletes.",
+    "maxMarks": 3,
+    "level": "SL",
+    "markScheme": "IB mark scheme"
+  },
+  {
+    "id": "Q025",
+    "subtopic": "A.2.2",
+    "section": "A",
+    "topic": "A.2",
+    "question": "Describe the role of protein in muscle recovery and adaptation.",
+    "maxMarks": 3,
+    "level": "SL",
+    "markScheme": "IB mark scheme"
+  },
+  {
+    "id": "Q026",
+    "subtopic": "A.2.3",
+    "section": "A",
+    "topic": "A.2",
+    "question": "Describe the re-synthesis of ATP by the ATP-CP system.",
+    "maxMarks": 4,
+    "level": "SL",
+    "markScheme": "IB mark scheme"
+  },
+  {
+    "id": "Q027",
+    "subtopic": "A.2.3",
+    "section": "A",
+    "topic": "A.2",
+    "question": "Discuss the factors that determine the dominant energy system.",
+    "maxMarks": 5,
+    "level": "SL",
+    "markScheme": "IB mark scheme"
+  },
+  {
+    "id": "Q028",
+    "subtopic": "A.2.3",
+    "section": "A",
+    "topic": "A.2",
+    "question": "Explain the lactic acid system and its role in high-intensity exercise.",
+    "maxMarks": 4,
+    "level": "SL",
+    "markScheme": "IB mark scheme"
+  },
+  {
+    "id": "Q029",
+    "subtopic": "A.2.3",
+    "section": "A",
+    "topic": "A.2",
+    "question": "Discuss how adenosine can gain and lose a phosphate molecule.",
+    "maxMarks": 3,
+    "level": "SL",
+    "markScheme": "IB mark scheme"
+  },
+  {
+    "id": "Q030",
+    "subtopic": "A.2.3",
+    "section": "A",
+    "topic": "A.2",
+    "question": "Describe the aerobic energy system and its fuel sources.",
+    "maxMarks": 4,
+    "level": "SL",
+    "markScheme": "IB mark scheme"
+  },
+  {
+    "id": "Q031",
+    "subtopic": "A.2.3",
+    "section": "A",
+    "topic": "A.2",
+    "question": "Explain the energy systems used during a 400m sprint.",
+    "maxMarks": 4,
+    "level": "SL",
+    "markScheme": "IB mark scheme"
+  },
+  {
+    "id": "Q032",
+    "subtopic": "A.3.1",
+    "section": "A",
+    "topic": "A.3",
+    "question": "Explain how a coach uses key principles of training to maximize athletic development.",
+    "maxMarks": 4,
+    "level": "SL",
+    "markScheme": "IB mark scheme"
+  },
+  {
+    "id": "Q033",
+    "subtopic": "A.3.1",
+    "section": "A",
+    "topic": "A.3",
+    "question": "Outline the principles of overload and specificity in training.",
+    "maxMarks": 3,
+    "level": "SL",
+    "markScheme": "IB mark scheme"
+  },
+  {
+    "id": "Q034",
+    "subtopic": "A.3.1",
+    "section": "A",
+    "topic": "A.3",
+    "question": "Describe how periodization is used to optimize performance.",
+    "maxMarks": 3,
+    "level": "SL",
+    "markScheme": "IB mark scheme"
+  },
+  {
+    "id": "Q035",
+    "subtopic": "A.3.1",
+    "section": "A",
+    "topic": "A.3",
+    "question": "Explain the principle of reversibility in athletic training.",
+    "maxMarks": 2,
+    "level": "SL",
+    "markScheme": "IB mark scheme"
+  },
+  {
+    "id": "Q036",
+    "subtopic": "A.3.2",
+    "section": "A",
+    "topic": "A.3",
+    "question": "Outline the health benefits of regular physical activity.",
+    "maxMarks": 3,
+    "level": "SL",
+    "markScheme": "IB mark scheme"
+  },
+  {
+    "id": "Q037",
+    "subtopic": "A.3.2",
+    "section": "A",
+    "topic": "A.3",
+    "question": "Explain the cardiovascular benefits of aerobic training.",
+    "maxMarks": 2,
+    "level": "SL",
+    "markScheme": "IB mark scheme"
+  },
+  {
+    "id": "Q038",
+    "subtopic": "A.3.3",
+    "section": "A",
+    "topic": "A.3",
+    "question": "Describe the causes of fatigue during high-intensity exercise.",
+    "maxMarks": 4,
+    "level": "SL",
+    "markScheme": "IB mark scheme"
+  },
+  {
+    "id": "Q039",
+    "subtopic": "A.3.3",
+    "section": "A",
+    "topic": "A.3",
+    "question": "Explain recovery strategies used by athletes.",
+    "maxMarks": 4,
+    "level": "SL",
+    "markScheme": "IB mark scheme"
+  },
+  {
+    "id": "Q040",
+    "subtopic": "A.3.3",
+    "section": "A",
+    "topic": "A.3",
+    "question": "Outline the role of lactate in muscle fatigue.",
+    "maxMarks": 3,
+    "level": "SL",
+    "markScheme": "IB mark scheme"
+  },
+  {
+    "id": "Q041",
+    "subtopic": "A.3.3",
+    "section": "A",
+    "topic": "A.3",
+    "question": "Describe EPOC and its role in recovery.",
+    "maxMarks": 3,
+    "level": "SL",
+    "markScheme": "IB mark scheme"
+  },
+  {
+    "id": "Q042",
+    "subtopic": "A.3.3",
+    "section": "A",
+    "topic": "A.3",
+    "question": "Explain the importance of recovery time between training sessions.",
+    "maxMarks": 2,
+    "level": "SL",
+    "markScheme": "IB mark scheme"
+  },
+  {
+    "id": "Q043",
+    "subtopic": "A.3.3",
+    "section": "A",
+    "topic": "A.3",
+    "question": "Outline active vs passive recovery strategies.",
+    "maxMarks": 2,
+    "level": "SL",
+    "markScheme": "IB mark scheme"
+  },
+  {
+    "id": "Q044",
+    "subtopic": "B.1.1",
+    "section": "B",
+    "topic": "B.1",
+    "question": "State the location of the humerus in relation to the radius using anatomical terminology.",
+    "maxMarks": 1,
+    "level": "SL",
+    "markScheme": "IB mark scheme"
+  },
+  {
+    "id": "Q045",
+    "subtopic": "B.1.1",
+    "section": "B",
+    "topic": "B.1",
+    "question": "Describe the sagittal, frontal and transverse planes of movement.",
+    "maxMarks": 3,
+    "level": "SL",
+    "markScheme": "IB mark scheme"
+  },
+  {
+    "id": "Q046",
+    "subtopic": "B.1.1",
+    "section": "B",
+    "topic": "B.1",
+    "question": "Outline flexion, extension, abduction and adduction movements.",
+    "maxMarks": 4,
+    "level": "SL",
+    "markScheme": "IB mark scheme"
+  },
+  {
+    "id": "Q047",
+    "subtopic": "B.1.2",
+    "section": "B",
+    "topic": "B.1",
+    "question": "Outline four features of a synovial joint.",
+    "maxMarks": 4,
+    "level": "SL",
+    "markScheme": "IB mark scheme"
+  },
+  {
+    "id": "Q048",
+    "subtopic": "B.1.2",
+    "section": "B",
+    "topic": "B.1",
+    "question": "Describe the structure and function of ligaments and tendons.",
+    "maxMarks": 3,
+    "level": "SL",
+    "markScheme": "IB mark scheme"
+  },
+  {
+    "id": "Q049",
+    "subtopic": "B.1.2",
+    "section": "B",
+    "topic": "B.1",
+    "question": "Explain the role of synovial fluid in joint movement.",
+    "maxMarks": 2,
+    "level": "SL",
+    "markScheme": "IB mark scheme"
+  },
+  {
+    "id": "Q050",
+    "subtopic": "B.1.3",
+    "section": "B",
+    "topic": "B.1",
+    "question": "Discuss characteristics of a type IIb fast glycolytic muscle fibre.",
+    "maxMarks": 4,
+    "level": "SL",
+    "markScheme": "IB mark scheme"
+  },
+  {
+    "id": "Q051",
+    "subtopic": "B.1.3",
+    "section": "B",
+    "topic": "B.1",
+    "question": "Explain how muscles work in pairs (agonist and antagonist) during movement.",
+    "maxMarks": 4,
+    "level": "SL",
+    "markScheme": "IB mark scheme"
+  },
+  {
+    "id": "Q052",
+    "subtopic": "B.1.3",
+    "section": "B",
+    "topic": "B.1",
+    "question": "Compare type I and type II muscle fibres.",
+    "maxMarks": 4,
+    "level": "SL",
+    "markScheme": "IB mark scheme"
+  },
+  {
+    "id": "Q053",
+    "subtopic": "B.1.3",
+    "section": "B",
+    "topic": "B.1",
+    "question": "Describe concentric, eccentric and isometric contractions.",
+    "maxMarks": 3,
+    "level": "SL",
+    "markScheme": "IB mark scheme"
+  },
+  {
+    "id": "Q054",
+    "subtopic": "B.1.4",
+    "section": "B",
+    "topic": "B.1",
+    "question": "Distinguish between first class levers and third class levers.",
+    "maxMarks": 2,
+    "level": "SL",
+    "markScheme": "IB mark scheme"
+  },
+  {
+    "id": "Q055",
+    "subtopic": "B.1.4",
+    "section": "B",
+    "topic": "B.1",
+    "question": "Explain the lever system during a bicep curl with examples.",
+    "maxMarks": 3,
+    "level": "SL",
+    "markScheme": "IB mark scheme"
+  },
+  {
+    "id": "Q056",
+    "subtopic": "B.2.1",
+    "section": "B",
+    "topic": "B.2",
+    "question": "Using examples, outline Newton's three laws of motion during a soccer match.",
+    "maxMarks": 6,
+    "level": "SL",
+    "markScheme": "IB mark scheme"
+  },
+  {
+    "id": "Q057",
+    "subtopic": "B.2.1",
+    "section": "B",
+    "topic": "B.2",
+    "question": "Predict how changing speed and height of release affects projectile motion at 45 degrees.",
+    "maxMarks": 2,
+    "level": "SL",
+    "markScheme": "IB mark scheme"
+  },
+  {
+    "id": "Q058",
+    "subtopic": "B.2.1",
+    "section": "B",
+    "topic": "B.2",
+    "question": "Explain the concept of momentum in sport with examples.",
+    "maxMarks": 3,
+    "level": "SL",
+    "markScheme": "IB mark scheme"
+  },
+  {
+    "id": "Q059",
+    "subtopic": "B.2.1",
+    "section": "B",
+    "topic": "B.2",
+    "question": "Describe impulse and its application in sport.",
+    "maxMarks": 3,
+    "level": "HL",
+    "markScheme": "IB mark scheme"
+  },
+  {
+    "id": "Q060",
+    "subtopic": "B.2.1",
+    "section": "B",
+    "topic": "B.2",
+    "question": "Explain Newton's second law (F=ma) with sporting examples.",
+    "maxMarks": 3,
+    "level": "SL",
+    "markScheme": "IB mark scheme"
+  },
+  {
+    "id": "Q061",
+    "subtopic": "B.2.1",
+    "section": "B",
+    "topic": "B.2",
+    "question": "Describe the relationship between force, mass and acceleration in athletics.",
+    "maxMarks": 3,
+    "level": "HL",
+    "markScheme": "IB mark scheme"
+  },
+  {
+    "id": "Q062",
+    "subtopic": "B.2.1",
+    "section": "B",
+    "topic": "B.2",
+    "question": "Explain action-reaction pairs in sport using Newton's third law.",
+    "maxMarks": 3,
+    "level": "SL",
+    "markScheme": "IB mark scheme"
+  },
+  {
+    "id": "Q063",
+    "subtopic": "B.2.2",
+    "section": "B",
+    "topic": "B.2",
+    "question": "Explain the concept of angular momentum when a ballet dancer performs a pirouette.",
+    "maxMarks": 6,
+    "level": "SL",
+    "markScheme": "IB mark scheme"
+  },
+  {
+    "id": "Q064",
+    "subtopic": "B.2.2",
+    "section": "B",
+    "topic": "B.2",
+    "question": "Discuss three factors that influence the amount of drag on a 100m sprinter.",
+    "maxMarks": 3,
+    "level": "HL",
+    "markScheme": "IB mark scheme"
+  },
+  {
+    "id": "Q065",
+    "subtopic": "B.2.2",
+    "section": "B",
+    "topic": "B.2",
+    "question": "Describe how friction influences a sprinter's performance.",
+    "maxMarks": 3,
+    "level": "SL",
+    "markScheme": "IB mark scheme"
+  },
+  {
+    "id": "Q066",
+    "subtopic": "B.2.2",
+    "section": "B",
+    "topic": "B.2",
+    "question": "Explain Bernoulli's principle and its application in sport.",
+    "maxMarks": 4,
+    "level": "HL",
+    "markScheme": "IB mark scheme"
+  },
+  {
+    "id": "Q067",
+    "subtopic": "B.2.2",
+    "section": "B",
+    "topic": "B.2",
+    "question": "Describe lift and drag forces in swimming.",
+    "maxMarks": 3,
+    "level": "HL",
+    "markScheme": "IB mark scheme"
+  },
+  {
+    "id": "Q068",
+    "subtopic": "B.2.3",
+    "section": "B",
+    "topic": "B.2",
+    "question": "Describe the forces acting on a sprinter during acceleration.",
+    "maxMarks": 4,
+    "level": "SL",
+    "markScheme": "IB mark scheme"
+  },
+  {
+    "id": "Q069",
+    "subtopic": "B.2.3",
+    "section": "B",
+    "topic": "B.2",
+    "question": "Analyze movement patterns during a vertical jump.",
+    "maxMarks": 3,
+    "level": "SL",
+    "markScheme": "IB mark scheme"
+  },
+  {
+    "id": "Q070",
+    "subtopic": "B.2.3",
+    "section": "B",
+    "topic": "B.2",
+    "question": "Outline the phases of a sprint start.",
+    "maxMarks": 3,
+    "level": "SL",
+    "markScheme": "IB mark scheme"
+  },
+  {
+    "id": "Q071",
+    "subtopic": "B.3.1",
+    "section": "B",
+    "topic": "B.3",
+    "question": "Outline common soft-tissue injuries in soccer players.",
+    "maxMarks": 3,
+    "level": "SL",
+    "markScheme": "IB mark scheme"
+  },
+  {
+    "id": "Q072",
+    "subtopic": "B.3.1",
+    "section": "B",
+    "topic": "B.3",
+    "question": "Explain the difference between acute and chronic injuries.",
+    "maxMarks": 2,
+    "level": "SL",
+    "markScheme": "IB mark scheme"
+  },
+  {
+    "id": "Q073",
+    "subtopic": "B.3.1",
+    "section": "B",
+    "topic": "B.3",
+    "question": "Describe causes of overuse injuries in runners.",
+    "maxMarks": 3,
+    "level": "SL",
+    "markScheme": "IB mark scheme"
+  },
+  {
+    "id": "Q074",
+    "subtopic": "B.3.2",
+    "section": "B",
+    "topic": "B.3",
+    "question": "Explain injury prevention strategies that could be used by a swimming coach.",
+    "maxMarks": 3,
+    "level": "SL",
+    "markScheme": "IB mark scheme"
+  },
+  {
+    "id": "Q075",
+    "subtopic": "B.3.2",
+    "section": "B",
+    "topic": "B.3",
+    "question": "Describe the RICE protocol for acute injuries.",
+    "maxMarks": 3,
+    "level": "SL",
+    "markScheme": "IB mark scheme"
+  },
+  {
+    "id": "Q076",
+    "subtopic": "B.3.2",
+    "section": "B",
+    "topic": "B.3",
+    "question": "Outline rehabilitation strategies for a sprained ankle.",
+    "maxMarks": 4,
+    "level": "SL",
+    "markScheme": "IB mark scheme"
+  },
+  {
+    "id": "Q077",
+    "subtopic": "B.3.2",
+    "section": "B",
+    "topic": "B.3",
+    "question": "Explain the role of physiotherapy in injury recovery.",
+    "maxMarks": 3,
+    "level": "SL",
+    "markScheme": "IB mark scheme"
+  },
+  {
+    "id": "Q078",
+    "subtopic": "C.1.1",
+    "section": "C",
+    "topic": "C.1",
+    "question": "Explain how personality traits influence sports performance.",
+    "maxMarks": 3,
+    "level": "SL",
+    "markScheme": "IB mark scheme"
+  },
+  {
+    "id": "Q079",
+    "subtopic": "C.1.1",
+    "section": "C",
+    "topic": "C.1",
+    "question": "Outline the trait and interactionist approaches to personality.",
+    "maxMarks": 2,
+    "level": "SL",
+    "markScheme": "IB mark scheme"
+  },
+  {
+    "id": "Q080",
+    "subtopic": "C.1.2",
+    "section": "C",
+    "topic": "C.1",
+    "question": "Describe characteristics of mental toughness in athletes.",
+    "maxMarks": 3,
+    "level": "SL",
+    "markScheme": "IB mark scheme"
+  },
+  {
+    "id": "Q081",
+    "subtopic": "C.1.2",
+    "section": "C",
+    "topic": "C.1",
+    "question": "Explain how mental toughness can be developed.",
+    "maxMarks": 3,
+    "level": "HL",
+    "markScheme": "IB mark scheme"
+  },
+  {
+    "id": "Q082",
+    "subtopic": "C.1.2",
+    "section": "C",
+    "topic": "C.1",
+    "question": "Outline the 4Cs model of mental toughness.",
+    "maxMarks": 2,
+    "level": "HL",
+    "markScheme": "IB mark scheme"
+  },
+  {
+    "id": "Q083",
+    "subtopic": "C.2.1",
+    "section": "C",
+    "topic": "C.2",
+    "question": "Define the concept of transfer in motor learning.",
+    "maxMarks": 1,
+    "level": "SL",
+    "markScheme": "IB mark scheme"
+  },
+  {
+    "id": "Q084",
+    "subtopic": "C.2.1",
+    "section": "C",
+    "topic": "C.2",
+    "question": "Outline abilities to skills as a type of transfer when learning a tennis serve.",
+    "maxMarks": 1,
+    "level": "SL",
+    "markScheme": "IB mark scheme"
+  },
+  {
+    "id": "Q085",
+    "subtopic": "C.2.1",
+    "section": "C",
+    "topic": "C.2",
+    "question": "Using examples, outline positive and negative transfer.",
+    "maxMarks": 2,
+    "level": "SL",
+    "markScheme": "IB mark scheme"
+  },
+  {
+    "id": "Q086",
+    "subtopic": "C.2.1",
+    "section": "C",
+    "topic": "C.2",
+    "question": "Describe the stages of learning (Fitts and Posner model).",
+    "maxMarks": 3,
+    "level": "SL",
+    "markScheme": "IB mark scheme"
+  },
+  {
+    "id": "Q087",
+    "subtopic": "C.2.1",
+    "section": "C",
+    "topic": "C.2",
+    "question": "Explain the difference between massed and distributed practice.",
+    "maxMarks": 2,
+    "level": "SL",
+    "markScheme": "IB mark scheme"
+  },
+  {
+    "id": "Q088",
+    "subtopic": "C.2.1",
+    "section": "C",
+    "topic": "C.2",
+    "question": "Describe methods for improving memory in skill acquisition.",
+    "maxMarks": 3,
+    "level": "SL",
+    "markScheme": "IB mark scheme"
+  },
+  {
+    "id": "Q089",
+    "subtopic": "C.2.1",
+    "section": "C",
+    "topic": "C.2",
+    "question": "Explain whole, part and whole-part-whole practice methods.",
+    "maxMarks": 3,
+    "level": "SL",
+    "markScheme": "IB mark scheme"
+  },
+  {
+    "id": "Q090",
+    "subtopic": "C.2.2",
+    "section": "C",
+    "topic": "C.2",
+    "question": "Explain selective attention in sport.",
+    "maxMarks": 2,
+    "level": "SL",
+    "markScheme": "IB mark scheme"
+  },
+  {
+    "id": "Q091",
+    "subtopic": "C.2.2",
+    "section": "C",
+    "topic": "C.2",
+    "question": "Describe strategies to improve attentional focus during performance.",
+    "maxMarks": 2,
+    "level": "SL",
+    "markScheme": "IB mark scheme"
+  },
+  {
+    "id": "Q092",
+    "subtopic": "C.3.1",
+    "section": "C",
+    "topic": "C.3",
+    "question": "Describe how Atkinson's model of achievement motivation influences response to coaching.",
+    "maxMarks": 3,
+    "level": "SL",
+    "markScheme": "IB mark scheme"
+  },
+  {
+    "id": "Q093",
+    "subtopic": "C.3.1",
+    "section": "C",
+    "topic": "C.3",
+    "question": "Explain NACH (need to achieve) and NAF (need to avoid failure) in achievement motivation.",
+    "maxMarks": 2,
+    "level": "SL",
+    "markScheme": "IB mark scheme"
+  },
+  {
+    "id": "Q094",
+    "subtopic": "C.3.1",
+    "section": "C",
+    "topic": "C.3",
+    "question": "Outline goal orientation theory in sport.",
+    "maxMarks": 3,
+    "level": "HL",
+    "markScheme": "IB mark scheme"
+  },
+  {
+    "id": "Q095",
+    "subtopic": "C.3.2",
+    "section": "C",
+    "topic": "C.3",
+    "question": "Explain the three basic needs in self-determination theory.",
+    "maxMarks": 3,
+    "level": "SL",
+    "markScheme": "IB mark scheme"
+  },
+  {
+    "id": "Q096",
+    "subtopic": "C.3.2",
+    "section": "C",
+    "topic": "C.3",
+    "question": "Distinguish between intrinsic and extrinsic motivation.",
+    "maxMarks": 2,
+    "level": "SL",
+    "markScheme": "IB mark scheme"
+  },
+  {
+    "id": "Q097",
+    "subtopic": "C.3.2",
+    "section": "C",
+    "topic": "C.3",
+    "question": "Describe autonomy, competence and relatedness in sport contexts.",
+    "maxMarks": 3,
+    "level": "HL",
+    "markScheme": "IB mark scheme"
+  },
+  {
+    "id": "Q098",
+    "subtopic": "C.3.2",
+    "section": "C",
+    "topic": "C.3",
+    "question": "Explain how coaches can enhance autonomy in athletes.",
+    "maxMarks": 3,
+    "level": "HL",
+    "markScheme": "IB mark scheme"
+  },
+  {
+    "id": "Q099",
+    "subtopic": "C.3.2",
+    "section": "C",
+    "topic": "C.3",
+    "question": "Outline the continuum of self-determination from amotivation to intrinsic motivation.",
+    "maxMarks": 4,
+    "level": "HL",
+    "markScheme": "IB mark scheme"
+  },
+  {
+    "id": "Q100",
+    "subtopic": "C.3.3",
+    "section": "C",
+    "topic": "C.3",
+    "question": "Distinguish between task-involving and ego-involving climates.",
+    "maxMarks": 2,
+    "level": "SL",
+    "markScheme": "IB mark scheme"
+  },
+  {
+    "id": "Q101",
+    "subtopic": "C.3.3",
+    "section": "C",
+    "topic": "C.3",
+    "question": "Explain how coaches create a mastery motivational climate.",
+    "maxMarks": 2,
+    "level": "SL",
+    "markScheme": "IB mark scheme"
+  },
+  {
+    "id": "Q102",
+    "subtopic": "C.4.1",
+    "section": "C",
+    "topic": "C.4",
+    "question": "Distinguish between cognitive and somatic anxiety.",
+    "maxMarks": 2,
+    "level": "SL",
+    "markScheme": "IB mark scheme"
+  },
+  {
+    "id": "Q103",
+    "subtopic": "C.4.1",
+    "section": "C",
+    "topic": "C.4",
+    "question": "Explain the inverted-U hypothesis of arousal and performance.",
+    "maxMarks": 3,
+    "level": "SL",
+    "markScheme": "IB mark scheme"
+  },
+  {
+    "id": "Q104",
+    "subtopic": "C.4.1",
+    "section": "C",
+    "topic": "C.4",
+    "question": "Describe catastrophe theory in sport psychology.",
+    "maxMarks": 3,
+    "level": "SL",
+    "markScheme": "IB mark scheme"
+  },
+  {
+    "id": "Q105",
+    "subtopic": "C.4.2",
+    "section": "C",
+    "topic": "C.4",
+    "question": "Outline relaxation techniques to reduce somatic anxiety.",
+    "maxMarks": 2,
+    "level": "SL",
+    "markScheme": "IB mark scheme"
+  },
+  {
+    "id": "Q106",
+    "subtopic": "C.4.2",
+    "section": "C",
+    "topic": "C.4",
+    "question": "Distinguish between problem-focused and emotion-focused coping strategies.",
+    "maxMarks": 2,
+    "level": "HL",
+    "markScheme": "IB mark scheme"
+  },
+  {
+    "id": "Q107",
+    "subtopic": "C.5.1",
+    "section": "C",
+    "topic": "C.5",
+    "question": "Explain the SMART criteria for goal setting.",
+    "maxMarks": 3,
+    "level": "SL",
+    "markScheme": "IB mark scheme"
+  },
+  {
+    "id": "Q108",
+    "subtopic": "C.5.1",
+    "section": "C",
+    "topic": "C.5",
+    "question": "Distinguish between outcome, performance and process goals.",
+    "maxMarks": 3,
+    "level": "SL",
+    "markScheme": "IB mark scheme"
+  },
+  {
+    "id": "Q109",
+    "subtopic": "C.5.1",
+    "section": "C",
+    "topic": "C.5",
+    "question": "Describe the benefits of goal setting for athletes.",
+    "maxMarks": 2,
+    "level": "SL",
+    "markScheme": "IB mark scheme"
+  },
+  {
+    "id": "Q110",
+    "subtopic": "C.5.1",
+    "section": "C",
+    "topic": "C.5",
+    "question": "Outline strategies for effective goal setting in team sports.",
+    "maxMarks": 3,
+    "level": "HL",
+    "markScheme": "IB mark scheme"
+  },
+  {
+    "id": "Q111",
+    "subtopic": "C.5.2",
+    "section": "C",
+    "topic": "C.5",
+    "question": "Explain the PETTLEP model of imagery.",
+    "maxMarks": 3,
+    "level": "HL",
+    "markScheme": "IB mark scheme"
+  },
+  {
+    "id": "Q112",
+    "subtopic": "C.5.2",
+    "section": "C",
+    "topic": "C.5",
+    "question": "Describe internal vs external imagery perspectives.",
+    "maxMarks": 2,
+    "level": "HL",
+    "markScheme": "IB mark scheme"
+  },
+  {
+    "id": "Q113",
+    "subtopic": "C.5.2",
+    "section": "C",
+    "topic": "C.5",
+    "question": "Outline the benefits of imagery for skill acquisition and performance.",
+    "maxMarks": 3,
+    "level": "HL",
+    "markScheme": "IB mark scheme"
+  }
 ];
 
         let currentLevel = 'SL';
         let filteredQuestions = [];
         let currentIndex = 0;
 
-        // Initialize
         function init() {
             populateSections();
             filterQuestions();
@@ -1783,21 +1632,16 @@
             updateNavigation();
         }
 
-        // Populate section dropdown
         function populateSections() {
             const select = document.getElementById('sectionFilter');
-            const sections = ['A', 'B', 'C'];
-
-            sections.forEach(sec => {
+            ['A', 'B', 'C'].forEach(sec => {
                 const option = document.createElement('option');
                 option.value = sec;
-                const info = curriculum[sec];
-                option.textContent = `${sec}. ${info.name}`;
+                option.textContent = `${sec}. ${curriculum[sec].name}`;
                 select.appendChild(option);
             });
         }
 
-        // Update topics based on section
         function updateTopics() {
             const section = document.getElementById('sectionFilter').value;
             const topicSelect = document.getElementById('topicFilter');
@@ -1819,7 +1663,6 @@
             filterQuestions();
         }
 
-        // Update subtopics based on topic
         function updateSubtopics() {
             const section = document.getElementById('sectionFilter').value;
             const topic = document.getElementById('topicFilter').value;
@@ -1844,7 +1687,6 @@
             filterQuestions();
         }
 
-        // Set level (SL/HL)
         function setLevel(level) {
             currentLevel = level;
             document.querySelectorAll('.level-btn').forEach(btn => {
@@ -1854,38 +1696,29 @@
             filterQuestions();
         }
 
-        // Filter questions
         function filterQuestions() {
             const section = document.getElementById('sectionFilter').value;
             const topic = document.getElementById('topicFilter').value;
             const subtopic = document.getElementById('subtopicFilter').value;
 
             filteredQuestions = allQuestions.filter(q => {
-                // Level filter
                 if (currentLevel === 'SL' && q.level === 'HL') return false;
 
-                // Check if subtopic exists at this level
-                if (q.subtopic) {
-                    const sec = q.subtopic[0];
-                    const topCode = q.subtopic.substring(0, q.subtopic.lastIndexOf('.'));
-                    const subCode = q.subtopic;
+                const subtopicCode = q.subtopic || '';
+                if (subtopicCode) {
+                    const sec = subtopicCode.charAt(0);
+                    const parts = subtopicCode.split('.');
+                    const topicCode = parts.length >= 2 ? parts[0] + '.' + parts[1] : '';
 
-                    if (curriculum[sec]?.topics[topCode]?.subtopics[subCode]) {
-                        const hours = currentLevel === 'SL' ? 
-                            curriculum[sec].topics[topCode].subtopics[subCode].sl_hours :
-                            curriculum[sec].topics[topCode].subtopics[subCode].hl_hours;
-
+                    if (curriculum[sec]?.topics[topicCode]?.subtopics[subtopicCode]) {
+                        const subData = curriculum[sec].topics[topicCode].subtopics[subtopicCode];
+                        const hours = currentLevel === 'SL' ? subData.sl_hours : subData.hl_hours;
                         if (hours === 0) return false;
                     }
                 }
 
-                // Section filter
                 if (section && q.section !== section) return false;
-
-                // Topic filter  
                 if (topic && q.topic !== topic) return false;
-
-                // Subtopic filter
                 if (subtopic && q.subtopic !== subtopic) return false;
 
                 return true;
@@ -1897,19 +1730,18 @@
             updateNavigation();
         }
 
-        // Update stats
         function updateStats() {
             const statsDiv = document.getElementById('stats');
-            const section = document.getElementById('sectionFilter').value;
-            const topic = document.getElementById('topicFilter').value;
             const subtopic = document.getElementById('subtopicFilter').value;
 
             let info = '';
             if (subtopic && curriculum) {
-                const sec = subtopic[0];
-                const topCode = subtopic.substring(0, subtopic.lastIndexOf('.'));
-                if (curriculum[sec]?.topics[topCode]?.subtopics[subtopic]) {
-                    const sub = curriculum[sec].topics[topCode].subtopics[subtopic];
+                const sec = subtopic.charAt(0);
+                const parts = subtopic.split('.');
+                const topicCode = parts.length >= 2 ? parts[0] + '.' + parts[1] : '';
+
+                if (curriculum[sec]?.topics[topicCode]?.subtopics[subtopic]) {
+                    const sub = curriculum[sec].topics[topicCode].subtopics[subtopic];
                     const hours = currentLevel === 'SL' ? sub.sl_hours : sub.hl_hours;
                     info = `<div>Teaching hours: ${hours}</div><div>Questions available: ${filteredQuestions.length}</div>`;
                 }
@@ -1920,11 +1752,9 @@
             statsDiv.innerHTML = info;
         }
 
-        // Display current question
         function displayQuestion() {
             if (filteredQuestions.length === 0) {
-                document.getElementById('questionDisplay').innerHTML = 
-                    '<p style="color: #666;">No questions available for this selection.</p>';
+                document.getElementById('questionDisplay').innerHTML = '<p style="color: #666;">No questions available for this selection.</p>';
                 document.getElementById('answerInput').style.display = 'none';
                 document.querySelector('.submit-btn').style.display = 'none';
                 return;
@@ -1934,13 +1764,15 @@
             document.querySelector('.submit-btn').style.display = 'block';
 
             const q = filteredQuestions[currentIndex];
-
             let subtopicName = '';
+
             if (q.subtopic) {
-                const sec = q.subtopic[0];
-                const topCode = q.subtopic.substring(0, q.subtopic.lastIndexOf('.'));
-                if (curriculum[sec]?.topics[topCode]?.subtopics[q.subtopic]) {
-                    subtopicName = curriculum[sec].topics[topCode].subtopics[q.subtopic].name;
+                const sec = q.subtopic.charAt(0);
+                const parts = q.subtopic.split('.');
+                const topicCode = parts.length >= 2 ? parts[0] + '.' + parts[1] : '';
+
+                if (curriculum[sec]?.topics[topicCode]?.subtopics[q.subtopic]) {
+                    subtopicName = curriculum[sec].topics[topicCode].subtopics[q.subtopic].name;
                 }
             }
 
@@ -1960,22 +1792,18 @@
             document.getElementById('result').style.display = 'none';
         }
 
-        // Navigate questions
         function navigateQuestion(direction) {
             currentIndex += direction;
             displayQuestion();
             updateNavigation();
         }
 
-        // Update navigation buttons
         function updateNavigation() {
             document.getElementById('prevBtn').disabled = (currentIndex === 0);
             document.getElementById('nextBtn').disabled = (currentIndex === filteredQuestions.length - 1);
-            document.getElementById('questionCounter').textContent = 
-                `Question ${currentIndex + 1} of ${filteredQuestions.length}`;
+            document.getElementById('questionCounter').textContent = `Question ${currentIndex + 1} of ${filteredQuestions.length}`;
         }
 
-        // Submit answer
         async function submitAnswer() {
             const answer = document.getElementById('answerInput').value.trim();
             if (!answer) {
@@ -1984,7 +1812,6 @@
             }
 
             const q = filteredQuestions[currentIndex];
-
             document.getElementById('loading').style.display = 'block';
             document.getElementById('result').style.display = 'none';
 
@@ -2002,62 +1829,39 @@
                 });
 
                 if (!response.ok) throw new Error('Marking failed');
-
                 const data = await response.json();
                 displayResult(data);
             } catch (error) {
-                document.getElementById('result').innerHTML = 
-                    '<div style="color: #dc3545;">Error: ' + error.message + '</div>';
+                document.getElementById('result').innerHTML = '<div style="color: #dc3545;">Error: ' + error.message + '</div>';
                 document.getElementById('result').style.display = 'block';
             } finally {
                 document.getElementById('loading').style.display = 'none';
             }
         }
 
-        // Display result
         function displayResult(data) {
-            let html = `
-                <div class="score-display">
-                    Score: ${data.score} / ${data.maxMarks}
-                </div>
-            `;
+            let html = `<div class="score-display">Score: ${data.score} / ${data.maxMarks}</div>`;
 
             if (data.keyPoints && data.keyPoints.length > 0) {
                 html += '<div class="key-points"><h3>Mark Points:</h3>';
                 data.keyPoints.forEach(point => {
-                    html += `
-                        <div class="point ${point.hit ? 'hit' : 'miss'}">
-                            <span>${point.hit ? '✓' : '○'}</span>
-                            <span>${point.text}</span>
-                        </div>
-                    `;
+                    html += `<div class="point ${point.hit ? 'hit' : 'miss'}"><span>${point.hit ? '✓' : '○'}</span><span>${point.text}</span></div>`;
                 });
                 html += '</div>';
             }
 
             if (data.comment) {
-                html += `
-                    <div class="comment-section">
-                        <h3>Examiner Feedback</h3>
-                        <p>${data.comment}</p>
-                    </div>
-                `;
+                html += `<div class="comment-section"><h3>Examiner Feedback</h3><p>${data.comment}</p></div>`;
             }
 
             if (data.hint) {
-                html += `
-                    <div class="hint-section">
-                        <h3>💡 Hint for Improvement</h3>
-                        <p>${data.hint}</p>
-                    </div>
-                `;
+                html += `<div class="hint-section"><h3>💡 Hint for Improvement</h3><p>${data.hint}</p></div>`;
             }
 
             document.getElementById('result').innerHTML = html;
             document.getElementById('result').style.display = 'block';
         }
 
-        // Initialize on load
         init();
     </script>
 </body>
