@@ -226,26 +226,27 @@
             bottom: 0;
             left: 0;
             right: 0;
-            height: 50px;
+            height: 55px;
             background: white;
             box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
             z-index: 1000;
             display: flex;
             align-items: center;
             padding: 0 20px;
+            gap: 15px;
         }
         .progress-wrapper {
             flex: 1;
             position: relative;
-            height: 24px;
+            height: 28px;
             background: #e0e0e0;
-            border-radius: 12px;
+            border-radius: 14px;
             overflow: visible;
         }
         .progress-fill {
             height: 100%;
             background: linear-gradient(90deg, #ff8c00 0%, #ffa500 100%);
-            border-radius: 12px;
+            border-radius: 14px;
             transition: width 0.5s ease;
             position: relative;
         }
@@ -261,8 +262,8 @@
             position: absolute;
             top: 50%;
             transform: translate(-50%, -50%);
-            width: 16px;
-            height: 16px;
+            width: 18px;
+            height: 18px;
             border-radius: 50%;
             border: 2px solid #666;
             background: white;
@@ -271,22 +272,30 @@
             justify-content: center;
             font-size: 10px;
             transition: all 0.3s;
+            font-family: 'Gotham', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         }
         .checkpoint.achieved {
             background: #10b981;
             border-color: #10b981;
             color: white;
+            font-weight: bold;
         }
         .progress-text {
-            margin-left: 15px;
-            font-weight: 600;
-            color: #333;
-            font-size: 14px;
+            font-family: 'Gotham', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-weight: 700;
+            color: #004587;
+            font-size: 15px;
             white-space: nowrap;
-            min-width: 280px;
+            min-width: 300px;
+        }
+        .progress-text .points-display {
+            font-size: 18px;
+            color: #F2B406;
+            font-weight: 800;
         }
         @media (max-width: 768px) {
-            .progress-text { font-size: 12px; min-width: 200px; }
+            .progress-text { font-size: 13px; min-width: 220px; }
+            .progress-text .points-display { font-size: 16px; }
         }
         .milestone-popup {
             position: fixed;
@@ -393,7 +402,7 @@
                 <div class="checkpoint" style="left: 100%;" data-points="100"></div>
             </div>
         </div>
-        <div class="progress-text" id="progressText">0/100 · Next: No longer clueless 🤷‍♂️ (5 away)</div>
+        <div class="progress-text" id="progressText"><span class="points-display">0</span>/100 pts · Next: No longer clueless 🤷‍♂️ (5 away)</div>
     </div>
 
     <!-- Milestone Popup -->
@@ -2015,15 +2024,15 @@
                 }
             });
             
-            // Update text
+            // Update text with more prominent points display
             const nextMilestone = milestones.find(m => m.points > sessionPoints);
             if (nextMilestone) {
                 const remaining = nextMilestone.points - sessionPoints;
-                document.getElementById('progressText').textContent = 
-                    `${sessionPoints}/100 · Next: ${nextMilestone.name} ${nextMilestone.emoji} (${remaining} away)`;
+                document.getElementById('progressText').innerHTML = 
+                    `<span class="points-display">${sessionPoints}</span>/100 pts · Next: ${nextMilestone.name} ${nextMilestone.emoji} (${remaining} away)`;
             } else {
-                document.getElementById('progressText').textContent = 
-                    `${sessionPoints}/100 · Final boss down ⚔️`;
+                document.getElementById('progressText').innerHTML = 
+                    `<span class="points-display">${sessionPoints}</span>/100 pts · ${milestones[milestones.length - 1].name} ${milestones[milestones.length - 1].emoji}`;
             }
         }
 
@@ -2072,4 +2081,5 @@
     </script>
 </body>
 </html>
+
 
