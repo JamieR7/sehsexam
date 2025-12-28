@@ -11,6 +11,7 @@
             background: #004587;
             min-height: 100vh;
             padding: 20px;
+            padding-bottom: 70px; /* Space for sticky bar */
         }
         .container { max-width: 1000px; margin: 0 auto; }
         .header { text-align: center; color: white; margin-bottom: 30px; }
@@ -84,6 +85,18 @@
         }
         .nav-btn:hover:not(:disabled) { background: #E82F37; }
         .nav-btn:disabled { background: #ccc; cursor: not-allowed; }
+        .random-btn {
+            padding: 10px 20px;
+            background: #10b981;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+        .random-btn:hover { background: #059669; }
         .question-counter { font-weight: 600; color: #333; font-size: 14px; }
         .card {
             background: white;
@@ -206,6 +219,101 @@
             font-size: 13px;
             color: #666;
         }
+        
+        /* Progress Bar Styles */
+        .progress-bar-container {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 50px;
+            background: white;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+        }
+        .progress-wrapper {
+            flex: 1;
+            position: relative;
+            height: 24px;
+            background: #e0e0e0;
+            border-radius: 12px;
+            overflow: visible;
+        }
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #ff8c00 0%, #ffa500 100%);
+            border-radius: 12px;
+            transition: width 0.5s ease;
+            position: relative;
+        }
+        .progress-checkmarks {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 100%;
+            pointer-events: none;
+        }
+        .checkpoint {
+            position: absolute;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            border: 2px solid #666;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            transition: all 0.3s;
+        }
+        .checkpoint.achieved {
+            background: #10b981;
+            border-color: #10b981;
+            color: white;
+        }
+        .progress-text {
+            margin-left: 15px;
+            font-weight: 600;
+            color: #333;
+            font-size: 14px;
+            white-space: nowrap;
+            min-width: 280px;
+        }
+        @media (max-width: 768px) {
+            .progress-text { font-size: 12px; min-width: 200px; }
+        }
+        .milestone-popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            background: white;
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            z-index: 2000;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        .milestone-popup.show {
+            transform: translate(-50%, -50%) scale(1);
+        }
+        .milestone-popup .emoji {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+        .milestone-popup .title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #F2B406;
+            margin-bottom: 10px;
+        }
     </style>
 </head>
 <body>
@@ -253,6 +361,7 @@
 
             <div class="question-nav">
                 <button class="nav-btn" id="prevBtn" onclick="navigateQuestion(-1)">← Previous</button>
+                <button class="random-btn" onclick="loadRandomQuestion()">🎲 Random</button>
                 <span class="question-counter" id="questionCounter">Question 1 of 1</span>
                 <button class="nav-btn" id="nextBtn" onclick="navigateQuestion(1)">Next →</button>
             </div>
@@ -268,6 +377,29 @@
             </div>
             <div class="result" id="result"></div>
         </div>
+    </div>
+
+    <!-- Progress Bar -->
+    <div class="progress-bar-container">
+        <div class="progress-wrapper">
+            <div class="progress-fill" id="progressFill"></div>
+            <div class="progress-checkmarks">
+                <div class="checkpoint" style="left: 5%;" data-points="5"></div>
+                <div class="checkpoint" style="left: 10%;" data-points="10"></div>
+                <div class="checkpoint" style="left: 20%;" data-points="20"></div>
+                <div class="checkpoint" style="left: 35%;" data-points="35"></div>
+                <div class="checkpoint" style="left: 50%;" data-points="50"></div>
+                <div class="checkpoint" style="left: 75%;" data-points="75"></div>
+                <div class="checkpoint" style="left: 100%;" data-points="100"></div>
+            </div>
+        </div>
+        <div class="progress-text" id="progressText">0/100 · Next: No longer clueless 🤷‍♂️ (5 away)</div>
+    </div>
+
+    <!-- Milestone Popup -->
+    <div class="milestone-popup" id="milestonePopup">
+        <div class="emoji" id="milestoneEmoji"></div>
+        <div class="title" id="milestoneTitle"></div>
     </div>
 
     <script>
@@ -488,6 +620,7 @@
     }
   }
 };
+
         const allQuestions = [
   {
     "id": "Q001",
@@ -1621,6 +1754,18 @@
   }
 ];
 
+        // Gamification variables
+        let sessionPoints = 0;
+        const milestones = [
+            { points: 5, name: "No longer clueless", emoji: "🤷‍♂️" },
+            { points: 10, name: "Getting the vibe", emoji: "🎯" },
+            { points: 20, name: "On a streak", emoji: "🔥" },
+            { points: 35, name: "Built different", emoji: "💪" },
+            { points: 50, name: "Actually goated", emoji: "🐐" },
+            { points: 75, name: "Certified legend", emoji: "👑" },
+            { points: 100, name: "Final boss down", emoji: "⚔️" }
+        ];
+
         let currentLevel = 'SL';
         let filteredQuestions = [];
         let currentIndex = 0;
@@ -1630,6 +1775,7 @@
             filterQuestions();
             displayQuestion();
             updateNavigation();
+            updateProgressBar();
         }
 
         function populateSections() {
@@ -1726,6 +1872,13 @@
 
             currentIndex = 0;
             updateStats();
+            displayQuestion();
+            updateNavigation();
+        }
+
+        function loadRandomQuestion() {
+            if (filteredQuestions.length === 0) return;
+            currentIndex = Math.floor(Math.random() * filteredQuestions.length);
             displayQuestion();
             updateNavigation();
         }
@@ -1830,6 +1983,13 @@
 
                 if (!response.ok) throw new Error('Marking failed');
                 const data = await response.json();
+                
+                // Add points and check for milestone
+                const oldPoints = sessionPoints;
+                sessionPoints = Math.min(100, sessionPoints + data.score);
+                checkMilestone(oldPoints, sessionPoints);
+                updateProgressBar();
+                
                 displayResult(data);
             } catch (error) {
                 document.getElementById('result').innerHTML = '<div style="color: #dc3545;">Error: ' + error.message + '</div>';
@@ -1839,8 +1999,54 @@
             }
         }
 
+        function updateProgressBar() {
+            const percentage = Math.min(100, sessionPoints);
+            document.getElementById('progressFill').style.width = percentage + '%';
+            
+            // Update checkmarks
+            document.querySelectorAll('.checkpoint').forEach(checkpoint => {
+                const points = parseInt(checkpoint.dataset.points);
+                if (sessionPoints >= points) {
+                    checkpoint.classList.add('achieved');
+                    checkpoint.innerHTML = '✓';
+                } else {
+                    checkpoint.classList.remove('achieved');
+                    checkpoint.innerHTML = '';
+                }
+            });
+            
+            // Update text
+            const nextMilestone = milestones.find(m => m.points > sessionPoints);
+            if (nextMilestone) {
+                const remaining = nextMilestone.points - sessionPoints;
+                document.getElementById('progressText').textContent = 
+                    `${sessionPoints}/100 · Next: ${nextMilestone.name} ${nextMilestone.emoji} (${remaining} away)`;
+            } else {
+                document.getElementById('progressText').textContent = 
+                    `${sessionPoints}/100 · Final boss down ⚔️`;
+            }
+        }
+
+        function checkMilestone(oldPoints, newPoints) {
+            const crossedMilestone = milestones.find(m => oldPoints < m.points && newPoints >= m.points);
+            if (crossedMilestone) {
+                showMilestonePopup(crossedMilestone);
+            }
+        }
+
+        function showMilestonePopup(milestone) {
+            const popup = document.getElementById('milestonePopup');
+            document.getElementById('milestoneEmoji').textContent = milestone.emoji;
+            document.getElementById('milestoneTitle').textContent = milestone.name;
+            
+            popup.classList.add('show');
+            setTimeout(() => {
+                popup.classList.remove('show');
+            }, 2000);
+        }
+
         function displayResult(data) {
-            let html = `<div class="score-display">Score: ${data.score} / ${data.maxMarks}</div>`;
+            let html = `<div class="score-display">Score: ${data.score} / ${data.maxMarks} · Total session: ${sessionPoints}/100</div>`;
 
             if (data.keyPoints && data.keyPoints.length > 0) {
                 html += '<div class="key-points"><h3>Mark Points:</h3>';
@@ -1866,3 +2072,4 @@
     </script>
 </body>
 </html>
+
