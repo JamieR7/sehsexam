@@ -49,7 +49,7 @@
         }
         .level-btn.active { background: #F2B406; color: white; }
         .level-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3); }
-        .filter-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin-bottom: 20px; }
+        .filter-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-bottom: 20px; }
         @media (max-width: 768px) { .filter-grid { grid-template-columns: 1fr; } }
         .filter-section label { display: block; font-weight: 600; margin-bottom: 8px; color: #333; font-size: 14px; }
         select {
@@ -64,6 +64,7 @@
         }
         select:hover { border-color: #F2B406; }
         select:focus { outline: none; border-color: #F2B406; }
+        select:disabled { background: #f5f5f5; opacity: 0.6; cursor: not-allowed; }
         .question-nav {
             display: flex;
             justify-content: space-between;
@@ -370,15 +371,22 @@
             <div class="filter-grid">
                 <div class="filter-section">
                     <label for="sectionFilter">Section:</label>
-                    <select id="sectionFilter" onchange="updateSubtopics()">
+                    <select id="sectionFilter" onchange="updateTopics()">
                         <option value="">All Sections</option>
                     </select>
                 </div>
 
                 <div class="filter-section">
-                    <label for="subtopicFilter">Subtopic:</label>
+                    <label for="topicFilter">Topic:</label>
+                    <select id="topicFilter" onchange="updateSubtopics()">
+                        <option value="">All Topics</option>
+                    </select>
+                </div>
+
+                <div class="filter-section">
+                    <label for="subtopicFilter">Sub-topic:</label>
                     <select id="subtopicFilter" onchange="filterQuestions()">
-                        <option value="">All Subtopics</option>
+                        <option value="">All Sub-topics</option>
                     </select>
                 </div>
             </div>
@@ -441,15 +449,29 @@
         const curriculum = {
             "A": { 
                 "name": "Exercise physiology and nutrition",
-                "subtopics": ["A.1 Communication", "A.2 Hydration and nutrition", "A.3 Response"]
+                "topics": {
+                    "A.1": { name: "Communication", subtopics: ["A.1.1 Inter-system communication", "A.1.2 Maintaining homeostasis", "A.1.3 Transport"] },
+                    "A.2": { name: "Hydration and nutrition", subtopics: ["A.2.1 Water and electrolyte balance", "A.2.2 Fuelling for health and performance", "A.2.3 Energy systems"] },
+                    "A.3": { name: "Response", subtopics: ["A.3.1 Qualities of training", "A.3.2 Benefits of health of being active", "A.3.3 Fatigue and recovery"] }
+                }
             },
             "B": { 
                 "name": "Biomechanics",
-                "subtopics": ["B.1 Generating movement in the body", "B.2 Forces, motion and movement", "B.3 Injury"]
+                "topics": {
+                    "B.1": { name: "Generating movement in the body", subtopics: ["B.1.1 Anatomical position, planes and movement", "B.1.2 Structure and function of connective tissues and joints", "B.1.3 Muscular function", "B.1.4 Levers in movement and sport"] },
+                    "B.2": { name: "Forces, motion and movement", subtopics: ["B.2.1 Newton's laws of motion", "B.2.2 Fluid mechanics", "B.2.3 Movement analysis and its applications"] },
+                    "B.3": { name: "Injury", subtopics: ["B.3.1 Causes of injury", "B.3.2 Interventions related to injury"] }
+                }
             },
             "C": { 
                 "name": "Sports psychology and motor learning",
-                "subtopics": ["C.1 Individual differences", "C.2 Motor learning", "C.3 Motivation", "C.4 Stress and coping", "C.5 Psychological skills"]
+                "topics": {
+                    "C.1": { name: "Individual differences", subtopics: ["C.1.1 Personality", "C.1.2 Mental toughness"] },
+                    "C.2": { name: "Motor learning", subtopics: ["C.2.1 Motor learning processes", "C.2.2 Attentional control"] },
+                    "C.3": { name: "Motivation", subtopics: ["C.3.1 Achievement motivation", "C.3.2 Self-determination", "C.3.3 Motivational climate"] },
+                    "C.4": { name: "Stress and coping", subtopics: ["C.4.1 Arousal and anxiety", "C.4.2 Coping"] },
+                    "C.5": { name: "Psychological skills", subtopics: ["C.5.1 Goal setting", "C.5.2 Imagery"] }
+                }
             }
         };
 
@@ -473,17 +495,41 @@
             });
         }
 
-        function updateSubtopics() {
+        function updateTopics() {
             const section = document.getElementById('sectionFilter').value;
+            const topicFilter = document.getElementById('topicFilter');
             const subtopicFilter = document.getElementById('subtopicFilter');
-            subtopicFilter.innerHTML = '<option value="">All Subtopics</option>';
+            topicFilter.innerHTML = '<option value="">All Topics</option>';
+            subtopicFilter.innerHTML = '<option value="">All Sub-topics</option>';
 
             if (!section) {
                 filterQuestions();
                 return;
             }
 
-            const subtopics = curriculum[section]?.subtopics || [];
+            const topics = curriculum[section]?.topics || {};
+            Object.keys(topics).forEach(topicCode => {
+                const option = document.createElement('option');
+                option.value = topicCode;
+                option.textContent = topicCode + ' - ' + topics[topicCode].name;
+                topicFilter.appendChild(option);
+            });
+
+            filterQuestions();
+        }
+
+        function updateSubtopics() {
+            const section = document.getElementById('sectionFilter').value;
+            const topic = document.getElementById('topicFilter').value;
+            const subtopicFilter = document.getElementById('subtopicFilter');
+            subtopicFilter.innerHTML = '<option value="">All Sub-topics</option>';
+
+            if (!topic) {
+                filterQuestions();
+                return;
+            }
+
+            const subtopics = curriculum[section]?.topics[topic]?.subtopics || [];
             subtopics.forEach(subtopic => {
                 const option = document.createElement('option');
                 option.value = subtopic;
@@ -503,11 +549,13 @@
 
         function filterQuestions() {
             const section = document.getElementById('sectionFilter').value;
+            const topic = document.getElementById('topicFilter').value;
             const subtopic = document.getElementById('subtopicFilter').value;
 
             filteredQuestions = window.allQuestions.filter(q => {
                 if (currentLevel && q.level !== currentLevel) return false;
                 if (section && q.section !== section) return false;
+                if (topic && !q.subtopic.startsWith(topic)) return false;
                 if (subtopic && q.subtopic !== subtopic) return false;
                 return true;
             });
