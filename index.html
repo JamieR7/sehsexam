@@ -439,9 +439,18 @@
         let milestones = {5: {emoji: '🤷‍♂️', title: 'No longer clueless'}, 10: {emoji: '🎯', title: 'Getting the vibe'}, 20: {emoji: '🔥', title: 'On a streak'}, 35: {emoji: '💪', title: 'Built different'}, 50: {emoji: '🐐', title: 'Actually goated'}, 75: {emoji: '👑', title: 'Certified legend'}, 100: {emoji: '⚔️', title: 'Final boss down'}};
 
         const curriculum = {
-            "A": { "name": "Exercise physiology and nutrition" },
-            "B": { "name": "Biomechanics" },
-            "C": { "name": "Sports psychology and motor learning" }
+            "A": { 
+                "name": "Exercise physiology and nutrition",
+                "subtopics": ["A.1 Communication", "A.2 Hydration and nutrition", "A.3 Response"]
+            },
+            "B": { 
+                "name": "Biomechanics",
+                "subtopics": ["B.1 Generating movement in the body", "B.2 Forces, motion and movement", "B.3 Injury"]
+            },
+            "C": { 
+                "name": "Sports psychology and motor learning",
+                "subtopics": ["C.1 Individual differences", "C.2 Motor learning", "C.3 Motivation", "C.4 Stress and coping", "C.5 Psychological skills"]
+            }
         };
 
         window.addEventListener('DOMContentLoaded', () => {
@@ -454,7 +463,7 @@
         });
 
         function populateFilters() {
-            const sections = [...new Set(window.allQuestions.map(q => q.section))];
+            const sections = [...new Set(window.allQuestions.map(q => q.section))].sort();
             const sectionFilter = document.getElementById('sectionFilter');
             sections.forEach(section => {
                 const option = document.createElement('option');
@@ -474,10 +483,7 @@
                 return;
             }
 
-            const subtopics = [...new Set(
-                window.allQuestions.filter(q => q.section === section).map(q => q.subtopic)
-            )];
-
+            const subtopics = curriculum[section]?.subtopics || [];
             subtopics.forEach(subtopic => {
                 const option = document.createElement('option');
                 option.value = subtopic;
@@ -576,7 +582,7 @@
                     attemptNumber: attemptCount,
                 };
 
-                const response = await fetch('https://sehsexam.thatjamiebloke.workers.dev/', {
+                const response = await fetch('https://sehsexam.thatjamiebloke.workers.dev/mark', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(body),
@@ -690,4 +696,3 @@
     </script>
 </body>
 </html>
-
