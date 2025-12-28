@@ -49,7 +49,7 @@
         }
         .level-btn.active { background: #F2B406; color: white; }
         .level-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3); }
-        .filter-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-bottom: 20px; }
+        .filter-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin-bottom: 20px; }
         @media (max-width: 768px) { .filter-grid { grid-template-columns: 1fr; } }
         .filter-section label { display: block; font-weight: 600; margin-bottom: 8px; color: #333; font-size: 14px; }
         select {
@@ -97,7 +97,6 @@
             transition: background 0.3s;
         }
         .random-btn:hover { background: #059669; }
-        .question-counter { display: none; }
         .card {
             background: white;
             padding: 30px;
@@ -167,7 +166,6 @@
             transition: transform 0.2s, box-shadow 0.2s;
         }
         .submit-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4); }
-        .submit-btn:active { transform: translateY(0); }
         .loading { text-align: center; color: #F2B406; font-weight: 600; margin-top: 15px; display: none; }
         .spinner {
             display: inline-block;
@@ -181,49 +179,14 @@
         }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
         .result { margin-top: 20px; padding: 20px; border-radius: 8px; display: none; }
-        .score-display {
-            font-size: 24px;
-            font-weight: bold;
-            margin-bottom: 15px;
-            padding-bottom: 15px;
-            border-bottom: 2px solid #e0e0e0;
-        }
+        .score-display { font-size: 24px; font-weight: bold; margin-bottom: 15px; padding-bottom: 15px; border-bottom: 2px solid #e0e0e0; }
         .comment-section, .hint-section { margin-top: 20px; padding: 15px; border-radius: 6px; }
-        .comment-section h3, .hint-section h3 {
-            font-size: 14px;
-            margin-bottom: 8px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-        .comment-section p, .hint-section p { 
-            margin: 0; 
-            line-height: 1.6; 
-        }
-        .mark-scheme-section {
-            margin-top: 20px;
-            padding: 15px;
-            border-radius: 6px;
-            background: #f8f9fa;
-            border-left: 4px solid #6c757d;
-        }
-        .mark-scheme-section h3 {
-            font-size: 14px;
-            margin-bottom: 8px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            color: #495057;
-        }
-        details summary {
-            cursor: pointer;
-            font-weight: 600;
-            margin-bottom: 10px;
-            user-select: none;
-        }
-        details[open] summary {
-            margin-bottom: 10px;
-        }
+        .comment-section h3, .hint-section h3 { font-size: 14px; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .comment-section p, .hint-section p { margin: 0; line-height: 1.6; }
+        .mark-scheme-section { margin-top: 20px; padding: 15px; border-radius: 6px; background: #f8f9fa; border-left: 4px solid #6c757d; }
+        .mark-scheme-section h3 { font-size: 14px; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px; color: #495057; }
+        details summary { cursor: pointer; font-weight: 600; margin-bottom: 10px; user-select: none; }
         
-        /* Progress Bar Styles */
         .progress-bar-container {
             position: fixed;
             bottom: 0;
@@ -285,32 +248,6 @@
             color: white;
             font-weight: bold;
         }
-        .checkpoint:hover::after {
-            content: attr(data-tooltip);
-            position: absolute;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: #333;
-            color: white;
-            padding: 6px 10px;
-            border-radius: 6px;
-            font-size: 12px;
-            white-space: nowrap;
-            font-weight: 600;
-            z-index: 10;
-            pointer-events: none;
-        }
-        .checkpoint:hover::before {
-            content: '';
-            position: absolute;
-            bottom: 24px;
-            left: 50%;
-            transform: translateX(-50%);
-            border: 6px solid transparent;
-            border-top-color: #333;
-            z-index: 10;
-        }
         .you-marker {
             position: absolute;
             top: 50%;
@@ -327,21 +264,6 @@
             border-radius: 50%;
             box-shadow: 0 2px 8px rgba(255, 140, 0, 0.6);
         }
-        .you-label {
-            position: absolute;
-            top: -28px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: #ff8c00;
-            color: white;
-            padding: 3px 8px;
-            border-radius: 4px;
-            font-size: 11px;
-            font-weight: 500;
-            font-family: 'Gotham', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            white-space: nowrap;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-        }
         .progress-text {
             font-family: 'Gotham', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             font-weight: 500;
@@ -349,48 +271,14 @@
             font-size: 16px;
             white-space: nowrap;
             min-width: 280px;
-            letter-spacing: -0.02em;
         }
         .progress-text .points-display {
             font-size: 22px;
             color: #F2B406;
             font-weight: 500;
-            font-family: 'Gotham', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-        }
-        @media (max-width: 768px) {
-            .progress-text { font-size: 13px; min-width: 220px; }
-            .progress-text .points-display { font-size: 18px; }
-            .you-label { font-size: 10px; padding: 2px 6px; top: -26px; }
-        }
-        .milestone-popup {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) scale(0);
-            background: white;
-            padding: 30px;
-            border-radius: 16px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
-            z-index: 2000;
-            text-align: center;
-            transition: transform 0.3s;
-        }
-        .milestone-popup.show {
-            transform: translate(-50%, -50%) scale(1);
-        }
-        .milestone-popup .emoji {
-            font-size: 48px;
-            margin-bottom: 15px;
-        }
-        .milestone-popup .title {
-            font-size: 24px;
-            font-weight: bold;
-            color: #F2B406;
-            margin-bottom: 10px;
-            font-family: 'Gotham', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         }
     </style>
-     <script src="allQuestions.js"></script>
+    <script src="allQuestions.js"></script>
 </head>
 <body>
     <div class="container">
@@ -413,15 +301,8 @@
             <div class="filter-grid">
                 <div class="filter-section">
                     <label for="sectionFilter">Section:</label>
-                    <select id="sectionFilter" onchange="updateTopics()">
+                    <select id="sectionFilter" onchange="updateSubtopics()">
                         <option value="">All Sections</option>
-                    </select>
-                </div>
-
-                <div class="filter-section">
-                    <label for="topicFilter">Topic:</label>
-                    <select id="topicFilter" onchange="updateSubtopics()">
-                        <option value="">All Topics</option>
                     </select>
                 </div>
 
@@ -436,7 +317,6 @@
             <div class="question-nav">
                 <button class="nav-btn" id="prevBtn" onclick="navigateQuestion(-1)">← Previous</button>
                 <button class="random-btn" onclick="loadRandomQuestion()">🎲 Random</button>
-                <span class="question-counter" id="questionCounter">Question 1</span>
                 <button class="nav-btn" id="nextBtn" onclick="navigateQuestion(1)">Next →</button>
             </div>
         </div>
@@ -458,591 +338,271 @@
         <div class="progress-wrapper">
             <div class="progress-fill" id="progressFill"></div>
             <div class="progress-checkmarks">
-                <div class="checkpoint" style="left: 5%;" data-points="5" data-tooltip="5 pts: No longer clueless 🤷‍♂️"></div>
-                <div class="checkpoint" style="left: 10%;" data-points="10" data-tooltip="10 pts: Getting the vibe 🎯"></div>
-                <div class="checkpoint" style="left: 20%;" data-points="20" data-tooltip="20 pts: On a streak 🔥"></div>
-                <div class="checkpoint" style="left: 35%;" data-points="35" data-tooltip="35 pts: Built different 💪"></div>
-                <div class="checkpoint" style="left: 50%;" data-points="50" data-tooltip="50 pts: Actually goated 🐐"></div>
-                <div class="checkpoint" style="left: 75%;" data-points="75" data-tooltip="75 pts: Certified legend 👑"></div>
-                <div class="checkpoint" style="left: 100%;" data-points="100" data-tooltip="100 pts: Final boss down ⚔️"></div>
+                <div class="checkpoint" style="left: 5%;" data-points="5" title="5 pts"></div>
+                <div class="checkpoint" style="left: 10%;" data-points="10" title="10 pts"></div>
+                <div class="checkpoint" style="left: 20%;" data-points="20" title="20 pts"></div>
+                <div class="checkpoint" style="left: 35%;" data-points="35" title="35 pts"></div>
+                <div class="checkpoint" style="left: 50%;" data-points="50" title="50 pts"></div>
+                <div class="checkpoint" style="left: 75%;" data-points="75" title="75 pts"></div>
+                <div class="checkpoint" style="left: 100%;" data-points="100" title="100 pts"></div>
             </div>
             <div class="you-marker" id="youMarker">
                 <div class="you-dot"></div>
-                <div class="you-label">You</div>
             </div>
         </div>
-        <div class="progress-text" id="progressText"><span class="points-display">0</span> pts · Next: No longer clueless 🤷‍♂️ (5 away)</div>
-    </div>
-
-    <!-- Milestone Popup -->
-    <div class="milestone-popup" id="milestonePopup">
-        <div class="emoji" id="milestoneEmoji"></div>
-        <div class="title" id="milestoneTitle"></div>
+        <div class="progress-text" id="progressText"><span class="points-display">0</span> pts</div>
     </div>
 
     <script>
-        const curriculum = {
-  "A": {
-    "name": "Exercise physiology and nutrition",
-    "topics": {
-      "A.1": {
-        "name": "Communication",
-        "subtopics": {
-          "A.1.1": { "name": "Inter-system communication", "sl_hours": 10, "hl_hours": 0 },
-          "A.1.2": { "name": "Maintaining homeostasis", "sl_hours": 6, "hl_hours": 5 },
-          "A.1.3": { "name": "Transport", "sl_hours": 7, "hl_hours": 0 }
-        }
-      },
-      "A.2": {
-        "name": "Hydration and nutrition",
-        "subtopics": {
-          "A.2.1": { "name": "Water and electrolyte balance", "sl_hours": 3, "hl_hours": 0 },
-          "A.2.2": { "name": "Fuelling for health and performance", "sl_hours": 6, "hl_hours": 4 },
-          "A.2.3": { "name": "Energy systems", "sl_hours": 7, "hl_hours": 2 }
-        }
-      },
-      "A.3": {
-        "name": "Response",
-        "subtopics": {
-          "A.3.1": { "name": "Qualities of training", "sl_hours": 6, "hl_hours": 0 },
-          "A.3.2": { "name": "Benefits to health of being active", "sl_hours": 2, "hl_hours": 2 },
-          "A.3.3": { "name": "Fatigue and recovery", "sl_hours": 9, "hl_hours": 0 }
-        }
-      }
-    }
-  },
-  "B": {
-    "name": "Biomechanics",
-    "topics": {
-      "B.1": {
-        "name": "Generating movement in the body",
-        "subtopics": {
-          "B.1.1": { "name": "Anatomical position, planes and movement", "sl_hours": 3, "hl_hours": 3 },
-          "B.1.2": { "name": "Structure and function of connective tissues and joints", "sl_hours": 3, "hl_hours": 0 },
-          "B.1.3": { "name": "Muscular function", "sl_hours": 4, "hl_hours": 2 },
-          "B.1.4": { "name": "Levers in movement and sport", "sl_hours": 2, "hl_hours": 0 }
-        }
-      },
-      "B.2": {
-        "name": "Forces, motion and movement",
-        "subtopics": {
-          "B.2.1": { "name": "Newton's laws of motion", "sl_hours": 5, "hl_hours": 12 },
-          "B.2.2": { "name": "Fluid mechanics", "sl_hours": 3, "hl_hours": 8 },
-          "B.2.3": { "name": "Movement analysis and its applications", "sl_hours": 3, "hl_hours": 0 }
-        }
-      },
-      "B.3": {
-        "name": "Injury",
-        "subtopics": {
-          "B.3.1": { "name": "Causes of injury", "sl_hours": 3, "hl_hours": 2 },
-          "B.3.2": { "name": "Interventions related to injury", "sl_hours": 4, "hl_hours": 0 }
-        }
-      }
-    }
-  },
-  "C": {
-    "name": "Sports psychology and motor learning",
-    "topics": {
-      "C.1": {
-        "name": "Individual differences",
-        "subtopics": {
-          "C.1.1": { "name": "Personality", "sl_hours": 2, "hl_hours": 2 },
-          "C.1.2": { "name": "Mental toughness", "sl_hours": 2, "hl_hours": 4 }
-        }
-      },
-      "C.2": {
-        "name": "Motor learning",
-        "subtopics": {
-          "C.2.1": { "name": "Motor learning processes", "sl_hours": 10, "hl_hours": 0 },
-          "C.2.2": { "name": "Attentional control", "sl_hours": 2, "hl_hours": 0 }
-        }
-      },
-      "C.3": {
-        "name": "Motivation",
-        "subtopics": {
-          "C.3.1": { "name": "Achievement motivation", "sl_hours": 3, "hl_hours": 2 },
-          "C.3.2": { "name": "Self-determination", "sl_hours": 3, "hl_hours": 6 },
-          "C.3.3": { "name": "Motivational climate", "sl_hours": 2, "hl_hours": 0 }
-        }
-      },
-      "C.4": {
-        "name": "Stress and coping",
-        "subtopics": {
-          "C.4.1": { "name": "Arousal and anxiety", "sl_hours": 3, "hl_hours": 0 },
-          "C.4.2": { "name": "Coping", "sl_hours": 2, "hl_hours": 2 }
-        }
-      },
-      "C.5": {
-        "name": "Psychological skills",
-        "subtopics": {
-          "C.5.1": { "name": "Goal setting", "sl_hours": 4, "hl_hours": 2 },
-          "C.5.2": { "name": "Imagery", "sl_hours": 0, "hl_hours": 3 }
-        }
-      }
-    }
-  }
-};
-
-        const allQuestions = [
-{id: "A001", section: "A", subtopic: "A.1.1", marks: 2, level: "HL", question: "Explain how short-term stress caused by competing in sport influences how the nervous system regulates adrenaline.", markScheme: "Adrenaline is regulated by complex feedback systems ✔ The stress response of the hypothalamus stimulates the pituitary-adrenal axis ✔ The stress triggers fight or flight/the release of adrenaline by sympathetic stimulation of the adrenal glands ✔"},
-{id: "A002", section: "A", subtopic: "A.1.1", marks: 5, level: "SL", question: "Describe blood redistribution as a soccer player begins running during a game.", markScheme: "Increases blood acidity/temperature/CO2 causing redistribution OR sympathetic stimulation controls vascular shunt ✔ Dilation—blood redistributed to working/active muscles ✔ Through vasodilation of arterioles to working muscles ✔ Some blood directed to skin vasodilation for cooling ✔ Constriction—blood directed away from non-active tissues via vasoconstriction ✔"},
-{id: "A003", section: "A", subtopic: "A.1.1", marks: 3, level: "SL", question: "Explain the role of chemoreceptors in regulating ventilation during exercise.", markScheme: "Chemoreceptors detect changes in blood chemistry ✔ They respond to increased CO2, decreased O2, and increased H+ ions ✔ This stimulates the respiratory centre to increase ventilation rate ✔"},
-{id: "A004", section: "A", subtopic: "A.1.2", marks: 3, level: "SL", question: "Explain the role of insulin on glucose uptake at rest.", markScheme: "Insulin is released from pancreas beta cells in response to elevated blood glucose ✔ Insulin promotes glucose uptake by muscles/liver for storage/glycogenesis ✔ Insulin allows glucose to enter cells by stimulating glucose transporters ✔ If glycogen storage sites full, stores glucose as adipose tissue/lipids through lipogenesis ✔"},
-{id: "A005", section: "A", subtopic: "A.1.2", marks: 3, level: "SL", question: "Explain the role of insulin in the formation of glycogen.", markScheme: "Insulin is released from pancreas beta cells in response to elevated blood glucose levels ✔ Insulin increases muscle/fat/liver cell permeability through translocation of GLUT4 or GLUT1 ✔ This stimulates glucose uptake/glycogen formation/glycogenesis in skeletal muscle/fat/liver cells ✔"},
-{id: "A006", section: "A", subtopic: "A.1.3", marks: 3, level: "SL", question: "Explain the vascular shunt mechanism during exercise.", markScheme: "Blood is redistributed from resting tissues to active muscles ✔ Vasodilation of arterioles supplying working muscles increases blood flow ✔ Vasoconstriction of arterioles to non-active tissues reduces blood flow ✔"},
-{id: "A007", section: "A", subtopic: "A.1.3", marks: 6, level: "SL", question: "Describe the process of gaseous exchange at the alveoli during rest and exercise.", markScheme: "Gases diffuse across the alveoli membrane ✔ O2 partial pressure higher in air/alveoli than in blood ✔ CO2 partial pressure higher in capillary blood than in air/alveoli ✔ Net movement from high to low partial pressure ✔ Gradient maintained by ventilation/blood flow ✔ Diffusion facilitated by thin/moist barrier/large surface area ✔ During exercise: rate increases due to steeper gradient and greater volumes ✔"},
-{id: "A008", section: "A", subtopic: "A.2.1", marks: 2, level: "SL", question: "Outline two reasons why hydration is important for an endurance swimmer.", markScheme: "Replaces fluid lost through sweat to prevent dehydration ✔ Maintains blood volume for adequate circulation and oxygen delivery ✔ Regulates body temperature during prolonged exercise ✔ Maintains electrolyte balance for nerve and muscle function ✔"},
-{id: "A009", section: "A", subtopic: "A.2.1", marks: 3, level: "SL", question: "Explain the role of ADH and aldosterone in maintaining fluid balance.", markScheme: "ADH is released by the pituitary gland in response to increased blood osmolarity ✔ ADH increases water reabsorption in the kidneys, reducing water loss and diluting blood ✔ Aldosterone is released by adrenal cortex in response to decreased blood volume ✔ Aldosterone increases sodium reabsorption, which increases water reabsorption ✔"},
-{id: "A010", section: "A", subtopic: "A.2.1", marks: 4, level: "SL", question: "Discuss the regulation of electrolyte balance during an endurance swim.", markScheme: "Endurance athletes lose significant sodium through extended sweating ✔ Electrolyte imbalances occur when levels too high/low ✔ Electrolyte deficits may cause cramping ✔ Excessive water consumption without electrolytes leads to hyponatremia ✔ Dehydration triggers aldosterone/ADH release ✔ This promotes water and sodium reabsorption ✔"},
-{id: "A011", section: "A", subtopic: "A.2.2", marks: 2, level: "SL", question: "Explain the importance of selecting low glycemic index carbohydrates for a pre-competition meal.", markScheme: "Low GI carbohydrates are absorbed slowly providing sustained energy release ✔ This prevents blood sugar spikes and crashes during competition ✔ Provides steady fuel supply for endurance performance ✔"},
-{id: "A012", section: "A", subtopic: "A.2.2", marks: 3, level: "SL", question: "Describe the role of protein in muscle recovery and adaptation.", markScheme: "Protein provides amino acids for muscle protein synthesis ✔ Amino acids repair muscle fibres damaged during exercise ✔ Protein supports enzyme and hormone synthesis for adaptation ✔ Essential for hypertrophy and recovery ✔"},
-{id: "A013", section: "A", subtopic: "A.2.2", marks: 5, level: "SL", question: "Discuss the recommended macronutrients required for marathon running.", markScheme: "Carbohydrates are readily available fuel, runners need 55-75% or 6-10 g/kg CHO ✔ Endurance runners utilize fat stores efficiently, 20-35% of energy ✔ Protein should be 10-35% or 1-1.5 g/kg for recovery and strength ✔ Carbohydrate should predominantly contain low GI foods ✔ Athletes need good hydration levels ✔"},
-{id: "A014", section: "A", subtopic: "A.2.3", marks: 4, level: "SL", question: "Describe the re-synthesis of ATP by the ATP-CP system.", markScheme: "ATP-PC is the fuel for the ATP-PC system ✔ PC provides the phosphate group to resynthesize ATP from ADP ✔ One molecule of PC provides one ATP ✔ The process is anaerobic (no oxygen required) ✔ Creatine kinase is the controlling enzyme ✔ Provides ATP for approximately 10-15 seconds of high-intensity activity ✔"},
-{id: "A015", section: "A", subtopic: "A.2.3", marks: 4, level: "SL", question: "Explain the energy systems used during a 400m sprint.", markScheme: "First 10 seconds: ATP-PC system provides rapid ATP ✔ Next 30-40 seconds: Lactic acid system becomes dominant as PC stores deplete ✔ Some aerobic contribution as exercise continues ✔ Total duration approximately 50-60 seconds uses mixture of anaerobic systems ✔"},
-{id: "A016", section: "A", subtopic: "A.2.3", marks: 4, level: "SL", question: "Identify the fuel sources and net ATP produced per molecule of fuel by the ATP-CP and lactic acid systems.", markScheme: "ATP-CP system: fuel source is creatine phosphate, net ATP = 1 per molecule ✔ Lactic acid system: fuel source is glucose/glycogen, net ATP = 2 per glucose molecule (in cytoplasm) ✔"},
-{id: "A017", section: "A", subtopic: "A.2.3", marks: 3, level: "SL", question: "Identify the type of muscle fibre associated with each level of glycogen content.", markScheme: "Low glycogen content = slow twitch (type I) muscle fibre ✔ Medium glycogen content = fast twitch (type IIa) muscle fibre ✔ High glycogen content = fast twitch (type IIb) muscle fibre ✔"},
-{id: "A018", section: "A", subtopic: "A.3.1", marks: 3, level: "SL", question: "Outline the principles of overload and specificity in training.", markScheme: "Overload: Training intensity/volume must exceed normal to create adaptation ✔ Can increase weight, repetitions, frequency, or duration ✔ Specificity: Training must match the demands of the sport/event ✔ Different sports require different energy systems, muscle groups, and skills ✔"},
-{id: "A019", section: "A", subtopic: "A.3.1", marks: 4, level: "SL", question: "Periodization and progression can be used to optimize performance. Explain how coaches use key principles of training to maximize athletic development.", markScheme: "Overload: Coach increases intensity/frequency/time with appropriate rest ✔ Specificity: Coach plans sessions developing muscles/skills/energy systems relevant to performance ✔ Reversibility: Coach plans recovery to prevent loss of gains ✔ Variety: Coach plans range of activities to maintain motivation ✔"},
-{id: "A020", section: "A", subtopic: "A.3.1", marks: 5, level: "SL", question: "Discuss the factors that determine the dominant energy system.", markScheme: "Intensity of activity: explosive activities use ATP-PC, sprint finish switches to anaerobic ✔ Duration: 100m ATP-PC, 800m anaerobic, marathon aerobic ✔ Availability of fuel: insufficient ATP-PC switches to anaerobic glycolysis ✔ Availability of oxygen ✔ Recovery time: submaximal activity allows PC replenishment ✔"},
-{id: "A021", section: "A", subtopic: "A.3.2", marks: 4, level: "SL", question: "Describe how vasodilation impacts blood redistribution during a 400m freestyle swimming race.", markScheme: "Vasodilation is the widening of the lumen of blood vessels/arterioles ✔ Increases blood flow to working muscles/heart/lungs ✔ Vasoconstriction reduces blood flow to non-active tissues ✔ Redistributes 15-25 L/min or 80-85% of cardiac output to working tissues ✔"},
-{id: "A022", section: "A", subtopic: "A.3.3", marks: 3, level: "SL", question: "Describe EPOC and its role in recovery.", markScheme: "EPOC = Excess Post-exercise Oxygen Consumption ✔ Oxygen consumption remains elevated after exercise ✔ Used to replenish phosphagen stores (ATP/PC) ✔ Used to remove lactate and other metabolic by-products ✔"},
-{id: "A023", section: "A", subtopic: "A.3.3", marks: 3, level: "SL", question: "Outline the role of lactate in muscle fatigue.", markScheme: "Lactate is produced during anaerobic glycolysis ✔ Lactate accumulation causes blood acidosis ✔ Increased H+ ions interfere with muscle contraction ✔ Lactate is not directly responsible for fatigue but indicates high-intensity exercise ✔"},
-{id: "A024", section: "A", subtopic: "A.3.3", marks: 2, level: "SL", question: "Maximal oxygen consumption (VO2 max) is a measure of aerobic capacity. Describe what this represents for a runner during a marathon.", markScheme: "Represents the functional capacity of the oxygen transport system ✔ Represents the rate a person can take in, transport and utilise oxygen ✔ The higher the athlete's VO2 max, the faster they will complete the marathon ✔"},
-{id: "A025", section: "A", subtopic: "A.1.1", marks: 5, level: "SL", question: "Explain the mechanism of expiration (exhalation) when exercising.", markScheme: "Diaphragm and external intercostal muscles relax ✔ Causing ribcage to move down and in ✔ This causes thoracic volume to decrease ✔ Pressure inside increases above atmospheric ✔ During exercise expiration becomes active ✔ Internal intercostal muscles contract to pull rib cage in/down ✔"},
-{id: "A026", section: "A", subtopic: "A.2.1", marks: 3, level: "SL", question: "Explain the role of the kidneys in filtering waste products during exercise.", markScheme: "Kidneys filter metabolic waste products from blood ✔ Produce urine containing urea and excess water/ions ✔ Maintain blood pH and osmolarity ✔ Regulate blood pressure through fluid balance ✔"},
-{id: "A027", section: "A", subtopic: "A.1.3", marks: 4, level: "SL", question: "Compare and contrast the process of gaseous exchange of oxygen and carbon dioxide at the alveoli during exercise.", markScheme: "Similarities: Both gases diffuse across alveoli membrane ✔ Both move from high to low partial pressure ✔ Greater net movement during exercise ✔ Diffusion facilitated by thin/moist barrier/large surface area ✔ Differences: O2 higher in air than CO2 ✔ CO2 higher in blood than O2 ✔"},
-{id: "A028", section: "A", subtopic: "A.3.3", marks: 3, level: "SL", question: "Outline the process of lactate clearance during active recovery.", markScheme: "Lactate is produced in muscle during anaerobic exercise ✔ During active recovery, lactate is removed from muscles and converted to glucose (gluconeogenesis) ✔ Lactate can be oxidized for energy in mitochondria ✔ Light activity maintains circulation to aid lactate removal ✔"},
-{id: "A029", section: "A", subtopic: "A.1.2", marks: 3, level: "SL", question: "Explain how the pancreas regulates blood glucose levels during exercise.", markScheme: "Pancreas reduces insulin secretion during exercise ✔ Glucagon is released to increase blood glucose ✔ This allows glucose to remain available for working muscles ✔ Epinephrine also increases glucose availability ✔"},
-{id: "A030", section: "A", subtopic: "A.2.3", marks: 3, level: "SL", question: "Identify the energy system that dominates in netball during a match.", markScheme: "Lactic acid/anaerobic system is the dominant energy system ✔ Match involves repeated short bursts of high-intensity activity ✔ Recovery between bursts insufficient for aerobic system to be fully utilized ✔"},
-{id: "A031", section: "A", subtopic: "A.3.1", marks: 3, level: "SL", question: "Outline the concept of progressive overload in resistance training.", markScheme: "Progressive overload gradually increases demand placed on muscles ✔ Can increase weight, repetitions, sets, or frequency ✔ Prevents adaptation plateau ✔ Ensures continued strength and muscle gains ✔"},
-{id: "A032", section: "A", subtopic: "A.2.2", marks: 4, level: "SL", question: "Discuss the role of carbohydrate loading for endurance athletes.", markScheme: "Increases muscle and liver glycogen stores before competition ✔ Provides sustained energy during prolonged exercise ✔ Delays fatigue and improves endurance performance ✔ Typically involves high carbohydrate intake 3-7 days before event ✔"},
-{id: "A033", section: "A", subtopic: "A.1.3", marks: 2, level: "SL", question: "State the term for the resting level of breathing.", markScheme: "Tidal volume OR minute ventilation ✔"},
-{id: "A034", section: "A", subtopic: "A.3.2", marks: 3, level: "SL", question: "Outline the cardiovascular benefits of regular aerobic exercise.", markScheme: "Increased stroke volume allowing more blood per beat ✔ Reduced resting heart rate ✔ Improved cardiac output ✔ Enhanced oxygen delivery to tissues ✔"},
-{id: "A035", section: "A", subtopic: "A.2.1", marks: 2, level: "SL", question: "Explain why sweat rate increases during exercise in hot environments.", markScheme: "Body temperature increases during exercise ✔ Increased sweating is the primary cooling mechanism ✔ Helps maintain core temperature homeostasis ✔"},
-{id: "A036", section: "A", subtopic: "A.1.1", marks: 4, level: "SL", question: "Describe the role of the sympathetic nervous system during exercise.", markScheme: "Increases heart rate ✔ Increases breathing rate ✔ Causes vasoconstriction to non-essential organs ✔ Increases blood pressure ✔ Stimulates adrenaline and noradrenaline release ✔"},
-{id: "A037", section: "A", subtopic: "A.2.3", marks: 2, level: "SL", question: "Identify the ATP yield from anaerobic glycolysis compared to aerobic respiration.", markScheme: "Anaerobic: 2 ATP per glucose molecule ✔ Aerobic: approximately 30-32 ATP per glucose molecule ✔ Aerobic much more efficient ✔"},
-{id: "A038", section: "A", subtopic: "A.3.3", marks: 3, level: "SL", question: "Explain the concept of excess post-exercise oxygen consumption (EPOC) and its importance for recovery.", markScheme: "Elevated oxygen consumption after exercise ends ✔ Used to replenish ATP and phosphocreatine stores ✔ Used to remove lactate and other metabolic byproducts ✔ Greater after high-intensity exercise ✔"},
-{id: "A039", section: "A", subtopic: "A.1.2", marks: 2, level: "SL", question: "Outline the role of glucagon in blood glucose regulation during exercise.", markScheme: "Glucagon is released in response to low blood glucose ✔ Stimulates breakdown of glycogen (glycogenolysis) and fat stores ✔ Increases blood glucose availability for muscles ✔"},
-{id: "A040", section: "A", subtopic: "A.2.2", marks: 3, level: "SL", question: "Discuss the importance of timing of post-exercise nutrition for recovery.", markScheme: "Immediate post-exercise nutrition enhances recovery ✔ Carbohydrates replenish depleted glycogen stores ✔ Protein supports muscle repair and adaptation ✔ Consumed within 30-60 minutes of exercise for optimal effect ✔"},
-
-{id: "B001", section: "B", subtopic: "B.1.1", marks: 1, level: "SL", question: "State the location of the humerus in relation to the radius using anatomical terminology.", markScheme: "Superior OR Proximal ✔"},
-{id: "B002", section: "B", subtopic: "B.1.1", marks: 3, level: "SL", question: "Describe the sagittal, frontal and transverse planes of movement.", markScheme: "Sagittal: Divides body into left and right halves ✔ Movements: flexion and extension ✔ Frontal: Divides body into front and back ✔ Movements: abduction and adduction ✔ Transverse: Divides body into top and bottom ✔ Movements: rotation and twisting ✔"},
-{id: "B003", section: "B", subtopic: "B.1.1", marks: 4, level: "SL", question: "Outline flexion, extension, abduction and adduction movements.", markScheme: "Flexion: Decreasing angle at a joint ✔ Extension: Increasing angle at a joint ✔ Abduction: Movement away from midline ✔ Adduction: Movement toward midline ✔"},
-{id: "B004", section: "B", subtopic: "B.1.2", marks: 4, level: "SL", question: "Outline four features of a synovial joint.", markScheme: "Articular cartilage: Glassy smooth layer reducing friction ✔ Synovial fluid: Lubricates and nourishes cartilage ✔ Synovial membrane: Produces synovial fluid ✔ Ligaments: Connect bone to bone for stability ✔ Also: meniscus, bursae, articular capsule ✔"},
-{id: "B005", section: "B", subtopic: "B.1.2", marks: 3, level: "SL", question: "Describe the structure and function of ligaments and tendons.", markScheme: "Ligaments: Connect bone to bone, provide joint stability ✔ Made of fibrous connective tissue, relatively inelastic ✔ Tendons: Connect muscle to bone, transmit muscle force ✔ Made of fibrous connective tissue, more elastic than ligaments ✔"},
-{id: "B006", section: "B", subtopic: "B.1.2", marks: 2, level: "SL", question: "Outline the structure of both the periosteum and spongy bone.", markScheme: "Spongy bone: Light and less dense than compact bone OR small irregular cavities that contain red bone marrow ✔ Periosteum: Fibrous sheath/lining that covers the bone OR contains blood vessels and nerves to the bone ✔"},
-{id: "B007", section: "B", subtopic: "B.1.3", marks: 4, level: "SL", question: "Discuss characteristics of a type IIX fast glycolytic muscle fibre.", markScheme: "Effective for powerful/explosive/high-intensity movements ✔ Have high speed of contraction/force production ✔ High glycogen/ATP/PC stores ✔ Energy produced anaerobically ✔ Ineffective for endurance activities ✔ Low resistance to fatigue ✔"},
-{id: "B008", section: "B", subtopic: "B.1.3", marks: 4, level: "SL", question: "Explain how muscles work in pairs (agonist and antagonist) during movement.", markScheme: "Agonist: Muscle that contracts to produce movement ✔ Antagonist: Muscle that relaxes/opposes the agonist ✔ Reciprocal inhibition: When agonist contracts, antagonist is inhibited ✔ Example: Biceps contract (flexion), triceps relax ✔ Triceps contract (extension), biceps relax ✔"},
-{id: "B009", section: "B", subtopic: "B.1.3", marks: 3, level: "SL", question: "Analyse how acetylcholine causes calcium ions to be released into a muscle cell to stimulate contraction.", markScheme: "Ach is released when an action potential arrives at the motor end plate ✔ Ach binds to post-synaptic receptors ✔ Increasing membrane permeability to sodium ions OR opening sodium ion channels ✔ Action potential travels down t-tubules triggering release of calcium ✔"},
-{id: "B010", section: "B", subtopic: "B.1.3", marks: 4, level: "SL", question: "Analyse how muscles work in pairs to extend the elbow during a backhand in badminton.", markScheme: "Is a neuromuscular reflex that inhibits opposing muscles OR reciprocal inhibition ✔ The antagonist is inhibited to allow agonist to contract ✔ Triceps brachii act as agonist/contracts ✔ Concentric contraction ✔ Biceps brachii act as antagonist/relax/inhibited ✔"},
-{id: "B011", section: "B", subtopic: "B.1.4", marks: 2, level: "SL", question: "Distinguish between first class levers and third class levers.", markScheme: "First-class: Fulcrum in middle, load and effort on opposite ends ✔ Can be force or speed multiplier ✔ Third-class: Effort in middle, load and fulcrum at ends ✔ Always speed multiplier ✔ Longer load arm in first-class; longer effort arm in third-class ✔"},
-{id: "B012", section: "B", subtopic: "B.2.1", marks: 6, level: "SL", question: "Using examples, outline Newton's three laws of motion during a soccer match.", markScheme: "First law: Body remains at rest/uniform motion until external force applied ✔ Example: Ball on penalty spot until kicked ✔ Second law: F=ma ✔ Acceleration proportional to force, inversely proportional to mass ✔ Example: Harder kick causes faster ball ✔ Third law: For every action, equal opposite reaction ✔ Example: Player applies force to ball, ball applies equal force back ✔"},
-{id: "B013", section: "B", subtopic: "B.2.1", marks: 3, level: "SL", question: "Explain Newton's second law (F=ma) with sporting examples.", markScheme: "Force equals mass times acceleration ✔ Greater force produces greater acceleration ✔ Greater mass requires more force for same acceleration ✔ Example: Heavier athlete needs more force to accelerate ✔"},
-{id: "B014", section: "B", subtopic: "B.2.1", marks: 2, level: "SL", question: "Apply Newton's third law of motion to a swimmer using a starting block.", markScheme: "Action force is the swimmer pushing against the block ✔ Reaction force is the block pushing against the swimmer propelling them away from the block ✔ The greater the action force, the greater the reaction force OR the action force is equal to the reaction force ✔"},
-{id: "B015", section: "B", subtopic: "B.2.1", marks: 2, level: "SL", question: "Predict how changing speed and height of release affects projectile motion at 45 degrees.", markScheme: "Increasing height of release increases distance of projectile ✔ Increasing speed of release increases distance of projectile ✔"},
-{id: "B016", section: "B", subtopic: "B.2.2", marks: 3, level: "SL", question: "Describe how friction influences a 100m sprinter's performance.", markScheme: "Friction between track/block and footwear prevents slipping ✔ Friction maximizes acceleration/forward motion ✔ Specialized tracks (tartan) have greater friction ✔ Sprinters increase friction by wearing spikes ✔"},
-{id: "B017", section: "B", subtopic: "B.2.2", marks: 4, level: "HL", question: "Explain Bernoulli's principle and its application in sport.", markScheme: "Spinning ball has rotation creating differential air velocity ✔ High pressure on one side, low pressure on other ✔ Ball moves toward low pressure area ✔ Example: Tennis topspin drop ✔ Example: Badminton clear with backspin ✔"},
-{id: "B018", section: "B", subtopic: "B.2.2", marks: 4, level: "HL", question: "Describe two types of drag and how each affects a cyclist.", markScheme: "Surface drag: As body moves through fluid, outer surface catches layer slowing it down ✔ Smoother surface = lower drag ✔ Form drag: Body pushes against fluid creating drag ✔ More aerodynamic/smaller form = lower drag ✔"},
-{id: "B019", section: "B", subtopic: "B.2.2", marks: 2, level: "HL", question: "Identify two ways a cyclist can minimize drag.", markScheme: "Surface drag: wearing smooth/tight helmet/clothing OR shaving skin OR using spokeless/smooth wheels ✔ Form drag: crouched/streamlined shape OR drafting behind performer OR thinner frame bike ✔"},
-{id: "B020", section: "B", subtopic: "B.2.3", marks: 6, level: "SL", question: "Explain the concept of angular momentum when a ballet dancer performs a pirouette.", markScheme: "Angular momentum created by applying torque/eccentric force ✔ Defined as moment of inertia × angular velocity ✔ Angular velocity and moment of inertia inversely proportional ✔ How much rotation/spin about an axis ✔ Remains constant unless acted on by unbalanced force ✔ Increase moment by moving limbs away from centre ✔"},
-{id: "B021", section: "B", subtopic: "B.2.3", marks: 4, level: "SL", question: "Analyse the movement occurring at the elbow as a tennis player stretches to serve.", markScheme: "Deltoid and pectoralis major contract eccentrically ✔ Triceps act as antagonist ✔ Shoulder extends through eccentric contraction ✔ Elbow extends requiring various muscle actions depending on phase of serve ✔"},
-{id: "B022", section: "B", subtopic: "B.3.1", marks: 3, level: "SL", question: "Outline common soft-tissue injuries in soccer players.", markScheme: "Muscle strains: Torn muscle fibres ✔ Ligament sprains: Torn ligaments ✔ Tendinitis: Inflammation of tendons ✔ Bursitis: Inflammation of bursae ✔ Contusions: Bruising from impact ✔"},
-{id: "B023", section: "B", subtopic: "B.3.1", marks: 2, level: "SL", question: "Explain the difference between acute and chronic injuries.", markScheme: "Acute: Sudden onset from direct impact/trauma ✔ Quick severe pain ✔ Example: Ankle sprain from landing ✔ Chronic: Develops gradually over time ✔ Persistent pain from overuse ✔ Example: Tendinitis from repetitive motion ✔"},
-{id: "B024", section: "B", subtopic: "B.3.2", marks: 3, level: "SL", question: "Explain injury prevention strategies that could be used by a swimming coach.", markScheme: "Develop training program with proper warm-up/cool-down ✔ Include progressive overload and rest days ✔ Refine technique to reduce joint stress ✔ Ensure proper equipment maintenance ✔"},
-{id: "B025", section: "B", subtopic: "B.3.2", marks: 3, level: "HL", question: "List three common soft-tissue injuries that occur in soccer players.", markScheme: "Tendinosis ✔ Muscle pull/ruptures/strains ✔ Ligament ruptures/sprains ✔ Meniscus/cartilage tears ✔ Bursitis ✔"},
-{id: "B026", section: "B", subtopic: "B.1.3", marks: 6, level: "HL", question: "Using examples, describe both open-loop and closed-loop motor programmes.", markScheme: "Closed loop: E.g. handstand/downhill skiing ✔ Error detection during execution ✔ Correction made during execution ✔ Memory trace from previous actions ✔ Perceptual trace guides body ✔ Open loop: E.g. golf swing/hitting baseball ✔ Movements require attention ✔"},
-{id: "B027", section: "B", subtopic: "B.2.2", marks: 2, level: "HL", question: "Outline how drag can be reduced during ski jumper's descent.", markScheme: "Surface drag: smooth surface of clothing/helmet, wax ski ✔ Form drag: streamline body position, lean forwards, bend knees, maintain crouch, aerodynamic skis, closer-fitting clothing ✔"},
-{id: "B028", section: "B", subtopic: "B.1.3", marks: 2, level: "HL", question: "Outline the role of calcium ions when muscles contract.", markScheme: "Bind to troponin ✔ Change troponin shape to expose active site ✔ Expose active sites on actin ✔"},
-{id: "B029", section: "B", subtopic: "B.2.2", marks: 1, level: "HL", question: "Suggest how a ski jumper maximizes lift during flight.", markScheme: "Increase surface area ✔ Ski V-shaped ✔"},
-{id: "B030", section: "B", subtopic: "B.2.1", marks: 6, level: "SL", question: "Using named examples of molecules, analyse how polysaccharides are formed.", markScheme: "Polysaccharides formed through condensation reactions ✔ Such as glycogen ✔ Single molecules/monosaccharides combine to form larger/disaccharides ✔ Release water ✔ Water forms from hydroxyl groups ✔ E.g. glucose and fructose form sucrose ✔ Enzyme-catalyzed ✔"},
-
-{id: "C001", section: "C", subtopic: "C.1.1", marks: 3, level: "SL", question: "Explain how personality traits influence sports performance.", markScheme: "Extroverted athletes may thrive with crowd stimulation ✔ Introverted athletes may prefer individual sports ✔ Conscientiousness improves training adherence ✔ Emotional stability helps manage competition stress ✔"},
-{id: "C002", section: "C", subtopic: "C.1.2", marks: 3, level: "SL", question: "Describe characteristics of mental toughness in athletes.", markScheme: "Resilience: Ability to bounce back from setbacks ✔ Commitment: Dedication to training despite challenges ✔ Challenge: Viewing pressure as opportunity ✔ Control: Maintaining focus and managing emotions ✔"},
-{id: "C003", section: "C", subtopic: "C.1.2", marks: 2, level: "SL", question: "Distinguish between cognitive and somatic anxiety.", markScheme: "Cognitive anxiety: Negative thoughts, worry about performance, loss of confidence ✔ Somatic anxiety: Physical symptoms—trembling, nausea, increased heart rate, sweating ✔"},
-{id: "C004", section: "C", subtopic: "C.2.1", marks: 1, level: "SL", question: "Define the concept of transfer in motor learning.", markScheme: "Where a person's learning in one situation/skill has an impact on their performance in another situation/skill ✔"},
-{id: "C005", section: "C", subtopic: "C.2.1", marks: 2, level: "SL", question: "Using examples, outline positive and negative transfer.", markScheme: "Positive transfer: Benefits learning of second skill ✔ Example: Long jump takeoff helps triple jump ✔ Negative transfer: Hinders learning of second skill ✔ Example: Squash forehand to tennis forehand (different angles) ✔"},
-{id: "C006", section: "C", subtopic: "C.2.1", marks: 2, level: "SL", question: "Explain the difference between massed and distributed practice.", markScheme: "Massed practice: Skill practiced continuously without breaks ✔ Better for simple tasks ✔ Distributed practice: Practice interspersed with breaks or other activities ✔ Better for complex skills, reduces fatigue, aids memory consolidation ✔"},
-{id: "C007", section: "C", subtopic: "C.2.1", marks: 1, level: "SL", question: "Outline abilities to skills as a type of transfer when learning to return in tennis.", markScheme: "Abilities such as coordination/balance/reaction time would allow the performer to execute the skill ✔"},
-{id: "C008", section: "C", subtopic: "C.2.1", marks: 1, level: "SL", question: "Outline one type of practice that may be used in tennis.", markScheme: "Distributed: practice interspersed with breaks which can be rest or practising another skill ✔ Massed: practising skill without breaks ✔ Fixed/drill: specific patterns practiced repeatedly ✔ Variable: skill in variety of contexts ✔ Mental: performer runs through in mind ✔"},
-{id: "C009", section: "C", subtopic: "C.2.1", marks: 6, level: "SL", question: "Using examples from sport, describe both open-loop and closed-loop motor programmes.", markScheme: "Closed loop: E.g. handstand/downhill skiing ✔ Error detection during execution ✔ Correction made during execution ✔ Memory trace from previous actions ✔ Perceptual trace guides body ✔ Open loop: E.g. golf swing/hitting baseball ✔ Movements require attention ✔"},
-{id: "C010", section: "C", subtopic: "C.2.1", marks: 3, level: "SL", question: "Chunking, association and practice are methods of improving memory. Describe how an athlete uses these in sporting contexts.", markScheme: "Chunking: Breaking complex information into smaller units ✔ Association: Linking new information to existing knowledge ✔ Practice: Repetition to strengthen memory and automaticity ✔"},
-{id: "C011", section: "C", subtopic: "C.2.1", marks: 3, level: "SL", question: "Discuss how the difficulty of a task affects the rate of learning.", markScheme: "Simple tasks easier to learn ✔ Complex tasks may decrease motivation ✔ Optimum learning when task meets learner needs ✔ Rate influenced by motivation/instruction quality/feedback ✔"},
-{id: "C012", section: "C", subtopic: "C.2.2", marks: 2, level: "SL", question: "Outline two types of feedback an umpire provides players during a game.", markScheme: "Extrinsic: Umpire provides information regarding compliance with rules ✔ Positive: Information on success of goal ✔ Negative: Information about infringement ✔ Knowledge of performance: Quality of action ✔ Knowledge of results: Outcome of action ✔"},
-{id: "C013", section: "C", subtopic: "C.3.1", marks: 2, level: "SL", question: "Explain NACH (need to achieve) and NAF (need to avoid failure) in achievement motivation.", markScheme: "NACH: Athletes motivated by desire to succeed and master challenges ✔ Seek opportunities, persistent, embrace difficulty ✔ NAF: Athletes motivated by fear of failure ✔ Avoid challenges, give up easily, anxiety in competition ✔"},
-{id: "C014", section: "C", subtopic: "C.3.1", marks: 3, level: "SL", question: "The coach introduces new coaching methods. Describe how Atkinson's model of achievement motivation influences the team's response.", markScheme: "Individuals motivated by desire to succeed (NACH) and fear of failure (NAF) ✔ High NACH players see new methods as improvement opportunity ✔ Higher NAF players might resist/feel anxious fearing negative outcomes ✔ Players encouraged to adopt growth/learning development ✔"},
-{id: "C015", section: "C", subtopic: "C.3.1", marks: 2, level: "HL", question: "Using examples, analyse two ways social learning theory can improve team performance in soccer.", markScheme: "Players learn from observing teammates with peer behaviour influencing cohesion ✔ Training environment/team culture contributes to learning ✔ Behaviours learned through observation applied in games ✔ Coaches as role models demonstrate desired behaviours ✔"},
-{id: "C016", section: "C", subtopic: "C.3.2", marks: 3, level: "SL", question: "Explain the three basic needs in self-determination theory.", markScheme: "Autonomy: Need for choice and control in decisions ✔ Competence: Need to feel capable and master skills ✔ Relatedness: Need to feel connected to others and belong ✔ Meeting these needs enhances intrinsic motivation ✔"},
-{id: "C017", section: "C", subtopic: "C.3.2", marks: 2, level: "SL", question: "Distinguish between intrinsic and extrinsic motivation.", markScheme: "Intrinsic: Motivation from within, inherent satisfaction from activity ✔ Extrinsic: Motivation from external rewards (money, trophies, praise) ✔ Intrinsic motivation produces greater persistence and performance ✔"},
-{id: "C018", section: "C", subtopic: "C.3.3", marks: 3, level: "SL", question: "Using examples, explain three ways a coach uses a constraints-led approach to improve player motivation.", markScheme: "Weather: coach may move session inside to avoid harsh weather ✔ Peers: group players by friendship groups ✔ Coaching: provide supportive/encouraging environment ✔ Individual differences: group by experience/fitness ✔ Equipment: use low bounce ball ✔ Rules: play 3v3 ✔"},
-{id: "C019", section: "C", subtopic: "C.3.3", marks: 2, level: "HL", question: "Outline two environmental constraints that can enhance a sprinter's learning of a new skill.", markScheme: "Physical: weather conditions, flat non-slip surface, sufficient light, optimal sound, sufficient space ✔ Social: positive peer relationships, encouraging coaching style, positive societal perception, supportive family ✔"},
-{id: "C020", section: "C", subtopic: "C.3.3", marks: 3, level: "SL", question: "Using examples, suggest three task constraints to increase motivation and success for a tennis player.", markScheme: "Modify equipment: low bounce balls/lower net/smaller racket ✔ Modify playing area: play smaller court ✔ Modify goal: return ball 5 times ✔ Modify rules: allow two bounces ✔"},
-{id: "C021", section: "C", subtopic: "C.4.1", marks: 3, level: "SL", question: "Explain the inverted-U hypothesis of arousal and performance.", markScheme: "Low arousal = low performance ✔ Moderate arousal = optimal performance ✔ High arousal = decreased performance ✔ Individual differences in optimal arousal level ✔"},
-{id: "C022", section: "C", subtopic: "C.4.1", marks: 2, level: "SL", question: "Explain how the short-term stress from competing influences nervous system regulation of adrenaline.", markScheme: "Adrenaline regulated by complex feedback systems ✔ Stress response of hypothalamus stimulates pituitary-adrenal axis ✔ Stress triggers fight or flight/release of adrenaline by sympathetic stimulation ✔"},
-{id: "C023", section: "C", subtopic: "C.4.1", marks: 2, level: "HL", question: "Explain why a ski jumper would have an elevated heart rate during descent.", markScheme: "Increased demand for oxygen by working muscles ✔ Nervous/stressed/increased anxiety ✔ Sympathetic nervous system stimulates increase in heart rate ✔"},
-{id: "C024", section: "C", subtopic: "C.4.2", marks: 2, level: "HL", question: "Discuss how imagery can be used by an athlete to reduce their elevated heart rate.", markScheme: "Help focusing on performance rather than outcome ✔ Visualizing/imagining successful performance ✔ Increase confidence OR reduce stress/anxiety ✔"},
-{id: "C025", section: "C", subtopic: "C.5.1", marks: 3, level: "SL", question: "Explain the SMART criteria for goal setting.", markScheme: "Specific: Clear, well-defined goal ✔ Measurable: Quantifiable progress tracking ✔ Achievable: Realistic, not too easy or too difficult ✔ Relevant: Related to sport/athlete needs ✔ Time-bound: Specific deadline or timeframe ✔"},
-{id: "C026", section: "C", subtopic: "C.5.1", marks: 3, level: "SL", question: "Distinguish between outcome, performance and process goals.", markScheme: "Outcome goals: Result-focused (win medal) ✔ Norm-referenced ✔ Dependent on opponents ✔ Performance goals: Self-referenced (improve personal record) ✔ Process goals: Focus on technique/tactics ✔"},
-{id: "C027", section: "C", subtopic: "C.5.2", marks: 3, level: "SL", question: "Analyse the phases of the psychological skills training (PST) programme.", markScheme: "Education phase: Identification of psychological needs ✔ Introduction to mental health concepts ✔ Acquisition phase: Different strategies tailored ✔ Refining through feedback ✔ Practice phase: Skills applied from practice to competitions ✔"},
-{id: "C028", section: "C", subtopic: "C.5.2", marks: 2, level: "HL", question: "Suggest how to implement techniques aimed at reducing somatic anxiety during PST acquisition phase.", markScheme: "Can develop after learning importance ✔ Skills tailored to individual needs ✔ Use relaxation techniques: breathing/progressive muscle relaxation/biofeedback/visualization/self-talk ✔ Refinement through feedback ✔"},
-{id: "C029", section: "C", subtopic: "C.2.1", marks: 3, level: "SL", question: "Sketch a flow chart with features that can be used for match analysis in a team invasion game.", markScheme: "Location of possession/changes in possession ✔ Player who has possession/receives change ✔ Method of change: tackle/interception/shot/dribble ✔"},
-{id: "C030", section: "C", subtopic: "C.1.2", marks: 1, level: "HL", question: "State the coaching pedagogy in which learning is collaborative, creative and process-oriented.", markScheme: "Non-linear pedagogy ✔"},
-{id: "C031", section: "C", subtopic: "C.2.1", marks: 4, level: "SL", question: "Running during a soccer game and throwing a dart are examples of motor skills. Analyse muscle mass, precision, and environmental impact on the continua.", markScheme: "Running: Gross skill (large muscles), open skill (changing environment), externally/internally paced ✔ Dart: Fine skill (small precise movements), closed skill (stable environment), internally paced ✔"},
-{id: "C032", section: "C", subtopic: "C.3.1", marks: 3, level: "SL", question: "Explain how self-efficacy influences an athlete's motivation and performance.", markScheme: "Self-efficacy is belief in ability to succeed ✔ High self-efficacy leads to persistence and effort ✔ Low self-efficacy leads to avoidance and reduced effort ✔ Can be developed through mastery experiences, social modeling, verbal persuasion ✔"},
-{id: "C033", section: "C", subtopic: "C.4.1", marks: 3, level: "HL", question: "Outline the zone of optimal functioning (ZOF) and individual zone of optimal functioning (IZOF).", markScheme: "ZOF: General range of arousal for optimal performance ✔ IZOF: Individual's unique optimal arousal state ✔ Athletes perform best within their personal zone ✔ Differs between individuals and sports ✔"},
-{id: "C034", section: "C", subtopic: "C.2.1", marks: 4, level: "HL", question: "Explain schema theory and its application to learning complex motor skills.", markScheme: "Schema is a memory representation of movement patterns ✔ Built through varied practice experiences ✔ Allows generalization to new situations ✔ Develops through understanding relationships between parameters ✔"},
-{id: "C035", section: "C", subtopic: "C.3.2", marks: 3, level: "SL", question: "Discuss the concept of flow and its importance in sports performance.", markScheme: "Flow is state of optimal experience/deep engagement ✔ Complete focus on task with loss of self-consciousness ✔ Optimal challenge level equals skill level ✔ Results in superior performance and enjoyment ✔"},
-{id: "C036", section: "C", subtopic: "C.3.3", marks: 4, level: "SL", question: "Using examples, explain how coaches can structure training environments to enhance intrinsic motivation.", markScheme: "Provide autonomy: allow athlete choice in activities ✔ Example: let athletes choose practice activities ✔ Create mastery opportunities: progressively challenging tasks ✔ Example: scaffold skill development ✔ Foster belonging: team cohesion and support ✔"},
-{id: "C037", section: "C", subtopic: "C.4.2", marks: 3, level: "HL", question: "Explain how progressive muscle relaxation can be used to manage somatic anxiety.", markScheme: "Systematic tensing and relaxing of muscle groups ✔ Helps athlete recognize difference between tension and relaxation ✔ Reduces physical symptoms of anxiety ✔ Can be practiced regularly and before competition ✔"},
-{id: "C038", section: "C", subtopic: "C.5.1", marks: 3, level: "SL", question: "Explain the difference between intrinsic and extrinsic goal orientations.", markScheme: "Intrinsic: Goals focused on personal growth, mastery, competence ✔ Extrinsic: Goals focused on external rewards, fame, wealth ✔ Intrinsic orientation associated with greater motivation and wellbeing ✔"},
-{id: "C039", section: "C", subtopic: "C.2.2", marks: 3, level: "SL", question: "Explain the role of attention and concentration in sports performance.", markScheme: "Selective attention allows focus on relevant cues ✔ Sustained attention maintains focus over time ✔ Divided attention allows processing of multiple cues ✔ Attentional lapses lead to errors ✔"},
-{id: "C040", section: "C", subtopic: "C.1.2", marks: 3, level: "HL", question: "Discuss how coping strategies can help athletes manage cognitive anxiety.", markScheme: "Cognitive reframing: changing negative thoughts to positive ✔ Self-talk: using positive statements before/during performance ✔ Visualization: mentally rehearsing success ✔ Problem-focused coping: addressing source of anxiety ✔"},
-{id: "C041", section: "C", subtopic: "C.2.1", marks: 2, level: "SL", question: "Identify three stages of learning according to Fitts and Posner.", markScheme: "Cognitive stage: Understanding what to do, high error rate ✔ Associative stage: Practicing skill, fewer errors, improvements ✔ Autonomous stage: Skill automatic, minimal attention required ✔"},
-{id: "C042", section: "C", subtopic: "C.3.2", marks: 2, level: "SL", question: "Explain the role of feedback in skill development.", markScheme: "Feedback provides information about performance quality ✔ Allows correction of errors and reinforcement of correct techniques ✔ Guides learning and improvement ✔"},
-{id: "C043", section: "C", subtopic: "C.4.1", marks: 3, level: "SL", question: "Explain Yerkes-Dodson law and its application to sports performance.", markScheme: "Optimal arousal increases with task difficulty ✔ Simple tasks require high arousal ✔ Complex tasks require moderate arousal ✔ Very difficult tasks require lower arousal ✔"}
-];
-        // Gamification variables
-        let sessionPoints = 0;
-        let attemptCounts = {}; // Track attempts per question
-        const milestones = [
-            { points: 5, name: "No longer clueless", emoji: "🤷‍♂️" },
-            { points: 10, name: "Getting the vibe", emoji: "🎯" },
-            { points: 20, name: "On a streak", emoji: "🔥" },
-            { points: 35, name: "Built different", emoji: "💪" },
-            { points: 50, name: "Actually goated", emoji: "🐐" },
-            { points: 75, name: "Certified legend", emoji: "👑" },
-            { points: 100, name: "Final boss down", emoji: "⚔️" }
-        ];
-
-        let currentLevel = 'SL';
+        let currentQuestion = null;
         let filteredQuestions = [];
         let currentIndex = 0;
+        let currentLevel = 'SL';
+        let totalPoints = 0;
+        let attemptCount = 0;
 
-        function init() {
-            populateSections();
-            filterQuestions();
-            displayQuestion();
-            updateNavigation();
-            updateProgressBar();
-        }
+        const curriculum = {
+            "A": { "name": "Exercise physiology and nutrition" },
+            "B": { "name": "Biomechanics" },
+            "C": { "name": "Sports psychology and motor learning" }
+        };
 
-        function populateSections() {
-            const select = document.getElementById('sectionFilter');
-            ['A', 'B', 'C'].forEach(sec => {
-                const option = document.createElement('option');
-                option.value = sec;
-                option.textContent = `${sec}. ${curriculum[sec].name}`;
-                select.appendChild(option);
-            });
-        }
-
-        function updateTopics() {
-            const section = document.getElementById('sectionFilter').value;
-            const topicSelect = document.getElementById('topicFilter');
-            const subtopicSelect = document.getElementById('subtopicFilter');
-
-            topicSelect.innerHTML = '<option value="">All Topics</option>';
-            subtopicSelect.innerHTML = '<option value="">All Subtopics</option>';
-
-            if (section && curriculum[section]) {
-                Object.keys(curriculum[section].topics).forEach(topicCode => {
-                    const topic = curriculum[section].topics[topicCode];
-                    const option = document.createElement('option');
-                    option.value = topicCode;
-                    option.textContent = `${topicCode} ${topic.name}`;
-                    topicSelect.appendChild(option);
-                });
+        window.addEventListener('DOMContentLoaded', () => {
+            if (window.allQuestions && window.allQuestions.length > 0) {
+                populateFilters();
+                filterQuestions();
+            } else {
+                console.error('allQuestions not loaded from allQuestions.js');
             }
+        });
 
-            filterQuestions();
+        function populateFilters() {
+            const sections = [...new Set(window.allQuestions.map(q => q.section))];
+            const sectionFilter = document.getElementById('sectionFilter');
+            sections.forEach(section => {
+                const option = document.createElement('option');
+                option.value = section;
+                option.textContent = section + ' - ' + (curriculum[section]?.name || '');
+                sectionFilter.appendChild(option);
+            });
         }
 
         function updateSubtopics() {
             const section = document.getElementById('sectionFilter').value;
-            const topic = document.getElementById('topicFilter').value;
-            const subtopicSelect = document.getElementById('subtopicFilter');
+            const subtopicFilter = document.getElementById('subtopicFilter');
+            subtopicFilter.innerHTML = '<option value="">All Subtopics</option>';
 
-            subtopicSelect.innerHTML = '<option value="">All Subtopics</option>';
-
-            if (section && topic && curriculum[section]?.topics[topic]) {
-                Object.keys(curriculum[section].topics[topic].subtopics).forEach(subtopicCode => {
-                    const subtopic = curriculum[section].topics[topic].subtopics[subtopicCode];
-                    const hours = currentLevel === 'SL' ? subtopic.sl_hours : subtopic.hl_hours;
-
-                    if (hours > 0) {
-                        const option = document.createElement('option');
-                        option.value = subtopicCode;
-                        option.textContent = `${subtopicCode} ${subtopic.name} (${hours}h)`;
-                        subtopicSelect.appendChild(option);
-                    }
-                });
+            if (!section) {
+                filterQuestions();
+                return;
             }
+
+            const subtopics = [...new Set(
+                window.allQuestions.filter(q => q.section === section).map(q => q.subtopic)
+            )];
+
+            subtopics.forEach(subtopic => {
+                const option = document.createElement('option');
+                option.value = subtopic;
+                option.textContent = subtopic;
+                subtopicFilter.appendChild(option);
+            });
 
             filterQuestions();
         }
 
         function setLevel(level) {
             currentLevel = level;
-            document.querySelectorAll('.level-btn').forEach(btn => {
-                btn.classList.toggle('active', btn.dataset.level === level);
-            });
-            updateSubtopics();
+            document.querySelectorAll('.level-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
             filterQuestions();
         }
 
         function filterQuestions() {
             const section = document.getElementById('sectionFilter').value;
-            const topic = document.getElementById('topicFilter').value;
             const subtopic = document.getElementById('subtopicFilter').value;
 
-            filteredQuestions = allQuestions.filter(q => {
-                if (currentLevel === 'SL' && q.level === 'HL') return false;
-
-                const subtopicCode = q.subtopic || '';
-                if (subtopicCode) {
-                    const sec = subtopicCode.charAt(0);
-                    const parts = subtopicCode.split('.');
-                    const topicCode = parts.length >= 2 ? parts[0] + '.' + parts[1] : '';
-
-                    if (curriculum[sec]?.topics[topicCode]?.subtopics[subtopicCode]) {
-                        const subData = curriculum[sec].topics[topicCode].subtopics[subtopicCode];
-                        const hours = currentLevel === 'SL' ? subData.sl_hours : subData.hl_hours;
-                        if (hours === 0) return false;
-                    }
-                }
-
+            filteredQuestions = window.allQuestions.filter(q => {
+                if (currentLevel && q.level !== currentLevel) return false;
                 if (section && q.section !== section) return false;
-                if (topic && q.topic !== topic) return false;
                 if (subtopic && q.subtopic !== subtopic) return false;
-
                 return true;
             });
 
             currentIndex = 0;
-            displayQuestion();
-            updateNavigation();
+            attemptCount = 0;
+            if (filteredQuestions.length === 0) {
+                document.getElementById('questionDisplay').innerHTML = '<p>No questions found.</p>';
+            } else {
+                displayQuestion(filteredQuestions[currentIndex]);
+            }
         }
 
-        function loadRandomQuestion() {
-            if (filteredQuestions.length === 0) return;
-            const oldIndex = currentIndex;
-            // Try to get a different question if there's more than one
-            if (filteredQuestions.length > 1) {
-                do {
-                    currentIndex = Math.floor(Math.random() * filteredQuestions.length);
-                } while (currentIndex === oldIndex);
-            } else {
-                currentIndex = 0;
-            }
-            // Clear previous answer and results
+        function displayQuestion(question) {
+            currentQuestion = question;
+            attemptCount = 0;
             document.getElementById('answerInput').value = '';
             document.getElementById('result').style.display = 'none';
-            displayQuestion();
-            updateNavigation();
-        }
 
-        function displayQuestion() {
-            if (filteredQuestions.length === 0) {
-                document.getElementById('questionDisplay').innerHTML = '<p style="color: #666;">No questions available for this selection.</p>';
-                document.getElementById('answerInput').style.display = 'none';
-                document.querySelector('.submit-btn').style.display = 'none';
-                return;
-            }
-
-            document.getElementById('answerInput').style.display = 'block';
-            document.querySelector('.submit-btn').style.display = 'block';
-
-            const q = filteredQuestions[currentIndex];
-            let subtopicName = '';
-
-            if (q.subtopic) {
-                const sec = q.subtopic.charAt(0);
-                const parts = q.subtopic.split('.');
-                const topicCode = parts.length >= 2 ? parts[0] + '.' + parts[1] : '';
-
-                if (curriculum[sec]?.topics[topicCode]?.subtopics[q.subtopic]) {
-                    subtopicName = curriculum[sec].topics[topicCode].subtopics[q.subtopic].name;
-                }
-            }
-
-            document.getElementById('questionDisplay').innerHTML = `
-                <div>
-                    <span class="level-badge badge-${q.level}">${q.level}</span>
-                    <span class="subtopic-badge">${q.subtopic} ${subtopicName}</span>
-                </div>
+            const html = `
                 <div class="question-header">
-                    <span style="color: #666; font-size: 14px;">${q.id}</span>
-                    <span class="marks-badge">[${q.maxMarks} marks]</span>
+                    <div>
+                        <span class="level-badge badge-${question.level}">${question.level}</span>
+                        <span class="subtopic-badge">${question.subtopic}</span>
+                    </div>
+                    <span class="marks-badge">[${question.marks} marks]</span>
                 </div>
-                <div class="question-text">${q.question}</div>
+                <p class="question-text">${question.question}</p>
             `;
+            document.getElementById('questionDisplay').innerHTML = html;
+            updateNavButtons();
         }
 
         function navigateQuestion(direction) {
             currentIndex += direction;
-            document.getElementById('answerInput').value = '';
-            document.getElementById('result').style.display = 'none';
-            displayQuestion();
-            updateNavigation();
+            if (currentIndex < 0) currentIndex = 0;
+            if (currentIndex >= filteredQuestions.length) currentIndex = filteredQuestions.length - 1;
+            displayQuestion(filteredQuestions[currentIndex]);
         }
 
-        function updateNavigation() {
-            document.getElementById('prevBtn').disabled = (currentIndex === 0);
-            document.getElementById('nextBtn').disabled = (currentIndex === filteredQuestions.length - 1);
+        function loadRandomQuestion() {
+            currentIndex = Math.floor(Math.random() * filteredQuestions.length);
+            displayQuestion(filteredQuestions[currentIndex]);
+        }
+
+        function updateNavButtons() {
+            document.getElementById('prevBtn').disabled = currentIndex === 0;
+            document.getElementById('nextBtn').disabled = currentIndex === filteredQuestions.length - 1;
         }
 
         async function submitAnswer() {
-            const answer = document.getElementById('answerInput').value.trim();
-            if (!answer) {
-                alert('Please enter an answer before submitting.');
+            attemptCount++;
+            const answerText = document.getElementById('answerInput').value.trim();
+
+            if (!answerText) {
+                alert('Please type an answer before submitting.');
                 return;
             }
 
-            const q = filteredQuestions[currentIndex];
+            if (!currentQuestion) return;
+
             document.getElementById('loading').style.display = 'block';
             document.getElementById('result').style.display = 'none';
 
             try {
-                const response = await fetch('https://sehsexam.thatjamiebloke.workers.dev/mark', {
+                const body = {
+                    questionId: currentQuestion.id,
+                    question: currentQuestion.question,
+                    markScheme: currentQuestion.markScheme,
+                    maxMarks: currentQuestion.marks,
+                    answer: answerText,
+                    attemptNumber: attemptCount,
+                };
+
+                const response = await fetch('https://your-cloudflare-worker-url.com/mark', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        questionId: q.id,
-                        question: q.question,
-                        markScheme: q.markScheme,
-                        maxMarks: q.maxMarks,
-                        answer: answer,
-                        attemptNumber: (attemptCounts[q.id] || 0) + 1
-                    })
+                    body: JSON.stringify(body),
                 });
 
-                if (!response.ok) throw new Error('Marking failed');
                 const data = await response.json();
-                
-                // Update attempt count
-                attemptCounts[q.id] = (attemptCounts[q.id] || 0) + 1;
-                
-                // Add points and check for milestone
-                const oldPoints = sessionPoints;
-                sessionPoints = Math.min(100, sessionPoints + data.score);
-                checkMilestone(oldPoints, sessionPoints);
-                updateProgressBar();
-                
-                displayResult(data, q.id);
+
+                if (data.error) {
+                    displayResult({
+                        score: 0,
+                        maxMarks: currentQuestion.marks,
+                        strengths: 'Could not mark answer',
+                        improvements: data.error,
+                        studyTip: 'Please try again'
+                    });
+                } else {
+                    displayResult({
+                        score: data.score,
+                        maxMarks: currentQuestion.marks,
+                        strengths: data.strengths,
+                        improvements: data.improvements,
+                        studyTip: data.studyTip,
+                        markScheme: currentQuestion.markScheme
+                    });
+
+                    totalPoints += data.score;
+                    updateProgressBar();
+                }
             } catch (error) {
-                document.getElementById('result').innerHTML = '<div style="color: #dc3545;">Error: ' + error.message + '</div>';
+                document.getElementById('result').innerHTML = `<p style="color: red;">Error: ${error.message}</p>`;
                 document.getElementById('result').style.display = 'block';
             } finally {
                 document.getElementById('loading').style.display = 'none';
             }
         }
 
+        function displayResult(data) {
+            const resultDiv = document.getElementById('result');
+            const percentage = Math.round((data.score / data.maxMarks) * 100);
+
+            let html = `
+                <div class="score-display">
+                    Score: ${data.score}/${data.maxMarks} (${percentage}%)
+                </div>
+                <div class="comment-section" style="background: #e8f5e9; border-left-color: #10b981;">
+                    <h3>✅ Strengths</h3>
+                    <p>${data.strengths}</p>
+                </div>
+                <div class="comment-section" style="background: #fff3e0; border-left-color: #f59e0b;">
+                    <h3>📝 Areas to Improve</h3>
+                    <p>${data.improvements}</p>
+                </div>
+                <div class="hint-section" style="background: #e3f2fd; border-left-color: #2196F3;">
+                    <h3>💡 Study Tip</h3>
+                    <p>${data.studyTip}</p>
+                </div>
+                <div class="mark-scheme-section">
+                    <h3>📋 Official Mark Scheme</h3>
+                    <p>${data.markScheme}</p>
+                </div>
+            `;
+
+            if (attemptCount >= 2) {
+                html += `
+                    <button class="nav-btn" style="margin-top: 15px; width: auto;" onclick="toggleMarkScheme()">
+                        📋 Mark Scheme
+                    </button>
+                `;
+            }
+
+            resultDiv.innerHTML = html;
+            resultDiv.style.display = 'block';
+        }
+
+        function toggleMarkScheme() {
+            const scheme = document.querySelector('.mark-scheme-section');
+            if (scheme.style.display === 'none') {
+                scheme.style.display = 'block';
+            } else {
+                scheme.style.display = 'none';
+            }
+        }
+
         function updateProgressBar() {
-            const percentage = Math.min(100, sessionPoints);
-            document.getElementById('progressFill').style.width = percentage + '%';
-            
-            document.getElementById('youMarker').style.left = percentage + '%';
-            
-            document.querySelectorAll('.checkpoint').forEach(checkpoint => {
-                const points = parseInt(checkpoint.dataset.points);
-                if (sessionPoints >= points) {
-                    checkpoint.classList.add('achieved');
-                    checkpoint.innerHTML = '✓';
+            const percentage = (totalPoints / 200) * 100;
+            document.getElementById('progressFill').style.width = Math.min(percentage, 100) + '%';
+            document.getElementById('progressText').querySelector('.points-display').textContent = totalPoints;
+
+            const checkpoints = document.querySelectorAll('.checkpoint');
+            checkpoints.forEach(cp => {
+                const points = parseInt(cp.getAttribute('data-points'));
+                if (totalPoints >= points) {
+                    cp.classList.add('achieved');
                 } else {
-                    checkpoint.classList.remove('achieved');
-                    checkpoint.innerHTML = '';
+                    cp.classList.remove('achieved');
                 }
             });
-            
-            const nextMilestone = milestones.find(m => m.points > sessionPoints);
-            if (nextMilestone) {
-                const remaining = nextMilestone.points - sessionPoints;
-                document.getElementById('progressText').innerHTML = 
-                    `<span class="points-display">${sessionPoints}</span> pts · Next: ${nextMilestone.name} ${nextMilestone.emoji} (${remaining} away)`;
-            } else {
-                document.getElementById('progressText').innerHTML = 
-                    `<span class="points-display">${sessionPoints}</span> pts · ${milestones[milestones.length - 1].name} ${milestones[milestones.length - 1].emoji}`;
-            }
+
+            const youMarker = document.getElementById('youMarker');
+            youMarker.style.left = Math.min(percentage, 100) + '%';
         }
-
-        function checkMilestone(oldPoints, newPoints) {
-            const crossedMilestone = milestones.find(m => oldPoints < m.points && newPoints >= m.points);
-            if (crossedMilestone) {
-                showMilestonePopup(crossedMilestone);
-            }
-        }
-
-        function showMilestonePopup(milestone) {
-            const popup = document.getElementById('milestonePopup');
-            document.getElementById('milestoneEmoji').textContent = milestone.emoji;
-            document.getElementById('milestoneTitle').textContent = milestone.name;
-            
-            popup.classList.add('show');
-            setTimeout(() => {
-                popup.classList.remove('show');
-            }, 2000);
-        }
-
-        function displayResult(data, questionId) {
-            const attempts = attemptCounts[questionId] || 0;
-            
-            let html = `<div class="score-display">Score: ${data.score} / ${data.maxMarks} · Total session: ${sessionPoints} pts</div>`;
-
-            // Display strengths
-            if (data.strengths) {
-                html += `<div class="comment-section" style="background: #d4edda; border-left: 4px solid #28a745;">
-                           <h3>✓ What You Did Well</h3>
-                           <p>${data.strengths}</p>
-                         </div>`;
-            }
-
-            // Display areas to improve
-            if (data.improvements) {
-                html += `<div class="comment-section" style="background: #fff3cd; border-left: 4px solid #ffc107;">
-                           <h3>🎯 To Reach Full Marks</h3>
-                           <p>${data.improvements}</p>
-                         </div>`;
-            }
-
-            // Display study tip
-            if (data.studyTip) {
-                html += `<div class="hint-section" style="background: #e3f2fd; border-left: 4px solid #2196f3;">
-                           <h3>📚 Quick Study Tip</h3>
-                           <p>${data.studyTip}</p>
-                         </div>`;
-            }
-
-            // Display hint (collapsible)
-            if (data.hint) {
-                html += `<div class="hint-section" style="background: #fff3cd; border-left: 4px solid #ffc107;">
-                           <details>
-                             <summary>💡 Need a hint? Click here</summary>
-                             <p>${data.hint}</p>
-                           </details>
-                         </div>`;
-            }
-
-            // Show mark scheme after 2 attempts
-            if (attempts >= 2 && data.officialMarkScheme) {
-                html += `<div class="mark-scheme-section">
-                           <details>
-                             <summary>📋 View Official IB Mark Scheme (Attempt ${attempts})</summary>
-                             <p>${data.officialMarkScheme}</p>
-                           </details>
-                         </div>`;
-            }
-
-            // Display progress message
-            if (data.progressMessage) {
-                html += `<div style="margin-top: 15px; padding: 10px; background: #f8f9fa; border-radius: 6px; font-size: 13px; color: #666; text-align: center;">
-                           ${data.progressMessage}
-                         </div>`;
-            }
-
-            document.getElementById('result').innerHTML = html;
-            document.getElementById('result').style.display = 'block';
-        }
-
-        init();
     </script>
 </body>
 </html>
+
+    
