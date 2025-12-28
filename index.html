@@ -186,6 +186,7 @@
         .comment-section p, .hint-section p { margin: 0; line-height: 1.6; }
         .mark-scheme-section { margin-top: 20px; padding: 15px; border-radius: 6px; background: #f8f9fa; border-left: 4px solid #6c757d; }
         .mark-scheme-section h3 { font-size: 14px; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px; color: #495057; }
+        .mark-scheme-section p { line-height: 1.8; }
         
         .progress-bar-container {
             position: fixed;
@@ -649,7 +650,8 @@
                         maxMarks: currentQuestion.marks,
                         strengths: 'Could not mark answer',
                         improvements: data.error,
-                        studyTip: 'Please try again'
+                        studyTip: 'Please try again',
+                        markScheme: currentQuestion.markScheme
                     });
                 } else {
                     displayResult({
@@ -684,6 +686,14 @@
             const resultDiv = document.getElementById('result');
             const percentage = Math.round((data.score / data.maxMarks) * 100);
 
+            // Format mark scheme with line breaks after ticks
+            const formattedMarkScheme = data.markScheme
+                .replace(/✓/g, '✓\n')
+                .split('\n')
+                .map(line => line.trim())
+                .filter(line => line.length > 0)
+                .join('<br>');
+
             let html = `
                 <div class="score-display">
                     Score: ${data.score}/${data.maxMarks} (${percentage}%)
@@ -700,11 +710,24 @@
                     <h3>💡 Study Tip</h3>
                     <p>${data.studyTip}</p>
                 </div>
+            `;
+
+            // Only show mark scheme on second attempt or later
+            if (attemptCount >= 2) {
+                html += `
                 <div class="mark-scheme-section">
                     <h3>📋 Official Mark Scheme</h3>
-                    <p>${data.markScheme}</p>
+                    <p style="white-space: pre-wrap; font-family: inherit;">${formattedMarkScheme}</p>
                 </div>
-            `;
+                `;
+            } else {
+                html += `
+                <div class="mark-scheme-section">
+                    <h3>📋 Official Mark Scheme</h3>
+                    <p><em>Try again to see the mark scheme! 👀</em></p>
+                </div>
+                `;
+            }
 
             resultDiv.innerHTML = html;
             resultDiv.style.display = 'block';
