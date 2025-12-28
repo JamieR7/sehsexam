@@ -185,7 +185,6 @@
         .comment-section p, .hint-section p { margin: 0; line-height: 1.6; }
         .mark-scheme-section { margin-top: 20px; padding: 15px; border-radius: 6px; background: #f8f9fa; border-left: 4px solid #6c757d; }
         .mark-scheme-section h3 { font-size: 14px; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px; color: #495057; }
-        details summary { cursor: pointer; font-weight: 600; margin-bottom: 10px; user-select: none; }
         
         .progress-bar-container {
             position: fixed;
@@ -248,6 +247,32 @@
             color: white;
             font-weight: bold;
         }
+        .checkpoint:hover::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #333;
+            color: white;
+            padding: 6px 10px;
+            border-radius: 6px;
+            font-size: 12px;
+            white-space: nowrap;
+            font-weight: 600;
+            z-index: 10;
+            pointer-events: none;
+        }
+        .checkpoint:hover::before {
+            content: '';
+            position: absolute;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 6px solid transparent;
+            border-top-color: #333;
+            z-index: 10;
+        }
         .you-marker {
             position: absolute;
             top: 50%;
@@ -264,6 +289,21 @@
             border-radius: 50%;
             box-shadow: 0 2px 8px rgba(255, 140, 0, 0.6);
         }
+        .you-label {
+            position: absolute;
+            top: -28px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #ff8c00;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 500;
+            font-family: 'Gotham', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            white-space: nowrap;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+        }
         .progress-text {
             font-family: 'Gotham', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             font-weight: 500;
@@ -271,11 +311,40 @@
             font-size: 16px;
             white-space: nowrap;
             min-width: 280px;
+            letter-spacing: -0.02em;
         }
         .progress-text .points-display {
             font-size: 22px;
             color: #F2B406;
             font-weight: 500;
+            font-family: 'Gotham', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        .milestone-popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            background: white;
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            z-index: 2000;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        .milestone-popup.show {
+            transform: translate(-50%, -50%) scale(1);
+        }
+        .milestone-popup .emoji {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+        .milestone-popup .title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #F2B406;
+            margin-bottom: 10px;
+            font-family: 'Gotham', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         }
     </style>
     <script src="allQuestions.js"></script>
@@ -338,19 +407,26 @@
         <div class="progress-wrapper">
             <div class="progress-fill" id="progressFill"></div>
             <div class="progress-checkmarks">
-                <div class="checkpoint" style="left: 5%;" data-points="5" title="5 pts"></div>
-                <div class="checkpoint" style="left: 10%;" data-points="10" title="10 pts"></div>
-                <div class="checkpoint" style="left: 20%;" data-points="20" title="20 pts"></div>
-                <div class="checkpoint" style="left: 35%;" data-points="35" title="35 pts"></div>
-                <div class="checkpoint" style="left: 50%;" data-points="50" title="50 pts"></div>
-                <div class="checkpoint" style="left: 75%;" data-points="75" title="75 pts"></div>
-                <div class="checkpoint" style="left: 100%;" data-points="100" title="100 pts"></div>
+                <div class="checkpoint" style="left: 5%;" data-points="5" data-tooltip="5 pts: No longer clueless 🤷‍♂️"></div>
+                <div class="checkpoint" style="left: 10%;" data-points="10" data-tooltip="10 pts: Getting the vibe 🎯"></div>
+                <div class="checkpoint" style="left: 20%;" data-points="20" data-tooltip="20 pts: On a streak 🔥"></div>
+                <div class="checkpoint" style="left: 35%;" data-points="35" data-tooltip="35 pts: Built different 💪"></div>
+                <div class="checkpoint" style="left: 50%;" data-points="50" data-tooltip="50 pts: Actually goated 🐐"></div>
+                <div class="checkpoint" style="left: 75%;" data-points="75" data-tooltip="75 pts: Certified legend 👑"></div>
+                <div class="checkpoint" style="left: 100%;" data-points="100" data-tooltip="100 pts: Final boss down ⚔️"></div>
             </div>
             <div class="you-marker" id="youMarker">
                 <div class="you-dot"></div>
+                <div class="you-label">You</div>
             </div>
         </div>
-        <div class="progress-text" id="progressText"><span class="points-display">0</span> pts</div>
+        <div class="progress-text" id="progressText"><span class="points-display">0</span> pts · Next: No longer clueless 🤷‍♂️ (5 away)</div>
+    </div>
+
+    <!-- Milestone Popup -->
+    <div class="milestone-popup" id="milestonePopup">
+        <div class="emoji" id="milestoneEmoji"></div>
+        <div class="title" id="milestoneTitle"></div>
     </div>
 
     <script>
@@ -360,6 +436,7 @@
         let currentLevel = 'SL';
         let totalPoints = 0;
         let attemptCount = 0;
+        let milestones = {5: {emoji: '🤷‍♂️', title: 'No longer clueless'}, 10: {emoji: '🎯', title: 'Getting the vibe'}, 20: {emoji: '🔥', title: 'On a streak'}, 35: {emoji: '💪', title: 'Built different'}, 50: {emoji: '🐐', title: 'Actually goated'}, 75: {emoji: '👑', title: 'Certified legend'}, 100: {emoji: '⚔️', title: 'Final boss down'}};
 
         const curriculum = {
             "A": { "name": "Exercise physiology and nutrition" },
@@ -525,8 +602,16 @@
                         markScheme: currentQuestion.markScheme
                     });
 
+                    const oldPoints = totalPoints;
                     totalPoints += data.score;
                     updateProgressBar();
+                    
+                    // Check for milestone
+                    Object.keys(milestones).forEach(pts => {
+                        if (oldPoints < pts && totalPoints >= pts) {
+                            showMilestone(pts);
+                        }
+                    });
                 }
             } catch (error) {
                 document.getElementById('result').innerHTML = `<p style="color: red;">Error: ${error.message}</p>`;
@@ -562,25 +647,8 @@
                 </div>
             `;
 
-            if (attemptCount >= 2) {
-                html += `
-                    <button class="nav-btn" style="margin-top: 15px; width: auto;" onclick="toggleMarkScheme()">
-                        📋 Mark Scheme
-                    </button>
-                `;
-            }
-
             resultDiv.innerHTML = html;
             resultDiv.style.display = 'block';
-        }
-
-        function toggleMarkScheme() {
-            const scheme = document.querySelector('.mark-scheme-section');
-            if (scheme.style.display === 'none') {
-                scheme.style.display = 'block';
-            } else {
-                scheme.style.display = 'none';
-            }
         }
 
         function updateProgressBar() {
@@ -589,20 +657,37 @@
             document.getElementById('progressText').querySelector('.points-display').textContent = totalPoints;
 
             const checkpoints = document.querySelectorAll('.checkpoint');
+            let nextMilestone = null;
             checkpoints.forEach(cp => {
                 const points = parseInt(cp.getAttribute('data-points'));
                 if (totalPoints >= points) {
                     cp.classList.add('achieved');
                 } else {
                     cp.classList.remove('achieved');
+                    if (!nextMilestone) nextMilestone = points;
                 }
             });
 
+            if (nextMilestone) {
+                const away = nextMilestone - totalPoints;
+                document.getElementById('progressText').innerHTML = `<span class="points-display">${totalPoints}</span> pts · Next: ${milestones[nextMilestone]?.emoji} ${milestones[nextMilestone]?.title} (${away} away)`;
+            } else {
+                document.getElementById('progressText').innerHTML = `<span class="points-display">${totalPoints}</span> pts · You're a legend! 👑`;
+            }
+
             const youMarker = document.getElementById('youMarker');
             youMarker.style.left = Math.min(percentage, 100) + '%';
+        }
+
+        function showMilestone(points) {
+            const milestone = milestones[points];
+            document.getElementById('milestoneEmoji').textContent = milestone.emoji;
+            document.getElementById('milestoneTitle').textContent = milestone.title;
+            const popup = document.getElementById('milestonePopup');
+            popup.classList.add('show');
+            setTimeout(() => popup.classList.remove('show'), 2500);
         }
     </script>
 </body>
 </html>
 
-    
