@@ -97,7 +97,7 @@
             transition: background 0.3s;
         }
         .random-btn:hover { background: #059669; }
-        .question-counter { font-weight: 600; color: #333; font-size: 14px; }
+        .question-counter { display: none; }
         .card {
             background: white;
             padding: 30px;
@@ -859,8 +859,6 @@
                 </div>
                 <div class="question-text">${q.question}</div>
             `;
-
-            // Don't clear answer/result here since it's already done by loadRandomQuestion or navigation
         }
 
         function navigateQuestion(direction) {
@@ -874,7 +872,6 @@
         function updateNavigation() {
             document.getElementById('prevBtn').disabled = (currentIndex === 0);
             document.getElementById('nextBtn').disabled = (currentIndex === filteredQuestions.length - 1);
-            document.getElementById('questionCounter').textContent = `Question ${currentIndex + 1}`;
         }
 
         async function submitAnswer() {
