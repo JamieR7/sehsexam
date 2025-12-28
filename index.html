@@ -199,6 +199,20 @@
             margin: 0; 
             line-height: 1.6; 
         }
+        .mark-scheme-section {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 6px;
+            background: #f8f9fa;
+            border-left: 4px solid #6c757d;
+        }
+        .mark-scheme-section h3 {
+            font-size: 14px;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #495057;
+        }
         details summary {
             cursor: pointer;
             font-weight: 600;
@@ -911,7 +925,7 @@
                 checkMilestone(oldPoints, sessionPoints);
                 updateProgressBar();
                 
-                displayResult(data);
+                displayResult(data, q.id);
             } catch (error) {
                 document.getElementById('result').innerHTML = '<div style="color: #dc3545;">Error: ' + error.message + '</div>';
                 document.getElementById('result').style.display = 'block';
@@ -966,7 +980,9 @@
             }, 2000);
         }
 
-        function displayResult(data) {
+        function displayResult(data, questionId) {
+            const attempts = attemptCounts[questionId] || 0;
+            
             let html = `<div class="score-display">Score: ${data.score} / ${data.maxMarks} · Total session: ${sessionPoints} pts</div>`;
 
             // Display strengths
@@ -999,6 +1015,16 @@
                            <details>
                              <summary>💡 Need a hint? Click here</summary>
                              <p>${data.hint}</p>
+                           </details>
+                         </div>`;
+            }
+
+            // Show mark scheme after 2 attempts
+            if (attempts >= 2 && data.officialMarkScheme) {
+                html += `<div class="mark-scheme-section">
+                           <details>
+                             <summary>📋 View Official IB Mark Scheme (Attempt ${attempts})</summary>
+                             <p>${data.officialMarkScheme}</p>
                            </details>
                          </div>`;
             }
