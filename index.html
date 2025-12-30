@@ -619,7 +619,7 @@
                 return true;
             });
 
-            currentIndex = 0;
+            currentIndex = Math.floor(Math.random() * filteredQuestions.length);
             if (filteredQuestions.length === 0) {
                 document.getElementById('questionDisplay').innerHTML = '<p>No questions found.</p>';
             } else {
