@@ -773,15 +773,8 @@
             const resultDiv = document.getElementById('result');
             const percentage = Math.round((data.score / data.maxMarks) * 100);
 
-            // Format mark scheme with line breaks after ticks
-            const formattedMarkScheme = data.markScheme
-                .split('✓')
-                .map((part, index) => {
-                    if (index === 0) return part.trim();
-                    return (part.trim() ? '✓ ' + part.trim() : '');
-                })
-                .filter(line => line.length > 0)
-                .join('<br>');
+            // Format mark scheme with single line breaks after ticks
+            const formattedMarkScheme = data.markScheme.replace(/✓/g, '<br>✓');
 
             let html = `
                 <div class="score-display">
@@ -867,16 +860,9 @@
             dontKnowTarget = Math.floor(Math.random() * 4) + 2; // Random between 2-5
             dontKnowRandomCount = 0;
 
-            // Display honesty message with mark scheme
+            // Display honesty message with mark scheme - SIMPLE formatting with single line breaks
             const resultDiv = document.getElementById('result');
-            const formattedMarkScheme = currentQuestion.markScheme
-                .split('✓')
-                .map((part, index) => {
-                    if (index === 0) return part.trim();
-                    return (part.trim() ? '✓ ' + part.trim() : '');
-                })
-                .filter(line => line.length > 0)
-                .join('<br>');
+            const formattedMarkScheme = currentQuestion.markScheme.replace(/✓/g, '<br>✓');
 
             resultDiv.innerHTML = `
                 <div class="honesty-message">
