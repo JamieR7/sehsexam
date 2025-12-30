@@ -99,8 +99,7 @@
             transition: background 0.3s;
         }
         .random-btn:hover { background: #059669; }
-
-.dontknow-btn {
+        .dontknow-btn {
             width: 100%;
             padding: 15px;
             background: #6c757d;
@@ -141,7 +140,6 @@
             font-weight: 600;
             text-align: center;
         }
-        
         .card {
             background: white;
             padding: 30px;
@@ -231,7 +229,7 @@
         .mark-scheme-section { margin-top: 20px; padding: 15px; border-radius: 6px; background: #f8f9fa; border-left: 4px solid #6c757d; }
         .mark-scheme-section h3 { font-size: 14px; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px; color: #495057; }
         .mark-scheme-section p { line-height: 1.8; }
-        
+
         .progress-bar-container {
             position: fixed;
             bottom: 0;
@@ -452,6 +450,7 @@
             <div id="questionDisplay"></div>
             <textarea id="answerInput" placeholder="Type your answer here..."></textarea>
             <button class="submit-btn" onclick="submitAnswer()">Submit Answer</button>
+            <button class="dontknow-btn" onclick="handleDontKnow()">🤷‍♂️ I Don't Know</button>
             <div class="loading" id="loading">
                 <div class="spinner"></div>
                 Marking your answer...
@@ -496,6 +495,10 @@
         let attemptCount = 0;
         let questionAttempts = {};
         let milestones = {5: {emoji: '🤷‍♂️', title: 'No longer clueless'}, 10: {emoji: '🎯', title: 'Getting the vibe'}, 20: {emoji: '🔥', title: 'On a streak'}, 35: {emoji: '💪', title: 'Built different'}, 50: {emoji: '🐐', title: 'Actually goated'}, 75: {emoji: '👑', title: 'Certified legend'}, 100: {emoji: '⚔️', title: 'Final boss down'}};
+        let dontKnowQuestion = null;
+        let dontKnowRandomCount = 0;
+        let dontKnowTarget = 0;
+        let isRevisiting = false;
 
         const curriculum = {
             "A": { 
@@ -650,6 +653,34 @@
         }
 
         function loadRandomQuestion() {
+            // Check if we're tracking for a revisit
+            if (dontKnowQuestion && dontKnowRandomCount < dontKnowTarget) {
+                dontKnowRandomCount++;
+
+                if (dontKnowRandomCount >= dontKnowTarget) {
+                    // Time to revisit!
+                    currentQuestion = dontKnowQuestion;
+                    isRevisiting = true;
+                    displayQuestion(dontKnowQuestion);
+
+                    // Add banner to indicate this is a revisit
+                    const questionDisplay = document.getElementById('questionDisplay');
+                    questionDisplay.innerHTML = `
+                        <div class="revisit-banner">
+                            🔄 Remember this one? Time to show what you've learned!
+                        </div>
+                    ` + questionDisplay.innerHTML;
+
+                    // Reset tracking
+                    dontKnowQuestion = null;
+                    dontKnowRandomCount = 0;
+                    dontKnowTarget = 0;
+                    isRevisiting = false;
+                    return;
+                }
+            }
+
+            // Normal random selection
             currentIndex = Math.floor(Math.random() * filteredQuestions.length);
             displayQuestion(filteredQuestions[currentIndex]);
         }
@@ -721,7 +752,7 @@
                     const oldPoints = totalPoints;
                     totalPoints += data.score;
                     updateProgressBar();
-                    
+
                     // Check for milestone
                     Object.keys(milestones).forEach(pts => {
                         if (oldPoints < pts && totalPoints >= pts) {
@@ -825,6 +856,43 @@
             const popup = document.getElementById('milestonePopup');
             popup.classList.add('show');
             setTimeout(() => popup.classList.remove('show'), 2500);
+        }
+
+        function handleDontKnow() {
+            if (!currentQuestion) return;
+
+            // Store the question to revisit
+            dontKnowQuestion = currentQuestion;
+            dontKnowTarget = Math.floor(Math.random() * 4) + 2; // Random between 2-5
+            dontKnowRandomCount = 0;
+
+            // Display honesty message with mark scheme
+            const resultDiv = document.getElementById('result');
+            const formattedMarkScheme = currentQuestion.markScheme
+                .split('✓')
+                .map((part, index) => {
+                    if (index === 0) return part.trim();
+                    return (part.trim() ? '✓ ' + part.trim() : '');
+                })
+                .filter(line => line.length > 0)
+                .join('<br>');
+
+            resultDiv.innerHTML = `
+                <div class="honesty-message">
+                    <h3>🌟 Honesty is the first step to learning!</h3>
+                    <p>Great job recognizing what you don't know. That's exactly what effective learning looks like. Take a moment to read the mark scheme below and think about how you would answer this question.</p>
+                    <p style="margin-top: 15px;"><strong>Here's what you need to know:</strong></p>
+                </div>
+                <div class="mark-scheme-section" style="margin-top: 15px;">
+                    <h3>📋 Official Mark Scheme</h3>
+                    <p>${formattedMarkScheme}</p>
+                </div>
+                <div class="honesty-message" style="margin-top: 15px; background: #e8f5e9; border-left-color: #10b981;">
+                    <p><strong>💭 Take a moment to memorize the key points above.</strong></p>
+                    <p>When you're ready, click the 🎲 Random button ${dontKnowTarget} times to practice other questions. After that, we'll bring this question back to see if you remember!</p>
+                </div>
+            `;
+            resultDiv.style.display = 'block';
         }
     </script>
 </body>
