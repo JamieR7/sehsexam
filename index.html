@@ -227,8 +227,12 @@
         .comment-section h3, .hint-section h3 { font-size: 14px; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px; }
         .comment-section p, .hint-section p { margin: 0; line-height: 1.6; }
         .mark-scheme-section { margin-top: 20px; padding: 15px; border-radius: 6px; background: #f8f9fa; border-left: 4px solid #6c757d; }
-        .mark-scheme-section h3 { font-size: 14px; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px; color: #495057; }
-        .mark-scheme-section .scheme-point { margin-bottom: 8px; line-height: 1.6; }
+        .mark-scheme-section h3 { font-size: 14px; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.5px; color: #495057; }
+        .mark-scheme-section .scheme-point { 
+            margin-bottom: 12px; 
+            line-height: 1.6;
+            display: block;
+        }
 
         .progress-bar-container {
             position: fixed;
@@ -686,12 +690,12 @@
             document.getElementById('nextBtn').disabled = currentIndex === filteredQuestions.length - 1;
         }
 
-        // SUPER ROBUST formatting function - handles ANY tick format
+        // CORRECTED formatting function - ticks are at START of each point
         function formatMarkScheme(markSchemeText) {
-            // Use regex to split on ✓ with optional spaces around it
-            const parts = markSchemeText.split(/\s*✓\s*/);
+            // Split on ✓ character
+            const parts = markSchemeText.split('✓');
 
-            // Remove empty parts and create divs
+            // Filter out empty parts and create divs (keep the tick at the front)
             const divs = parts
                 .map(part => part.trim())
                 .filter(part => part.length > 0)
@@ -781,7 +785,7 @@
             const resultDiv = document.getElementById('result');
             const percentage = Math.round((data.score / data.maxMarks) * 100);
 
-            // Use the super robust formatter
+            // Use the corrected formatter
             const formattedMarkScheme = formatMarkScheme(data.markScheme);
 
             let html = `
@@ -866,7 +870,7 @@
             dontKnowTarget = Math.floor(Math.random() * 4) + 2;
             dontKnowRandomCount = 0;
 
-            // Use the super robust formatter
+            // Use the corrected formatter
             const resultDiv = document.getElementById('result');
             const formattedMarkScheme = formatMarkScheme(currentQuestion.markScheme);
 
