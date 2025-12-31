@@ -228,7 +228,6 @@
         .comment-section p, .hint-section p { margin: 0; line-height: 1.6; }
         .mark-scheme-section { margin-top: 20px; padding: 15px; border-radius: 6px; background: #f8f9fa; border-left: 4px solid #6c757d; }
         .mark-scheme-section h3 { font-size: 14px; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px; color: #495057; }
-        .mark-scheme-section p { line-height: 1.8; }
         .mark-scheme-section .scheme-point { margin-bottom: 8px; line-height: 1.6; }
 
         .progress-bar-container {
@@ -687,6 +686,21 @@
             document.getElementById('nextBtn').disabled = currentIndex === filteredQuestions.length - 1;
         }
 
+        // SUPER ROBUST formatting function - handles ANY tick format
+        function formatMarkScheme(markSchemeText) {
+            // Use regex to split on ✓ with optional spaces around it
+            const parts = markSchemeText.split(/\s*✓\s*/);
+
+            // Remove empty parts and create divs
+            const divs = parts
+                .map(part => part.trim())
+                .filter(part => part.length > 0)
+                .map(part => '<div class="scheme-point">✓ ' + part + '</div>')
+                .join('');
+
+            return divs;
+        }
+
         async function submitAnswer() {
             const answerText = document.getElementById('answerInput').value.trim();
 
@@ -767,12 +781,8 @@
             const resultDiv = document.getElementById('result');
             const percentage = Math.round((data.score / data.maxMarks) * 100);
 
-            // OPTION 3: Wrap each tick point in a DIV - GUARANTEED line breaks
-            const formattedMarkScheme = data.markScheme
-                .split('✓')
-                .filter(part => part.trim())
-                .map(part => '<div class="scheme-point">' + part.trim() + ' ✓</div>')
-                .join('');
+            // Use the super robust formatter
+            const formattedMarkScheme = formatMarkScheme(data.markScheme);
 
             let html = `
                 <div class="score-display">
@@ -856,13 +866,9 @@
             dontKnowTarget = Math.floor(Math.random() * 4) + 2;
             dontKnowRandomCount = 0;
 
-            // OPTION 3: Wrap each tick point in a DIV - GUARANTEED line breaks
+            // Use the super robust formatter
             const resultDiv = document.getElementById('result');
-            const formattedMarkScheme = currentQuestion.markScheme
-                .split('✓')
-                .filter(part => part.trim())
-                .map(part => '<div class="scheme-point">' + part.trim() + ' ✓</div>')
-                .join('');
+            const formattedMarkScheme = formatMarkScheme(currentQuestion.markScheme);
 
             resultDiv.innerHTML = `
                 <div class="honesty-message">
