@@ -229,6 +229,7 @@
         .mark-scheme-section { margin-top: 20px; padding: 15px; border-radius: 6px; background: #f8f9fa; border-left: 4px solid #6c757d; }
         .mark-scheme-section h3 { font-size: 14px; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px; color: #495057; }
         .mark-scheme-section p { line-height: 1.8; }
+        .mark-scheme-section .scheme-point { margin-bottom: 8px; line-height: 1.6; }
 
         .progress-bar-container {
             position: fixed;
@@ -654,17 +655,14 @@
         }
 
         function loadRandomQuestion() {
-            // Check if we're tracking for a revisit
             if (dontKnowQuestion && dontKnowRandomCount < dontKnowTarget) {
                 dontKnowRandomCount++;
 
                 if (dontKnowRandomCount >= dontKnowTarget) {
-                    // Time to revisit!
                     currentQuestion = dontKnowQuestion;
                     isRevisiting = true;
                     displayQuestion(dontKnowQuestion);
 
-                    // Add banner to indicate this is a revisit
                     const questionDisplay = document.getElementById('questionDisplay');
                     questionDisplay.innerHTML = `
                         <div class="revisit-banner">
@@ -672,7 +670,6 @@
                         </div>
                     ` + questionDisplay.innerHTML;
 
-                    // Reset tracking
                     dontKnowQuestion = null;
                     dontKnowRandomCount = 0;
                     dontKnowTarget = 0;
@@ -681,7 +678,6 @@
                 }
             }
 
-            // Normal random selection
             currentIndex = Math.floor(Math.random() * filteredQuestions.length);
             displayQuestion(filteredQuestions[currentIndex]);
         }
@@ -701,7 +697,6 @@
 
             if (!currentQuestion) return;
 
-            // Track attempts per question
             if (!questionAttempts[currentQuestion.id]) {
                 questionAttempts[currentQuestion.id] = 0;
             }
@@ -754,7 +749,6 @@
                     totalPoints += data.score;
                     updateProgressBar();
 
-                    // Check for milestone
                     Object.keys(milestones).forEach(pts => {
                         if (oldPoints < pts && totalPoints >= pts) {
                             showMilestone(pts);
@@ -773,8 +767,12 @@
             const resultDiv = document.getElementById('result');
             const percentage = Math.round((data.score / data.maxMarks) * 100);
 
-            // Format mark scheme with DOUBLE line breaks AFTER each tick (OPTION 2)
-            const formattedMarkScheme = data.markScheme.replace(/✓/g, '✓<br><br>');
+            // OPTION 3: Wrap each tick point in a DIV - GUARANTEED line breaks
+            const formattedMarkScheme = data.markScheme
+                .split('✓')
+                .filter(part => part.trim())
+                .map(part => '<div class="scheme-point">' + part.trim() + ' ✓</div>')
+                .join('');
 
             let html = `
                 <div class="score-display">
@@ -794,12 +792,11 @@
                 </div>
             `;
 
-            // Only show mark scheme on second attempt or later
             if (data.currentAttempt >= 2) {
                 html += `
                 <div class="mark-scheme-section">
                     <h3>📋 Official Mark Scheme</h3>
-                    <p>${formattedMarkScheme}</p>
+                    ${formattedMarkScheme}
                 </div>
                 `;
             } else {
@@ -855,14 +852,17 @@
         function handleDontKnow() {
             if (!currentQuestion) return;
 
-            // Store the question to revisit
             dontKnowQuestion = currentQuestion;
-            dontKnowTarget = Math.floor(Math.random() * 4) + 2; // Random between 2-5
+            dontKnowTarget = Math.floor(Math.random() * 4) + 2;
             dontKnowRandomCount = 0;
 
-            // Display honesty message with mark scheme - OPTION 2: Double <br> AFTER each tick
+            // OPTION 3: Wrap each tick point in a DIV - GUARANTEED line breaks
             const resultDiv = document.getElementById('result');
-            const formattedMarkScheme = currentQuestion.markScheme.replace(/✓/g, '✓<br><br>');
+            const formattedMarkScheme = currentQuestion.markScheme
+                .split('✓')
+                .filter(part => part.trim())
+                .map(part => '<div class="scheme-point">' + part.trim() + ' ✓</div>')
+                .join('');
 
             resultDiv.innerHTML = `
                 <div class="honesty-message">
@@ -872,7 +872,7 @@
                 </div>
                 <div class="mark-scheme-section" style="margin-top: 15px;">
                     <h3>📋 Official Mark Scheme</h3>
-                    <p>${formattedMarkScheme}</p>
+                    ${formattedMarkScheme}
                 </div>
                 <div class="honesty-message" style="margin-top: 15px; background: #e8f5e9; border-left-color: #10b981;">
                     <p><strong>💭 Take a moment to memorize the key points above.</strong></p>
