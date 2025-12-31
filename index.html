@@ -230,7 +230,7 @@
         .mark-scheme-section h3 { font-size: 14px; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.5px; color: #495057; }
         .mark-scheme-section .scheme-point { 
             margin-bottom: 12px; 
-            line-height: 1.6;
+            line-height: 1.8;
             display: block;
         }
 
@@ -690,19 +690,19 @@
             document.getElementById('nextBtn').disabled = currentIndex === filteredQuestions.length - 1;
         }
 
-        // CORRECTED formatting function - ticks are at START of each point
+        // NEW APPROACH: Use regex replace to insert divs around each tick point
         function formatMarkScheme(markSchemeText) {
-            // Split on ✓ character
-            const parts = markSchemeText.split('✓');
+            // Trim and add markers
+            let formatted = markSchemeText.trim();
 
-            // Filter out empty parts and create divs (keep the tick at the front)
-            const divs = parts
-                .map(part => part.trim())
-                .filter(part => part.length > 0)
-                .map(part => '<div class="scheme-point">✓ ' + part + '</div>')
-                .join('');
+            // Replace each ✓ followed by text with a div-wrapped version
+            // This regex captures "✓" followed by any text up to (but not including) the next "✓" or end of string
+            formatted = formatted.replace(/(✓[^✓]+)/g, '<div class="scheme-point">$1</div>');
 
-            return divs;
+            // Clean up any empty divs
+            formatted = formatted.replace(/<div class="scheme-point">\s*<\/div>/g, '');
+
+            return formatted;
         }
 
         async function submitAnswer() {
@@ -785,7 +785,7 @@
             const resultDiv = document.getElementById('result');
             const percentage = Math.round((data.score / data.maxMarks) * 100);
 
-            // Use the corrected formatter
+            // Use the regex-based formatter
             const formattedMarkScheme = formatMarkScheme(data.markScheme);
 
             let html = `
@@ -870,7 +870,7 @@
             dontKnowTarget = Math.floor(Math.random() * 4) + 2;
             dontKnowRandomCount = 0;
 
-            // Use the corrected formatter
+            // Use the regex-based formatter
             const resultDiv = document.getElementById('result');
             const formattedMarkScheme = formatMarkScheme(currentQuestion.markScheme);
 
