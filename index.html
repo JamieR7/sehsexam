@@ -773,8 +773,8 @@
             const resultDiv = document.getElementById('result');
             const percentage = Math.round((data.score / data.maxMarks) * 100);
 
-            // Format mark scheme with single line breaks after ticks
-            const formattedMarkScheme = data.markScheme.replace(/✓/g, '<br>✓');
+            // Format mark scheme with DOUBLE line breaks AFTER each tick (OPTION 2)
+            const formattedMarkScheme = data.markScheme.replace(/✓/g, '✓<br><br>');
 
             let html = `
                 <div class="score-display">
@@ -860,9 +860,9 @@
             dontKnowTarget = Math.floor(Math.random() * 4) + 2; // Random between 2-5
             dontKnowRandomCount = 0;
 
-            // Display honesty message with mark scheme - SIMPLE formatting with single line breaks
+            // Display honesty message with mark scheme - OPTION 2: Double <br> AFTER each tick
             const resultDiv = document.getElementById('result');
-            const formattedMarkScheme = currentQuestion.markScheme.replace(/✓/g, '<br>✓');
+            const formattedMarkScheme = currentQuestion.markScheme.replace(/✓/g, '✓<br><br>');
 
             resultDiv.innerHTML = `
                 <div class="honesty-message">
