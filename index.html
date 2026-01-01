@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IB SEHS Exam Practice</title>
+    <title>IB SEHS Exam Practice!</title>
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -686,9 +686,11 @@
             document.getElementById('nextBtn').disabled = currentIndex === filteredQuestions.length - 1;
         }
 
-        // SIMPLEST FORMATTER - just replace ✓ with ✓<br><br>
+        // HANDLES BOTH ✓ (U+2713) AND ✔ (U+2714)
         function formatMarkScheme(markSchemeText) {
-            return markSchemeText.replace(/✓/g, '✓<br><br>');
+            return markSchemeText
+                .replace(/✓/g, '✓<br><br>')
+                .replace(/✔/g, '✔<br><br>');
         }
 
         async function submitAnswer() {
@@ -771,7 +773,7 @@
             const resultDiv = document.getElementById('result');
             const percentage = Math.round((data.score / data.maxMarks) * 100);
 
-            // Use the simplest formatter
+            // Use formatter that handles BOTH tick characters
             const formattedMarkScheme = formatMarkScheme(data.markScheme);
 
             let html = `
@@ -856,7 +858,7 @@
             dontKnowTarget = Math.floor(Math.random() * 4) + 2;
             dontKnowRandomCount = 0;
 
-            // Use the simplest formatter
+            // Use formatter that handles BOTH tick characters
             const resultDiv = document.getElementById('result');
             const formattedMarkScheme = formatMarkScheme(currentQuestion.markScheme);
 
