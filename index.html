@@ -227,12 +227,8 @@
         .comment-section h3, .hint-section h3 { font-size: 14px; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px; }
         .comment-section p, .hint-section p { margin: 0; line-height: 1.6; }
         .mark-scheme-section { margin-top: 20px; padding: 15px; border-radius: 6px; background: #f8f9fa; border-left: 4px solid #6c757d; }
-        .mark-scheme-section h3 { font-size: 14px; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.5px; color: #495057; }
-        .mark-scheme-section .scheme-point { 
-            margin-bottom: 12px; 
-            line-height: 1.8;
-            display: block;
-        }
+        .mark-scheme-section h3 { font-size: 14px; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px; color: #495057; }
+        .mark-scheme-section p { line-height: 1.8; }
 
         .progress-bar-container {
             position: fixed;
@@ -690,19 +686,9 @@
             document.getElementById('nextBtn').disabled = currentIndex === filteredQuestions.length - 1;
         }
 
-        // NEW APPROACH: Use regex replace to insert divs around each tick point
+        // SIMPLEST FORMATTER - just replace ✓ with ✓<br><br>
         function formatMarkScheme(markSchemeText) {
-            // Trim and add markers
-            let formatted = markSchemeText.trim();
-
-            // Replace each ✓ followed by text with a div-wrapped version
-            // This regex captures "✓" followed by any text up to (but not including) the next "✓" or end of string
-            formatted = formatted.replace(/(✓[^✓]+)/g, '<div class="scheme-point">$1</div>');
-
-            // Clean up any empty divs
-            formatted = formatted.replace(/<div class="scheme-point">\s*<\/div>/g, '');
-
-            return formatted;
+            return markSchemeText.replace(/✓/g, '✓<br><br>');
         }
 
         async function submitAnswer() {
@@ -785,7 +771,7 @@
             const resultDiv = document.getElementById('result');
             const percentage = Math.round((data.score / data.maxMarks) * 100);
 
-            // Use the regex-based formatter
+            // Use the simplest formatter
             const formattedMarkScheme = formatMarkScheme(data.markScheme);
 
             let html = `
@@ -810,7 +796,7 @@
                 html += `
                 <div class="mark-scheme-section">
                     <h3>📋 Official Mark Scheme</h3>
-                    ${formattedMarkScheme}
+                    <p>${formattedMarkScheme}</p>
                 </div>
                 `;
             } else {
@@ -870,7 +856,7 @@
             dontKnowTarget = Math.floor(Math.random() * 4) + 2;
             dontKnowRandomCount = 0;
 
-            // Use the regex-based formatter
+            // Use the simplest formatter
             const resultDiv = document.getElementById('result');
             const formattedMarkScheme = formatMarkScheme(currentQuestion.markScheme);
 
@@ -882,7 +868,7 @@
                 </div>
                 <div class="mark-scheme-section" style="margin-top: 15px;">
                     <h3>📋 Official Mark Scheme</h3>
-                    ${formattedMarkScheme}
+                    <p>${formattedMarkScheme}</p>
                 </div>
                 <div class="honesty-message" style="margin-top: 15px; background: #e8f5e9; border-left-color: #10b981;">
                     <p><strong>💭 Take a moment to memorize the key points above.</strong></p>
