@@ -545,7 +545,7 @@
             sections.forEach(section => {
                 const option = document.createElement('option');
                 option.value = section;
-                option.textContent = section + ' - ' + (curriculum[section]?.name || '');
+                option.textContent = curriculum[section]?.name ? section + ' - ' + curriculum[section].name : section;
                 sectionFilter.appendChild(option);
             });
         }
